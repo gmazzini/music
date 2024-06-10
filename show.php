@@ -56,11 +56,13 @@ switch($liv){
   $db="song";
   break;
   case 4:
+  // playlist add or remove
   $query=mysqli_query($con,"select max(position) from playlist where label='$plin' and pwdmd5='$pwdmd5'");
   $row=mysqli_fetch_row($query);
   $pllast=1+(int)$row[0];
   mysqli_free_result($query);
   mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
+  // back
   $query=mysqli_query($con,"select parent from song where id='$idin'");
   $row=mysqli_fetch_assoc($query);
   $idin=$row["parent"];
@@ -88,7 +90,11 @@ for(;;){
     echo "$name";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
-      echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl'>$apl</a>";
+      $query=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
+      $row=mysqli_fetch_assoc($query);
+      $position=(int)$row["position"];
+      mysqli_free_result($query);
+      if($position==0)echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl'>$apl</a>";
     }
     echo "\n";
   }
