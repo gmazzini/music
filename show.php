@@ -62,7 +62,7 @@ switch($liv){
   mysqli_free_result($query);
   $prevliv=2;
   $nextliv=4;
-  $liv=3;
+  $liv=2;
   $db="song";
   break;
 }
