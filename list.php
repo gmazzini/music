@@ -37,11 +37,22 @@ for(;;){
   if($row==null)break;
   $id=$row["id"];
   $position=$row["position"];
-  $query=mysqli_query($con,"select name from song where id='$id'");
-  $row=mysqli_fetch_assoc($query);
-  $name=$row["name"];
-  mysqli_free_result($query);  
-  echo "$position - $id - $name\n";
+  $query1=mysqli_query($con,"select name,parent from song where id='$id'");
+  $row1=mysqli_fetch_assoc($query1);
+  $name=$row1["name"];
+  $parent=$row1["parent"];
+  mysqli_free_result($query1);
+  $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
+  $row1=mysqli_fetch_assoc($query1);
+  $liv2=$row1["name"];
+  $parent=$row1["parent"];
+  mysqli_free_result($query1);
+  $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
+  $row1=mysqli_fetch_assoc($query1);
+  $liv1=$row1["name"];
+  $parent=$row1["parent"];
+  mysqli_free_result($query1);
+  echo "$position - $id - $name - $liv2 - $liv1\n";
 }
 echo "<pre>";
 mysqli_free_result($query);
