@@ -2,6 +2,7 @@
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 
+// authentication
 @$myid=$_POST["myid"];
 if(strlen($myid)>7)$pwdmd5=md5($myid);
 else $pwdmd5=$_GET["pwdmd5"];
@@ -16,6 +17,15 @@ if($pwdmd5=="" || $first==""){
   echo "</form>";
   exit(0);
 }
+
+// playlist
+$query=mysqli_query($con,"select label from playlist_desc where pwdmd5='$pwdmd5'");
+for($ipl=0;;$ipl++){
+  $row=mysqli_fetch_assoc($query);
+  if($row==null)break;
+  $pl[$pli]=$row["label"];
+}
+mysqli_free_result($query);
 
 @$liv=$_GET["liv"];
 @$idin=$_GET["id"];
@@ -34,7 +44,11 @@ for(;;){
   $id=$row["id"];
   $name=$row["name"];
   if($liv<3)echo "<a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>$name</a>\n";
-  else echo "$name <a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>Add</a>\n";
+  else {
+    echo "$name <a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>Add</a>";
+    for($i=0;$i<$ipl;$i++)echo "<a>$pl[$ipl]</a>";
+    echo "\n";
+  }
 }
 echo "</pre>";
 mysqli_free_result($query);
