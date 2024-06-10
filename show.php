@@ -23,7 +23,7 @@ $query=mysqli_query($con,"select label from playlist_desc where pwdmd5='$pwdmd5'
 for($ipl=0;;$ipl++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
-  $pl[$pli]=$row["label"];
+  $pl[$ipl]=$row["label"];
 }
 mysqli_free_result($query);
 
