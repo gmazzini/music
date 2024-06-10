@@ -30,8 +30,10 @@ for(;;){
 mysqli_free_result($query);
 echo "<br>XXXXX\n";
 
+
+echo "select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin'\n";
 // simngle play list 
-$query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
+$query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin'");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
