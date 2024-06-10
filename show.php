@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"];
+@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -56,6 +56,11 @@ switch($liv){
   $db="song";
   break;
   case 4:
+  $query=mysqli_query($con,"select max(position) from playlist where label='$plin' and pwdmd5='$pwdmd5'");
+  $row=mysqli_fetch_row($query);
+  $pllast=1+(int)$row[0];
+  mysqli_free_result($query);
+  mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
   $query=mysqli_query($con,"select parent from song where id='$idin'");
   $row=mysqli_fetch_assoc($query);
   $idin=$row["parent"];
@@ -71,7 +76,7 @@ switch($liv){
   break;
 }
 
-echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev<a href='show.php?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5'>Prev</a>\n";
+echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='show.php?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5'>Prev</a>\n";
 $query=mysqli_query($con,"select id,name from $db where parent='$idin' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
