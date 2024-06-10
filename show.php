@@ -17,9 +17,9 @@ if($pwdmd5=="" || $first==""){
   exit(0);
 }
 
-$liv=$_GET["liv"];
-$idin=$_GET["id"];
-$idorg=$_GET["idorg"];
+@$liv=$_GET["liv"];
+@$idin=$_GET["id"];
+@$idorg=$_GET["idorg"];
 if(!isset($liv)){$liv=1; $idin="root";}
 if(!isset($idorg))$idorg="root";
 if($liv<3){$nextliv=$liv+1; $db="music";}
@@ -33,7 +33,8 @@ for(;;){
   if($row==null)break;
   $id=$row["id"];
   $name=$row["name"];
-  echo "<a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>$name</a>\n";
+  if($liv<3)echo "<a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>$name</a>\n";
+  else echo "$name <a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>Add</a>\n";
 }
 echo "</pre>";
 mysqli_free_result($query);
