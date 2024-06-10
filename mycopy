@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/www/music.mazzini.org
+rm -rf music
+git clone https://github.com/gmazzini/music
