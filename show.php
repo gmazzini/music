@@ -45,8 +45,8 @@ for(;;){
   $name=$row["name"];
   if($liv<3)echo "<a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>$name</a>\n";
   else {
-    echo "$name <a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>Add</a>";
-    for($i=0;$i<$ipl;$i++)echo " <a>$pl[$i]</a>";
+    echo "$name";
+    for($i=0;$i<$ipl;$i++)echo " <a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>$pl[$i]</a>";
     echo "\n";
   }
 }
