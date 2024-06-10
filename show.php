@@ -1,5 +1,8 @@
 <?php
 include "local.php";
+$pwdmd5=$_GET["pwdmd5"];
+if(!isset($pwdmd5)){
+}
 $liv=$_GET["liv"];
 $idin=$_GET["id"];
 $idorg=$_GET["idorg"];
