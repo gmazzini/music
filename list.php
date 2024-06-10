@@ -40,7 +40,8 @@ switch($act){
   $row1=mysqli_fetch_row($query1);
   $swap=(int)$row1[0];
   mysqli_free_result($query1);
-  if($swap>0){
+  echo "$swap $posin\n";
+  if($swap>100000){
     mysqli_query($con,"update playlist set position=30000 where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
     mysqli_query($con,"update playlist set position=$posin where pwdmd5='$pwdmd5' and position=$swap and label='$plin'");
     mysqli_query($con,"update playlist set position=$swap where pwdmd5='$pwdmd5' and position=30000 and label='$plin'");
