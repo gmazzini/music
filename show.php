@@ -52,8 +52,10 @@ switch($liv){
   $idprev=$row["parent"];
   mysqli_free_result($query);
   $prevliv=2;
-  $nextliv=3;
+  $nextliv=4;
   $db="song";
+  break;
+  case 4:
   break;
 }
 
