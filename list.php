@@ -72,8 +72,8 @@ for(;;){
   $parent=$row1["parent"];
   mysqli_free_result($query1);
   echo "<a href=list.php?act=C&pl=$plin&pwdmd5=$pwdmd5&pos=$position>C</a> ";
-  echo "<a href=list.php?act=U&id=$id&pl=$plin&pwdmd5=$pwdmd5>U</a> ";
-  echo "<a href=list.php?act=D&id=$id&pl=$plin&pwdmd5=$pwdmd5>D</a> ";
+  echo "<a href=list.php?act=U&pl=$plin&pwdmd5=$pwdmd5&pos=$position>U</a> ";
+  echo "<a href=list.php?act=D&pl=$plin&pwdmd5=$pwdmd5&pos=$position>D</a> ";
   echo " $position | $id | $name | $liv2 | $liv1\n";
 }
 echo "<pre>";
