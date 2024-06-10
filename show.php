@@ -1,5 +1,6 @@
 <?php
 include "local.php";
+$con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 
 $myid=$_POST["myid"];
 if(strlen($myid)>7)$pwdmd5=md5($myid);
@@ -26,7 +27,6 @@ else $db="song";
 if($liv>1)$prevliv=$liv-1;
 else $prevliv=$liv;
 echo "<pre>$first LIV:$liv, ID:$idin <a href='show.php?liv=$prevliv&id=$idorg'>Prev</a>\n";
-$con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 $query=mysqli_query($con,"select id,name from $db where top='$idin' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
