@@ -2,7 +2,7 @@
 include "local.php";
 $liv=$_GET["liv"];
 $idin=$_GET["id"];
-$idorg$_GET["idorg"];
+$idorg=$_GET["idorg"];
 if(!isset($liv)){$liv=1; $idin="root";}
 if(!isset($idorg))$idorg="root";
 if($liv<3){$nextliv=$liv+1; $db="music";}
