@@ -31,13 +31,12 @@ mysqli_free_result($query);
 if($liv==""){$liv=1; $idin="root";}
 if($liv<3){$nextliv=$liv+1; $db="music";}
 else {$nextliv=3; $db="song";}
-if($liv>1)$prevliv=$liv-1;
-else $prevliv=$liv;
 
 // previous level
 switch($liv){
   case 1:
   $idprev="root";
+  $prevliv=1;
   break;
   case 2:
   case 3:
@@ -45,6 +44,7 @@ switch($liv){
   $row=mysqli_fetch_assoc($query);
   $idprev=$row["parent"];
   mysqli_free_result($query);
+  $prevliv=$liv-1;
   break;
 }
 
