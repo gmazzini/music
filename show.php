@@ -40,13 +40,8 @@ switch($liv){
   $idprev="root";
   break;
   case 2:
-  $query=mysqli_query($con,"select parent from music where id='$idin'");
-  $row=mysqli_fetch_assoc($query);
-  $idprev=$row["parent"];
-  mysqli_free_result($query);
-  break;
   case 3:
-  $query=mysqli_query($con,"select parent from song where id='$idin'");
+  $query=mysqli_query($con,"select parent from music where id='$idin'");
   $row=mysqli_fetch_assoc($query);
   $idprev=$row["parent"];
   mysqli_free_result($query);
