@@ -35,6 +35,14 @@ switch($act){
   case "C":
   mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and id='$idin' and label='$plin'");  
   break;
+  case "U":
+  $query1=mysqli_query($con,"select position from playlist where pwdmd5='$pwdmd5' and id='$idin' and label='$plin'");
+  $row1=mysqli_fetch_assoc($query1);
+  $name=$row1["name"];
+  $parent=$row1["parent"];
+  mysqli_free_result($query1);
+
+  break;
 }
 
 // single play list 
@@ -60,6 +68,8 @@ for(;;){
   $parent=$row1["parent"];
   mysqli_free_result($query1);
   echo "<a href=list.php?act=C&id=$id&pl=$plin&pwdmd5=$pwdmd5>C</a>";
+  echo "<a href=list.php?act=U&id=$id&pl=$plin&pwdmd5=$pwdmd5>U</a>";
+  echo "<a href=list.php?act=D&id=$id&pl=$plin&pwdmd5=$pwdmd5>D</a>";
   echo " $position | $id | $name | $liv2 | $liv1\n";
 }
 echo "<pre>";
