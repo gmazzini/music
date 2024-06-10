@@ -5,17 +5,17 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 $myid=$_POST["myid"];
 if(strlen($myid)>7)$pwdmd5=md5($myid);
 else $pwdmd5=$_GET["pwdmd5"];
-if($pwdmd5==""){
+$query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
+$row=mysqli_fetch_assoc($query);
+$first=$row["first"];
+mysqli_free_result($query);
+if($pwdmd5=="" || $first==""){
   echo "<form method=post>";
   echo "passwd <input type=text name=myid size=16>";
   echo "<input type=submit name=act value=Enter>";
   echo "</form>";
   exit(0);
 }
-$query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
-$row=mysqli_fetch_assoc($query);
-$first=$row["first"];
-mysqli_free_result($query);
 
 $liv=$_GET["liv"];
 $idin=$_GET["id"];
