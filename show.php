@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$idorg=$_GET["idorg"];
+@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -33,19 +33,20 @@ if($liv<3){$nextliv=$liv+1; $db="music";}
 else {$nextliv=3; $db="song";}
 if($liv>1)$prevliv=$liv-1;
 else $prevliv=$liv;
+
 echo "<pre>$first liv:$liv, idin:$idin <a href='show.php?liv=$prevliv&idin=$idin&pwdmd5=$pwdmd5'>Prev</a>\n";
-$query=mysqli_query($con,"select id,name from $db where top='$idin' order by name");
+$query=mysqli_query($con,"select id,name from $db where parent='$idin' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $id=$row["id"];
   $name=$row["name"];
-  if($liv<3)echo "<a href='show.php?liv=$nextliv&idin=$id&idorg=$idorg&pwdmd5=$pwdmd5'>$name</a>\n";
+  if($liv<3)echo "<a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5'>$name</a>\n";
   else {
     echo "$name";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
-      echo " <a href='show.php?liv=$nextliv&idin=$id&idorg=$idin&pwdmd5=$pwdmd5&pl=$apl'>$apl</a>";
+      echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl'>$apl</a>";
     }
     echo "\n";
   }
