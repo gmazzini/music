@@ -34,7 +34,26 @@ else {$nextliv=3; $db="song";}
 if($liv>1)$prevliv=$liv-1;
 else $prevliv=$liv;
 
-echo "<pre>$first liv:$liv, idin:$idin <a href='show.php?liv=$prevliv&idin=$idin&pwdmd5=$pwdmd5'>Prev</a>\n";
+// previous level
+switch($liv){
+  case 1:
+  $idprev="root";
+  break;
+  case 2:
+  $query=mysqli_query($con,"select parent from music where id='$idin'");
+  $row=mysqli_fetch_assoc($query);
+  $idprev=$row["parent"];
+  mysqli_free_result($query);
+  break;
+  case 3:
+  $query=mysqli_query($con,"select parent from song where id='$idin'");
+  $row=mysqli_fetch_assoc($query);
+  $idprev=$row["parent"];
+  mysqli_free_result($query);
+  break;
+}
+
+echo "<pre>$first liv:$liv, idin:$idin <a href='show.php?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5'>Prev</a>\n";
 $query=mysqli_query($con,"select id,name from $db where parent='$idin' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
