@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_GET["passwd"]; @$plin=$_GET["pl"]; @$idin=$_GET["id"]; @$act=$_GET["act"];
+@$passwd=$_GET["passwd"]; @$plin=$_GET["pl"]; @$posin=$_GET["pos"]; @$act=$_GET["act"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -33,7 +33,7 @@ echo "<hr>";
 // acdtion on playlist
 switch($act){
   case "C":
-  mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and id='$idin' and label='$plin'");  
+  mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");  
   break;
   case "U":
   $query1=mysqli_query($con,"select position from playlist where pwdmd5='$pwdmd5' and id='$idin' and label='$plin'");
@@ -67,7 +67,7 @@ for(;;){
   $liv1=$row1["name"];
   $parent=$row1["parent"];
   mysqli_free_result($query1);
-  echo "<a href=list.php?act=C&id=$id&pl=$plin&pwdmd5=$pwdmd5>C</a>";
+  echo "<a href=list.php?act=C&pl=$plin&pwdmd5=$pwdmd5&pos=$position>C</a>";
   echo "<a href=list.php?act=U&id=$id&pl=$plin&pwdmd5=$pwdmd5>U</a>";
   echo "<a href=list.php?act=D&id=$id&pl=$plin&pwdmd5=$pwdmd5>D</a>";
   echo " $position | $id | $name | $liv2 | $liv1\n";
