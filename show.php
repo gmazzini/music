@@ -1,6 +1,6 @@
 <?php
 include "local.php";
-echo "<pre>CIAOOOO\n";
+echo "<pre>Link LIV1\n";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 $query=mysqli_query($con,"select id,name from music where top='root'");
 for(;;){
