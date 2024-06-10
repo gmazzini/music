@@ -6,6 +6,7 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
 else $pwdmd5=$_GET["pwdmd5"];
+echo "----$pwdmd5----";
 $query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
 $row=mysqli_fetch_assoc($query);
 $first=$row["first"];
