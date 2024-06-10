@@ -7,11 +7,11 @@ else $pwdmd5=$_GET["pwdmd5"];
 if($pwdmd5==""){
   echo "<form method=post>";
   echo "passwd <input type=text name=myid size=16>";
-  echo "<input type=submit name=act value=idd>";
+  echo "<input type=submit name=act value=Enter>";
   echo "</form>";
   exit(0);
 }
-$query=mysqli_query($con,"select first from user where pwdmd5='$pwdmd5'");
+$query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
 $first=$row["first"];
 mysqli_free_result($query);
 
