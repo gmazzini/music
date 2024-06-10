@@ -12,6 +12,7 @@ if($pwdmd5==""){
   exit(0);
 }
 $query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
+$row=mysqli_fetch_assoc($query);
 $first=$row["first"];
 mysqli_free_result($query);
 
