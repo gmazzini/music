@@ -1,6 +1,8 @@
 <?php
 include "local.php";
-echo "<pre>";
+$liv=$_GET["liv"];
+if(!isset($liv))$liv=1;
+echo "<pre>LIV: $liv, ID: $id\n";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 $query=mysqli_query($con,"select id,name from music where top='root' order by name");
 for(;;){
