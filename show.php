@@ -33,7 +33,7 @@ mysqli_free_result($query);
 if(!isset($liv)){$liv=1; $idin="root";}
 if(!isset($idorg))$idorg="root";
 if($liv<3){$nextliv=$liv+1; $db="music";}
-else $db="song";
+else {$nextliv=3; $db="song";}
 if($liv>1)$prevliv=$liv-1;
 else $prevliv=$liv;
 echo "<pre>$first LIV:$liv, ID:$idin <a href='show.php?liv=$prevliv&id=$idorg&pwdmd5=$pwdmd5'>Prev</a>\n";
@@ -46,7 +46,10 @@ for(;;){
   if($liv<3)echo "<a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>$name</a>\n";
   else {
     echo "$name";
-    for($i=0;$i<$ipl;$i++)echo " <a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>$pl[$i]</a>";
+    for($i=0;$i<$ipl;$i++){
+      $apl=$pl[$i];
+      echo " <a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5&pl=$apl'>$apl</a>";
+    }
     echo "\n";
   }
 }
