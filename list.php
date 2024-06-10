@@ -19,13 +19,13 @@ if($pwdmd5=="" || $first==""){
 }
 
 // playlist
-echo "<pre>";
+echo "<pre>$first";
 $query=mysqli_query($con,"select label from playlist_desc where pwdmd5='$pwdmd5'");
-for($ipl=0;;$ipl++){
+for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
-  $pl[$ipl]=$row["label"];
-  echo "<a>$ps</a>\n";
+  $pl=$row["label"];
+  echo "<a>$pl</a>\n";
 }
 mysqli_free_result($query);
 echo "</pre>";
