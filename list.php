@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_GET["passwd"]; @$plin=$_GET["pl"];
+@$passwd=$_GET["passwd"]; @$plin=$_GET["pl"]; @$idin=$_GET["id"]; @$act=$_GET["act"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -52,7 +52,8 @@ for(;;){
   $liv1=$row1["name"];
   $parent=$row1["parent"];
   mysqli_free_result($query1);
-  echo "$position | $id | $name | $liv2 | $liv1\n";
+  echo "<a href=list.php&act=C&id=$id&pl=$plin&pwdmd5=$pwdmd5>C</a>";
+  echo " $position | $id | $name | $liv2 | $liv1\n";
 }
 echo "<pre>";
 mysqli_free_result($query);
