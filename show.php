@@ -3,9 +3,11 @@ include "local.php";
 $liv=$_GET["liv"];
 $idin=$_GET["id"];
 if(!isset($liv)){$liv=1; $idin="root";}
-echo "<pre>LIV: $liv, ID: $idin\n";
 if($liv<3){$nextliv=$liv+1; $db="music";}
 else $db="song";
+if($liv>1)$prevliv=$liv-1;
+else $prevliv=$liv;
+echo "<pre>LIV: $liv, ID: $idin <a href='show.php?liv=$prevliv&id=$idin'>Prev</a>\n";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 $query=mysqli_query($con,"select id,name from $db where top='$idin' order by name");
 for(;;){
