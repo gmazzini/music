@@ -9,7 +9,6 @@ for(;;){
   $id=$row["id"];
   $name=$row["name"];
   echo "$id $name\n";
-  }
 }
 echo "</pre>";
 mysqli_free_result($query);
