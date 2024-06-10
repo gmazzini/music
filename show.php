@@ -26,14 +26,14 @@ if($liv<3){$nextliv=$liv+1; $db="music";}
 else $db="song";
 if($liv>1)$prevliv=$liv-1;
 else $prevliv=$liv;
-echo "<pre>$first LIV:$liv, ID:$idin <a href='show.php?liv=$prevliv&id=$idorg'>Prev</a>\n";
+echo "<pre>$first LIV:$liv, ID:$idin <a href='show.php?liv=$prevliv&id=$idorg&pwdmd5=$pwdmd5'>Prev</a>\n";
 $query=mysqli_query($con,"select id,name from $db where top='$idin' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $id=$row["id"];
   $name=$row["name"];
-  echo "<a href='show.php?liv=$nextliv&id=$id&idorg=$idin'>$name</a>\n";
+  echo "<a href='show.php?liv=$nextliv&id=$id&idorg=$idin&pwdmd5=$pwdmd5'>$name</a>\n";
 }
 echo "</pre>";
 mysqli_free_result($query);
