@@ -8,7 +8,7 @@ for(;;){
   if($row==null)break;
   $id=$row["id"];
   $name=$row["name"];
-  echo "--> $id $name\n";
+  echo "<a>$name</a>\n";
 }
 echo "</pre>";
 mysqli_free_result($query);
