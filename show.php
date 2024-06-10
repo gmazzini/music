@@ -2,7 +2,7 @@
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 
-$myid=$_POST["myid"];
+@$myid=$_POST["myid"];
 if(strlen($myid)>7)$pwdmd5=md5($myid);
 else $pwdmd5=$_GET["pwdmd5"];
 $query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
