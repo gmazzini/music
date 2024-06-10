@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"];
+@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; @$pla=$_GET["pla"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -57,11 +57,14 @@ switch($liv){
   break;
   case 4:
   // playlist add or remove
-  $query=mysqli_query($con,"select max(position) from playlist where label='$plin' and pwdmd5='$pwdmd5'");
-  $row=mysqli_fetch_row($query);
-  $pllast=1+(int)$row[0];
-  mysqli_free_result($query);
-  mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
+  if($pla==1){
+    $query=mysqli_query($con,"select max(position) from playlist where label='$plin' and pwdmd5='$pwdmd5'");
+    $row=mysqli_fetch_row($query);
+    $pllast=1+(int)$row[0];
+    mysqli_free_result($query);
+    mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
+  }
+  elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='idin'");
   // back
   $query=mysqli_query($con,"select parent from song where id='$idin'");
   $row=mysqli_fetch_assoc($query);
@@ -94,8 +97,8 @@ for(;;){
       $row1=mysqli_fetch_assoc($query1);
       $position=(int)$row1["position"];
       mysqli_free_result($query1);
-      if($position==0)echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl'>+$apl</a>";
-      else echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl'>-$apl</a>";
+      if($position==0)echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1'>+$apl</a>";
+      else echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2'>-$apl</a>";
     }
     echo "\n";
   }
