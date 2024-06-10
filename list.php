@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_GET["passwd"]; @$plin=$_GET["pl"]; @$act=$_GET["act"];
+@$passwd=$_POST["passwd"]; @$plin=$_GET["pl"]; @$act=$_GET["act"]; @$posin=$_GET["pos"]:
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
