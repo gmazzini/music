@@ -21,7 +21,7 @@ for(;;){
   foreach($files as $k => $v){
     $av1=mysqli_real_escape_string($con,$v["name"]);
     $av2=mysqli_real_escape_string($con,$v["id"]);
-    $aux=sprintf("insert ignore into song (name,id,top) value ('%s','%s','%s')",$av1,$av2,$av3);
+    $aux=sprintf("insert ignore into song (name,id,parent) value ('%s','%s','%s')",$av1,$av2,$av3);
     echo "$aux\n";
     mysqli_query($con,$aux);
   }
