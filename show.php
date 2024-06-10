@@ -28,23 +28,32 @@ for($ipl=0;;$ipl++){
 mysqli_free_result($query);
 
 // navigation
-if($liv==""){$liv=1; $idin="root";}
-if($liv<3){$nextliv=$liv+1; $db="music";}
-else {$nextliv=3; $db="song";}
-
-// previous level
+if($liv=="")$liv=1;
 switch($liv){
   case 1:
   $idprev="root";
   $prevliv=1;
+  $idin="root";
+  $nextliv=2;
+  $db="music";
   break;
   case 2:
+  $query=mysqli_query($con,"select parent from music where id='$idin'");
+  $row=mysqli_fetch_assoc($query);
+  $idprev=$row["parent"];
+  mysqli_free_result($query);
+  $prevliv=1;
+  $nextliv=3;
+  $db="music";
+  break;
   case 3:
   $query=mysqli_query($con,"select parent from music where id='$idin'");
   $row=mysqli_fetch_assoc($query);
   $idprev=$row["parent"];
   mysqli_free_result($query);
-  $prevliv=$liv-1;
+  $prevliv=2;
+  $nextliv=3;
+  $db="song";
   break;
 }
 
