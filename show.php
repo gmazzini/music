@@ -94,7 +94,7 @@ for(;;){
       $row=mysqli_fetch_assoc($query);
       $position=(int)$row["position"];
       mysqli_free_result($query);
-      if($position==0)echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl'>$apl</a>";
+//      if($position==0)echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl'>$apl</a>";
     }
     echo "\n";
   }
