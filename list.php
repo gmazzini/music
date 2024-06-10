@@ -28,7 +28,7 @@ for(;;){
   echo "<a href='list.php?pl=$pl&pwdmd5=$pwdmd5'>$pl</a>\n";
 }
 mysqli_free_result($query);
-echo "<hr>\n";
+echo "<hr>";
 
 // simngle play list 
 $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
@@ -37,7 +37,11 @@ for(;;){
   if($row==null)break;
   $id=$row["id"];
   $position=$row["position"];
-  echo "$position $id\n";
+  $query=mysqli_query($con,"select name from song where id='$id'");
+  $row=mysqli_fetch_assoc($query);
+  $name=$row["name"];
+  mysqli_free_result($query);  
+  echo "$position - $id - $name\n";
 }
 echo "<pre>";
 mysqli_free_result($query);
