@@ -64,7 +64,7 @@ switch($liv){
     mysqli_free_result($query);
     mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
   }
-  elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='idin'");
+  elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
   // back
   $query=mysqli_query($con,"select parent from song where id='$idin'");
   $row=mysqli_fetch_assoc($query);
