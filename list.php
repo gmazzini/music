@@ -52,7 +52,7 @@ for(;;){
   $liv1=$row1["name"];
   $parent=$row1["parent"];
   mysqli_free_result($query1);
-  echo "$position - $id - $name - $liv2 - $liv1\n";
+  echo "$position | $id | $name | $liv2 | $liv1\n";
 }
 echo "<pre>";
 mysqli_free_result($query);
