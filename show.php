@@ -34,7 +34,7 @@ else {$nextliv=3; $db="song";}
 if($liv>1)$prevliv=$liv-1;
 else $prevliv=$liv;
 echo "<pre>$first LIV:$liv, ID:$idin <a href='show.php?liv=$prevliv&id=$idorg&pwdmd5=$pwdmd5'>Prev</a>\n";
-$query=mysqli_query($con,"select id,name from $db where top='$idin' order by name");
+$query=mysqli_query($con,"select id,name from $db where top='$idorg' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
