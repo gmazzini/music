@@ -33,7 +33,9 @@ echo "<hr>";
 // acdtion on playlist
 switch($act){
   case "C":
-  mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and id='$idin' and position=$posin");
+  mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and id='$idin' and position=$posin and label='$plin'");
+echo "delete from playlist where pwdmd5='$pwdmd5' and id='$idin' and position=$posin and label='$plin'\n";
+  
   break;
 }
 
