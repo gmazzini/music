@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_POST["passwd"];
+@$passwd=$_POST["passwd"]; @$plin=$_POST["pl"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -18,17 +18,27 @@ if($pwdmd5=="" || $first==""){
   exit(0);
 }
 
-// playlist
-echo "<pre>$first";
+// list of playlist
+echo "<pre>$first\n";
 $query=mysqli_query($con,"select label from playlist_desc where pwdmd5='$pwdmd5'");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $pl=$row["label"];
-  echo "<a>$pl</a>\n";
+  echo "<a href='list.php?pl=$pl&pwdmd5=$pwdmd5'>$pl</a>\n";
 }
 mysqli_free_result($query);
-echo "</pre>";
+echo "</pre><br>";
 
+// simngle play list 
+$query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$pl' order by position");
+for(;;){
+  $row=mysqli_fetch_assoc($query);
+  if($row==null)break;
+  $id=$row["id"];
+  $position=$row["position"];
+  echo "$position $id\n";
+}
+mysqli_free_result($query);
 mysqli_close($con);
 ?>
