@@ -1,12 +1,11 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_POST["passwd"]; @$plin=$_GET["pl"]; @$act=$_GET["act"]; @$posin=$_GET["pos"];
+@$passwd=$_POST["passwd"]; @$plin=$_GET["pl"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
 else $pwdmd5=$_GET["pwdmd5"];
-echo "----$pwdmd5----$passwd-----";
 $query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
 $row=mysqli_fetch_assoc($query);
 $first=$row["first"];
@@ -37,12 +36,15 @@ switch($act){
   mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");  
   break;
   case "U":
-  $query1=mysqli_query($con,"select position from playlist where pwdmd5='$pwdmd5' and id='$idin' and label='$plin'");
-  $row1=mysqli_fetch_assoc($query1);
-  $name=$row1["name"];
-  $parent=$row1["parent"];
+  $query1=mysqli_query($con,"select min(position) from playlist where pwdmd5='$pwdmd5' and position>$posin and label='$plin'");
+  $row1=mysqli_fetch_row($query1);
+  $swap=(int)$row1[0];
   mysqli_free_result($query1);
-
+  if(swap>0){
+    mysqli_query($con,"update playlist set position=30000 where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
+    mysqli_query($con,"update playlist set position=$posin where pwdmd5='$pwdmd5' and position=$swap and label='$plin'");
+    mysqli_query($con,"update playlist set position=$swap where pwdmd5='$pwdmd5' and position=3000 and label='$plin'");
+  }
   break;
 }
 
@@ -68,9 +70,9 @@ for(;;){
   $liv1=$row1["name"];
   $parent=$row1["parent"];
   mysqli_free_result($query1);
-  echo "<a href=list.php?act=C&pl=$plin&pwdmd5=$pwdmd5&pos=$position>C</a>";
-  echo "<a href=list.php?act=U&id=$id&pl=$plin&pwdmd5=$pwdmd5>U</a>";
-  echo "<a href=list.php?act=D&id=$id&pl=$plin&pwdmd5=$pwdmd5>D</a>";
+  echo "<a href=list.php?act=C&pl=$plin&pwdmd5=$pwdmd5&pos=$position>C</a> ";
+  echo "<a href=list.php?act=U&id=$id&pl=$plin&pwdmd5=$pwdmd5>U</a> ";
+  echo "<a href=list.php?act=D&id=$id&pl=$plin&pwdmd5=$pwdmd5>D</a> ";
   echo " $position | $id | $name | $liv2 | $liv1\n";
 }
 echo "<pre>";
