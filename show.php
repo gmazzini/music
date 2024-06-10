@@ -4,7 +4,7 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 
 // authentication
 @$myid=$_POST["myid"];
-if(strlen($myid)>7)$pwdmd5=md5($myid);
+if(strlen($myid)>6)$pwdmd5=md5($myid);
 else $pwdmd5=$_GET["pwdmd5"];
 $query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
 $row=mysqli_fetch_assoc($query);
@@ -30,8 +30,7 @@ mysqli_free_result($query);
 @$liv=$_GET["liv"];
 @$idin=$_GET["id"];
 @$idorg=$_GET["idorg"];
-if(!isset($liv)){$liv=1; $idin="root";}
-if(!isset($idorg))$idorg="root";
+if($liv==""){$liv=1; $idin="root"; $idorg="root";}
 if($liv<3){$nextliv=$liv+1; $db="music";}
 else {$nextliv=3; $db="song";}
 if($liv>1)$prevliv=$liv-1;
