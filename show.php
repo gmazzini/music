@@ -60,7 +60,7 @@ switch($liv){
   $row=mysqli_fetch_assoc($query);
   $idprev=$row["parent"];
   mysqli_free_result($query);
-  $prevliv=2;
+  $prevliv=3;
   $nextliv=4;
   $liv=3;
   $db="song";
