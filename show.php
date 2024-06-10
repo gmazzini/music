@@ -28,12 +28,12 @@ for($ipl=0;;$ipl++){
 mysqli_free_result($query);
 
 // navigation
-if($liv==""){$liv=1; $idin="root"; $idorg="root";}
+if($liv==""){$liv=1; $idin="root";}
 if($liv<3){$nextliv=$liv+1; $db="music";}
 else {$nextliv=3; $db="song";}
 if($liv>1)$prevliv=$liv-1;
 else $prevliv=$liv;
-echo "<pre>$first liv:$liv, idin:$idin idorg:$idorg <a href='show.php?liv=$prevliv&idin=$idorg&pwdmd5=$pwdmd5'>Prev</a>\n";
+echo "<pre>$first liv:$liv, idin:$idin <a href='show.php?liv=$prevliv&idin=$idin&pwdmd5=$pwdmd5'>Prev</a>\n";
 $query=mysqli_query($con,"select id,name from $db where top='$idin' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
