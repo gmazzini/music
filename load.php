@@ -12,5 +12,8 @@ if(!file_exists("cached/$id")){
   curl_close($ch);
   file_put_contents("cached/$id",$oo);
 }
-  
+$aux=file_get_contents("cached/$id");
+header('Content-type: audio/mpeg;');
+header("Content-Length: ".strlen($aux));
+echo $aux;
 ?>
