@@ -31,9 +31,9 @@ for(;;){
 mysqli_free_result($query);
 echo "<hr>";
 
-// caching
-$query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin'");
-for(;;){
+// caching and play
+$query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
+for($i=0;;$i++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $id=$row["id"];
@@ -48,22 +48,15 @@ for(;;){
     curl_close($ch);
     file_put_contents("cached/$id",$oo);
   }
+  if($i==0){
+    echo "<audio autoplay controls id=\"Player\" src=\"cached/$id\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
+    echo "<script>var nextsrc = [\"cached/$id\"";
+  }
+  else echo ",\"cached/$id\"";
+  
 }
+echo "]; var elm=0; var Player=document.getElementById('Player'); Player.onended=function(){if(++elm<nextsrc.length+1){Player.src=nextsrc[elm-1];Player.play();}}</script>";
 
-?>
-
-<audio autoplay controls id="Player" src="cached/13PxFmnZgSxVbvK_X3zDB-hpG1VxcNiD1" onclick="this.paused ? this.play() : this.pause();">Your browser does not support the video tag.</video>
-<script>
-var nextsrc = ["cached/13PxFmnZgSxVbvK_X3zDB-hpG1VxcNiD1","cached/1heF9imOUhKjkw3Z1Gok9FK5Fr4TpOC09"];
-var elm = 0; var Player = document.getElementById('Player');
-Player.onended = function(){
-    if(++elm < nextsrc.length + 1){         
-         Player.src = nextsrc[elm-1]; Player.play();
-    } 
-}
-</script>
-
-<?php
 echo "<pre>";
 mysqli_free_result($query);
 mysqli_close($con);
