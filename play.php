@@ -36,10 +36,25 @@ for($i=0;;$i++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $id[$i]=$row["id"];
+  $query1=mysqli_query($con,"select name,parent from song where id='$id'");
+  $row1=mysqli_fetch_assoc($query1);
+  $data[$i]=$row1["name"];
+  $parent=$row1["parent"];
+  mysqli_free_result($query1);
+  $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
+  $row1=mysqli_fetch_assoc($query1);
+  $data[$i].=" | ".$row1["name"];
+  $parent=$row1["parent"];
+  mysqli_free_result($query1);
+  $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
+  $row1=mysqli_fetch_assoc($query1);
+  $data[$i].=" | ".=$row1["name"];
+  $parent=$row1["parent"];
+  mysqli_free_result($query1);
 }
 mysqli_free_result($query);
 
-echo "<span id=\"mydesc\"></span>";
+echo "<span id=\"mydesc\"></span>\n";
 echo "<audio autoplay controls id=\"Player\" src=\"cached/$id[0]\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
 echo "<script>";
 echo "document.getElementById(\"mydesc\").textContent=\"$id[0]\";\n";
@@ -52,7 +67,7 @@ echo "];\n";
 echo "var desc=[";
 for($j=1;$j<$i;$j++){
   if($j>1)echo ",";
-  echo "\"$id[$j]\"";
+  echo "\"$data[$j]\"";
 }
 echo "];\n";
 echo "var elm=0;\nvar Player=document.getElementById('Player');\n";
