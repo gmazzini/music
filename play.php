@@ -25,7 +25,7 @@ for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $pl=$row["label"];
-  echo "<a href='list.php?pl=$pl&pwdmd5=$pwdmd5'>$pl</a>\n";
+  echo "<a href='play.php?pl=$pl&pwdmd5=$pwdmd5'>$pl</a>\n";
 }
 mysqli_free_result($query);
 echo "<hr>";
