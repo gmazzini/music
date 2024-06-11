@@ -31,20 +31,25 @@ for(;;){
 mysqli_free_result($query);
 echo "<hr>";
 
-$query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
-$row=mysqli_fetch_assoc($query);
-$id=$row["id"];
-$position=$row["position"];
-echo " $position | $id \n";
+// caching
+$query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin'");
+for(;;){
+  $row=mysqli_fetch_assoc($query);
+  if($row==null)break;
+  $id=$row["id"];
+  if(!file_exists("cached/$id")){
+    echo "Cache: $id\n";
+    $ch=curl_init();
+    curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
+    curl_setopt($ch,CURLOPT_HTTPHEADER,Array("Authorization: Bearer ".$access_token));
+    $oo=curl_exec($ch);
+    curl_close($ch);
+    file_put_contents("cached/$id",$oo);
+  }
+}
 
-$ch=curl_init();
-curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
-curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
-curl_setopt($ch,CURLOPT_HTTPHEADER,Array("Authorization: Bearer ".$access_token));
-$oo=curl_exec($ch);
-curl_close($ch);
-file_put_contents("cached/$id",$oo);
 
 echo "<pre>";
 mysqli_free_result($query);
