@@ -44,7 +44,7 @@ curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
 curl_setopt($ch,CURLOPT_HTTPHEADER,Array("Authorization: Bearer ".$access_token));
 $oo=curl_exec($ch);
 curl_close($ch);
-file_put_contents("xx.out",$oo);
+file_put_contents("cached/$id",$oo);
 
 echo "<pre>";
 mysqli_free_result($query);
