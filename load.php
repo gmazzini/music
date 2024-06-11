@@ -1,5 +1,4 @@
 <?php
-shell_exec("scp admgm02@100.100.0.30:/home/www/data/access_token /home/www/music.mazzini.org/web/access_token");
 $access_token=file_get_contents("access_token");
 @$id=$_GET["id"];
 if(!file_exists("cached/$id")){
