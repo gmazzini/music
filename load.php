@@ -1,7 +1,7 @@
 <?php
 shell_exec("scp admgm02@100.100.0.30:/home/www/data/access_token /home/www/music.mazzini.org");
 $access_token=file_get_contents("access_token");
-@$idin=$_GET["id"];
+@$id=$_GET["id"];
 if(!file_exists("cached/$id")){
   $ch=curl_init();
   curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
