@@ -55,7 +55,7 @@ for($i=0;;$i++){
   elseif($i==1) echo "\"cached/$id\"";
   else echo ",\"cached/$id\"";
 }
-echo "]; var elm=0; var Player=document.getElementById('Player'); Player.onended=function(){if(++elm<nextsrc.length+1){Player.src=nextsrc[elm-1];Player.play();}}</script>";
+echo "]; var elm=0; var Player=document.getElementById('Player'); Player.onended=function(){if(++elm < nextsrc.length+1){Player.src=nextsrc[elm-1];Player.play();}}</script>";
 
 echo "<pre>";
 mysqli_free_result($query);
