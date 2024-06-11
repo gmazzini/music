@@ -1,6 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
+$access_token=file_get_contents("access_token");
 @$passwd=$_POST["passwd"]; @$plin=$_GET["pl"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
 
 // authentication
