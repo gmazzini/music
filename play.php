@@ -39,7 +39,7 @@ for($i=0;;$i++){
 }
 mysqli_free_result($query);
 
-// echo "<span id=\"mydesc\"></span>";
+echo "<span id=\"mydesc\"></span>";
 echo "<audio autoplay controls id=\"Player\" src=\"cached/$id[0]\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
 echo "<script>";
 // echo "document.getElementById(\"mydesc\").textContent=$id;"
