@@ -52,9 +52,9 @@ for(;;){
 
 ?>
 
-<video autoplay controls id="Player" src="http://www.w3schools.com/html/movie.mp4" onclick="this.paused ? this.play() : this.pause();">Your browser does not support the video tag.</video>
+<video autoplay controls id="Player" src="cached/13PxFmnZgSxVbvK_X3zDB-hpG1VxcNiD1" onclick="this.paused ? this.play() : this.pause();">Your browser does not support the video tag.</video>
 <script>
-var nextsrc = ["http://www.w3schools.com/html/movie.mp4","http://www.w3schools.com/html/mov_bbb.mp4"];
+var nextsrc = ["cached/13PxFmnZgSxVbvK_X3zDB-hpG1VxcNiD1","cached/1heF9imOUhKjkw3Z1Gok9FK5Fr4TpOC09"];
 var elm = 0; var Player = document.getElementById('Player');
 Player.onended = function(){
     if(++elm < nextsrc.length + 1){         
