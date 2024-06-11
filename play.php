@@ -50,10 +50,10 @@ for($i=0;;$i++){
   }
   if($i==0){
     echo "<audio autoplay controls id=\"Player\" src=\"cached/$id\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
-    echo "<script>var nextsrc = [\"cached/$id\"";
+    echo "<script>var nextsrc = [";
   }
+  elseif($i==1) echo "\"cached/$id\"";
   else echo ",\"cached/$id\"";
-  
 }
 echo "]; var elm=0; var Player=document.getElementById('Player'); Player.onended=function(){if(++elm<nextsrc.length+1){Player.src=nextsrc[elm-1];Player.play();}}</script>";
 
