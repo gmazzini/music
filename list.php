@@ -65,7 +65,7 @@ for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $id=$row["id"];
-  $position=$row["position"];
+  $position=$row["position"];  
   $query1=mysqli_query($con,"select name,parent from song where id='$id'");
   $row1=mysqli_fetch_assoc($query1);
   $name=$row1["name"];
@@ -84,7 +84,19 @@ for(;;){
   echo "<a href=list.php?act=C&pl=$plin&pwdmd5=$pwdmd5&pos=$position>C</a> ";
   echo "<a href=list.php?act=U&pl=$plin&pwdmd5=$pwdmd5&pos=$position>U</a> ";
   echo "<a href=list.php?act=D&pl=$plin&pwdmd5=$pwdmd5&pos=$position>D</a> ";
-  echo " $position | $id | $name | $liv2 | $liv1\n";
+  echo " $position | $id | $name | $liv2 | $liv1";
+  if(!file_exists("cached/$id")){
+    $ch=curl_init();
+    curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
+    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
+    curl_setopt($ch,CURLOPT_HTTPHEADER,Array("Authorization: Bearer ".$access_token));
+    $oo=curl_exec($ch);
+    curl_close($ch);
+    file_put_contents("cached/$id",$oo);
+    echo " CACHING";
+  }
+  echo "\n";
 }
 echo "<pre>";
 mysqli_free_result($query);
