@@ -48,7 +48,7 @@ for($i=0;;$i++){
   mysqli_free_result($query1);
   $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
   $row1=mysqli_fetch_assoc($query1);
-  $data[$i].=" | ".=$row1["name"];
+  $data[$i].=" | ".$row1["name"];
   $parent=$row1["parent"];
   mysqli_free_result($query1);
 }
