@@ -55,7 +55,9 @@ for($j=1;$j<$i;$j++){
   echo "\"$id[$j]\"";
 }
 echo "];";
-echo "var elm=0; var Player=document.getElementById('Player'); Player.onended=function(){if(++elm < nextsrc.length+1){Player.src=nextsrc[elm-1];Player.play();}}</script>";
+echo "var elm=0; var Player=document.getElementById('Player');";
+echo "Player.onended=function(){if(++elm < nextsrc.length+1){Player.src=nextsrc[elm-1];document.getElementById(\"mydesc\").textContent=desc[elm-1];Player.play();}}";
+echo "</script>";
 
 echo "<pre>";
 mysqli_close($con);
