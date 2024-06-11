@@ -49,6 +49,12 @@ for($j=1;$j<$i;$j++){
   echo "\"cached/$id[$j]\"";
 }
 echo "];";
+echo "var desc=[";
+for($j=1;$j<$i;$j++){
+  if($i>1)echo ",";
+  echo "\"$id[$j]\"";
+}
+echo "];";
 echo "var elm=0; var Player=document.getElementById('Player'); Player.onended=function(){if(++elm < nextsrc.length+1){Player.src=nextsrc[elm-1];Player.play();}}</script>";
 
 echo "<pre>";
