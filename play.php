@@ -50,7 +50,20 @@ for(;;){
   }
 }
 
+?>
 
+<video autoplay controls id="Player" src="http://www.w3schools.com/html/movie.mp4" onclick="this.paused ? this.play() : this.pause();">Your browser does not support the video tag.</video>
+<script>
+var nextsrc = ["http://www.w3schools.com/html/movie.mp4","http://www.w3schools.com/html/mov_bbb.mp4"];
+var elm = 0; var Player = document.getElementById('Player');
+Player.onended = function(){
+    if(++elm < nextsrc.length + 1){         
+         Player.src = nextsrc[elm-1]; Player.play();
+    } 
+}
+</script>
+
+<?php
 echo "<pre>";
 mysqli_free_result($query);
 mysqli_close($con);
