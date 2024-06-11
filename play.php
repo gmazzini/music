@@ -1,6 +1,5 @@
 <?php
 include "local.php";
-$access_token=file_get_contents("access_token");
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$plin=$_GET["pl"];
 
@@ -31,32 +30,25 @@ for(;;){
 mysqli_free_result($query);
 echo "<hr>";
 
-// caching and play
+// play
 $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
 for($i=0;;$i++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
-  $id=$row["id"];
-  if(!file_exists("cached/$id")){
-    $ch=curl_init();
-    curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
-    curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-    curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
-    curl_setopt($ch,CURLOPT_HTTPHEADER,Array("Authorization: Bearer ".$access_token));
-    $oo=curl_exec($ch);
-    curl_close($ch);
-    file_put_contents("cached/$id",$oo);
-  }
-  if($i==0){
-    echo "<audio autoplay controls id=\"Player\" src=\"cached/$id\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
-    echo "<script>var nextsrc = [";
-  }
-  elseif($i==1) echo "\"cached/$id\"";
-  else echo ",\"cached/$id\"";
+  $id[$i]=$row["id"];
 }
-if($i>0)echo "]; var elm=0; var Player=document.getElementById('Player'); Player.onended=function(){if(++elm < nextsrc.length+1){Player.src=nextsrc[elm-1];Player.play();}}</script>";
+mysqli_free_result($query);
+
+echo "<audio autoplay controls id=\"Player\" src=\"cached/$id[0]\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
+echo "<script>";
+echo "var nextsrc=[";
+for($j=1;$j<$i;$j++){
+  if($i>1)echo ",";
+  echo "\"cached/$id[$j]\"";
+}
+echo "];";
+echo "var elm=0; var Player=document.getElementById('Player'); Player.onended=function(){if(++elm < nextsrc.length+1){Player.src=nextsrc[elm-1];Player.play();}}</script>";
 
 echo "<pre>";
-mysqli_free_result($query);
 mysqli_close($con);
 ?>
