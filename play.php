@@ -42,20 +42,20 @@ mysqli_free_result($query);
 echo "<span id=\"mydesc\"></span>";
 echo "<audio autoplay controls id=\"Player\" src=\"cached/$id[0]\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
 echo "<script>";
-echo "document.getElementById(\"mydesc\").textContent=\"$id[0]\";";
+echo "document.getElementById(\"mydesc\").textContent=\"$id[0]\";\n";
 echo "var nextsrc=[";
 for($j=1;$j<$i;$j++){
-  if($i>1)echo ",";
+  if($j>1)echo ",";
   echo "\"cached/$id[$j]\"";
 }
-echo "];";
+echo "];\n";
 echo "var desc=[";
 for($j=1;$j<$i;$j++){
-  if($i>1)echo ",";
+  if($j>1)echo ",";
   echo "\"$id[$j]\"";
 }
-echo "];";
-echo "var elm=0; var Player=document.getElementById('Player');";
+echo "];\n";
+echo "var elm=0;\nvar Player=document.getElementById('Player');\n";
 echo "Player.onended=function(){if(++elm < nextsrc.length+1){Player.src=nextsrc[elm-1];document.getElementById(\"mydesc\").textContent=desc[elm-1];Player.play();}}";
 echo "</script>";
 
