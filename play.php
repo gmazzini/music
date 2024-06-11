@@ -57,7 +57,7 @@ mysqli_free_result($query);
 echo "<span id=\"mydesc\"></span>\n";
 echo "<audio autoplay controls id=\"Player\" src=\"cached/$id[0]\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
 echo "<script>";
-echo "document.getElementById(\"mydesc\").textContent=\"$id[0]\";\n";
+echo "document.getElementById(\"mydesc\").textContent=\"$data[0]\";\n";
 echo "var nextsrc=[";
 for($j=1;$j<$i;$j++){
   if($j>1)echo ",";
