@@ -1,5 +1,6 @@
 <?php
 include "local.php";
+$access_token=file_get_contents("access_token");
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$plin=$_GET["pl"];
 
@@ -35,6 +36,15 @@ $row=mysqli_fetch_assoc($query);
 $id=$row["id"];
 $position=$row["position"];
 echo " $position | $id \n";
+
+$ch=curl_init();
+curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
+curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
+curl_setopt($ch,CURLOPT_HTTPHEADER,Array("Authorization: Bearer ".$access_token));
+$oo=curl_exec($ch);
+curl_close($ch);
+file_put_contents("xx.out",$oo);
 
 echo "<pre>";
 mysqli_free_result($query);
