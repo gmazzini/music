@@ -94,7 +94,7 @@ for(;;){
     $oo=curl_exec($ch);
     curl_close($ch);
     file_put_contents("cached/$id",$oo);
-    echo " CACHING";
+    echo " | CACHING";
   }
   echo "\n";
 }
