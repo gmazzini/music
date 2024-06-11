@@ -38,7 +38,6 @@ for($i=0;;$i++){
   if($row==null)break;
   $id=$row["id"];
   if(!file_exists("cached/$id")){
-    echo "Cache: $id\n";
     $ch=curl_init();
     curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
