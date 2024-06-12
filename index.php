@@ -31,6 +31,7 @@ mysqli_free_result($query);
 
 echo "<pre><a href='?liv=1&pwdmd5=$pwdmd5&go=NAV'>NAV</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=LST'>LIST</a>";
+echo " <a href='?pwdmd5=$pwdmd5&go=PLY'>PLAY</a>";
 echo "</pre><hr>";
 
 if($go=="")$go="NAV";
