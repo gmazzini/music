@@ -28,6 +28,8 @@ for($ipl=0;;$ipl++){
 }
 mysqli_free_result($query);
 
+echo "<a href='?liv=1&pwdmd5=$pwdmd5'>SHOW</a>";
+echo "<hr>";
 
 
 
@@ -85,7 +87,6 @@ switch($liv){
   $db="song";
   break;
 }
-
 echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5'>Prev</a>\n";
 $query=mysqli_query($con,"select id,name from $db where parent='$idin' order by name");
 for(;;){
@@ -110,5 +111,7 @@ for(;;){
 }
 echo "</pre>";
 mysqli_free_result($query);
+
+
 mysqli_close($con);
 ?>
