@@ -28,7 +28,7 @@ for($ipl=0;;$ipl++){
 }
 mysqli_free_result($query);
 
-echo "<a href='?liv=1&pwdmd5=$pwdmd5'>SHOW</a>";
+echo "<a href='?liv=1&pwdmd5=$pwdmd5&go=NAV'>NAV</a>";
 echo "<hr>";
 
 
