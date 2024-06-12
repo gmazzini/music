@@ -243,7 +243,10 @@ switch($go){
   echo "}\n";
   echo "function myshow(){\n";
   echo "  aux='';\n";
-  echo "  for(i=0;i < src.length;i++){if(i==elm)aux+='!!! '; aux+=desc[i]+'\\n';}\n";
+  echo "  for(i=0;i < src.length;i++){\n";
+  echo "    if(i==elm)aux+='!!! ';\n";
+  echo "    aux+=desc[i]+'\\n';\n";
+  echo "}\n";
   echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
   echo "</script>\n";
