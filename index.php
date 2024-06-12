@@ -1,7 +1,8 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; @$pla=$_GET["pla"]; @$go=$_GET["go"];
+@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; 
+@$pla=$_GET["pla"]; @$go=$_GET["go"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -29,6 +30,7 @@ for($ipl=0;;$ipl++){
 mysqli_free_result($query);
 
 echo "<a href='?liv=1&pwdmd5=$pwdmd5&go=NAV'>NAV</a>";
+echo "<a href='?liv=1&pwdmd5=$pwdmd5&go=LST'>LIST</a>";
 echo "<hr>";
 
 
@@ -110,6 +112,65 @@ switch($go){
     }
   }
   echo "</pre>";
+  mysqli_free_result($query);
+  break;
+
+  // action on playlist
+  case "LST":
+  switch($act){
+    case "C":
+    mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
+    break;
+    case "U":
+    $query1=mysqli_query($con,"select min(position) from playlist where pwdmd5='$pwdmd5' and position>$posin and label='$plin'");
+    $row1=mysqli_fetch_row($query1);
+    $swap=(int)$row1[0];
+    mysqli_free_result($query1);
+    if($swap>0){
+      mysqli_query($con,"update playlist set position=30000 where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
+      mysqli_query($con,"update playlist set position=$posin where pwdmd5='$pwdmd5' and position=$swap and label='$plin'");
+      mysqli_query($con,"update playlist set position=$swap where pwdmd5='$pwdmd5' and position=30000 and label='$plin'");
+    }
+    break;
+    case "D":
+    $query1=mysqli_query($con,"select max(position) from playlist where pwdmd5='$pwdmd5' and position<$posin and label='$plin'");
+    $row1=mysqli_fetch_row($query1);
+    $swap=(int)$row1[0];
+    mysqli_free_result($query1);
+    if($swap>0){
+      mysqli_query($con,"update playlist set position=30000 where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
+      mysqli_query($con,"update playlist set position=$posin where pwdmd5='$pwdmd5' and position=$swap and label='$plin'");
+      mysqli_query($con,"update playlist set position=$swap where pwdmd5='$pwdmd5' and position=30000 and label='$plin'");
+    }
+    break;
+  }
+  $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
+  for(;;){
+    $row=mysqli_fetch_assoc($query);
+    if($row==null)break;
+    $id=$row["id"];
+    $position=$row["position"];
+    $query1=mysqli_query($con,"select name,parent from song where id='$id'");
+    $row1=mysqli_fetch_assoc($query1);
+    $name=$row1["name"];
+    $parent=$row1["parent"];
+    mysqli_free_result($query1);
+    $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
+    $row1=mysqli_fetch_assoc($query1);
+    $liv2=$row1["name"];
+    $parent=$row1["parent"];
+    mysqli_free_result($query1);
+    $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
+    $row1=mysqli_fetch_assoc($query1);
+    $liv1=$row1["name"];
+    $parent=$row1["parent"];
+    mysqli_free_result($query1);
+    echo "<a href=?act=C&pl=$plin&pwdmd5=$pwdmd5&pos=$position&go=LST>C</a> ";
+    echo "<a href=?act=U&pl=$plin&pwdmd5=$pwdmd5&pos=$position&go=LST>U</a> ";
+    echo "<a href=?act=D&pl=$plin&pwdmd5=$pwdmd5&pos=$position&go=LST>D</a> ";
+    echo " $position | $id | $name | $liv2 | $liv1\n";
+  }
+  echo "<pre>";
   mysqli_free_result($query);
   break;
 
