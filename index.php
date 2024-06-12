@@ -20,12 +20,11 @@ if($pwdmd5=="" || $first==""){
 
 // list of playlist
 $query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
-for(;;){
+for($ipl=0;;$ipl++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
-  $pl=$row["label"];
-  $description=$row["description"];
-  echo "<a href='?pl=$pl&pwdmd5=$pwdmd5'>$pl $description</a>\n";
+  $pl[$ipl]=$row["label"];
+  $description[$ipl]=$row["description"];
 }
 mysqli_free_result($query);
 
@@ -94,7 +93,7 @@ for(;;){
   if($row==null)break;
   $id=$row["id"];
   $name=$row["name"];
-  if($liv<3)echo "<a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5'>$name</a>\n";
+  if($liv<3)echo "<a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5'>$name</a>\n";
   else {
     echo "$name";
     for($i=0;$i<$ipl;$i++){
@@ -103,8 +102,8 @@ for(;;){
       $row1=mysqli_fetch_assoc($query1);
       $position=(int)$row1["position"];
       mysqli_free_result($query1);
-      if($position==0)echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1'>+$apl</a>";
-      else echo " <a href='show.php?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2'>-$apl</a>";
+      if($position==0)echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1'>+$apl</a>";
+      else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2'>-$apl</a>";
     }
     echo "\n";
   }
