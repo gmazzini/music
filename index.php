@@ -257,6 +257,6 @@ switch($go){
 }
 mysqli_close($con);
 function mys($s){
-  return mb_str_replace("'","\'",$s);
+  return str_replace("'","\'",$s);
 }
 ?>
