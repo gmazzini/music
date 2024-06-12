@@ -15,7 +15,8 @@ if(!file_exists($ffname)){
   curl_close($ch);
   file_put_contents($ffname,$oo);
 }
-if(filesize($ffname)<1000000){
+$duration=(int)shell_exec("ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 $ffname");
+if(filesize($ffname)<1000000 || $duration<5){
   unlink($ffname);
   $ffname="Heartbeat.mp3";
 }
