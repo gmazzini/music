@@ -187,17 +187,17 @@ switch($go){
     $id[$i]=$row["id"];
     $query1=mysqli_query($con,"select name,parent from song where id='$id[$i]'");
     $row1=mysqli_fetch_assoc($query1);
-    $data[$i]=$i." | ".htmlspecialchars($row1["name"]);
+    $data[$i]=$i." | ".mys($row1["name"]);
     $parent=$row1["parent"];
     mysqli_free_result($query1);
     $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
     $row1=mysqli_fetch_assoc($query1);
-    $data[$i].=" | ".htmlspecialchars($row1["name"]);
+    $data[$i].=" | ".mys($row1["name"]);
     $parent=$row1["parent"];
     mysqli_free_result($query1);
     $query1=mysqli_query($con,"select name from music where id='$parent'");
     $row1=mysqli_fetch_assoc($query1);
-    $data[$i].=" | ".htmlspecialchars($row1["name"]);
+    $data[$i].=" | ".mys($row1["name"]);
     mysqli_free_result($query1);
   }
   mysqli_free_result($query);
@@ -256,4 +256,7 @@ switch($go){
 
 }
 mysqli_close($con);
+function mys($s){
+  return mb_str_replace("'","\'",$s);
+}
 ?>
