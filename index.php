@@ -33,7 +33,6 @@ echo "<a href='?liv=1&pwdmd5=$pwdmd5&go=NAV'>NAV</a>";
 echo "<a href='?pwdmd5=$pwdmd5&go=LST'>LIST</a>";
 echo "<hr>";
 
-
 if($go=="")$go="NAV";
 switch($go){
   
@@ -117,6 +116,7 @@ switch($go){
 
   // action on playlist
   case "LST":
+  for($i=0;$i<$ipl;$i++)echo "<a href='?pl=$pl&pwdmd5=$pwdmd5&go=LST'>$pl[$i] $description[$i]</a>\n";
   switch($act){
     case "C":
     mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
