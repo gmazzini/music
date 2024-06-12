@@ -116,7 +116,7 @@ switch($go){
 
   // action on playlist
   case "LST":
-  for($i=0;$i<$ipl;$i++)echo "<a href='?pl=$pl&pwdmd5=$pwdmd5&go=LST'>$pl[$i] $description[$i]</a>\n";
+  for($i=0;$i<$ipl;$i++)echo "<a href='?pl=$pl[$i]&pwdmd5=$pwdmd5&go=LST'>$pl[$i] $description[$i]</a>\n";
   switch($act){
     case "C":
     mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
