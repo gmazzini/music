@@ -70,7 +70,14 @@ Player.onended=function(){
     Player.play();
   }
 }
+function next(){
+  elm++;
+  Player.src=nextsrc[elm-1];
+  document.getElementById("mydesc").textContent=desc[elm-1];
+  Player.play();
+}
 </script>
+<button onclick="next()">next</button><button onclick="prev()">prev</button>
 
 <?php
 echo "<pre>";
