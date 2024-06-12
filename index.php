@@ -116,6 +116,7 @@ switch($go){
 
   // action on playlist
   case "LST":
+  echo "<pre>$first\n";
   for($i=0;$i<$ipl;$i++)echo "<a href='?pl=$pl[$i]&pwdmd5=$pwdmd5&go=LST'>$pl[$i] $description[$i]</a>\n";
   switch($act){
     case "C":
