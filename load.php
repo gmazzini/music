@@ -4,7 +4,6 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 $access_token=file_get_contents("access_token");
 @$id=$_GET["id"];
 $ffname="cached/$id";
-mysqli_query($con,"update song set played=played+1 where id='$id'");
 if(!file_exists($ffname)){
   $ch=curl_init();
   curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
@@ -20,6 +19,7 @@ if(filesize($ffname)<1000000 || $duration<5){
   unlink($ffname);
   $ffname="Heartbeat.mp3";
 }
+else mysqli_query($con,"update song set played=played+1,duration=$duration where id='$id'");
 $aux=file_get_contents($ffname);
 header('Content-type: audio/mpeg;');
 header("Content-Length: ".strlen($aux));
