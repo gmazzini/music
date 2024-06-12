@@ -185,6 +185,8 @@ switch($go){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
     $id[$i]=$row["id"];
+
+    echo "$i $id[$i]";
     $query1=mysqli_query($con,"select name,parent from song where id='$id[$i]'");
     $row1=mysqli_fetch_assoc($query1);
     $data[$i]=$i." | ".$row1["name"];
