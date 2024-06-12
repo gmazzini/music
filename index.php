@@ -86,7 +86,7 @@ switch($liv){
   break;
 }
 
-echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='show.php?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5'>Prev</a>\n";
+echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5'>Prev</a>\n";
 $query=mysqli_query($con,"select id,name from $db where parent='$idin' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
