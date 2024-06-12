@@ -78,6 +78,16 @@ function next(){
     document.getElementById("mydesc").textContent=desc[elm];
     Player.play();
   }
+  else elm=src.length-1;
+}
+function prev(){
+  elm--;
+  if(elm >= 0){
+    Player.src=src[elm];
+    document.getElementById("mydesc").textContent=desc[elm];
+    Player.play();
+  }
+  else elm=0;
 }
 </script>
 <button onclick="next()">next</button><button onclick="prev()">prev</button>
