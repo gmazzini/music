@@ -64,17 +64,20 @@ var desc=[<?php for($j=1;$j<$i;$j++){if($j>1)echo ",";echo "\"$data[$j]\"";}?>]
 var elm=0;
 var Player=document.getElementById("Player");
 Player.onended=function(){
-  if(++elm < nextsrc.length+1){
-    Player.src=nextsrc[elm-1];
-    document.getElementById("mydesc").textContent=desc[elm-1];
+  elm++;
+  if(elm < nextsrc.length){
+    Player.src=nextsrc[elm];
+    document.getElementById("mydesc").textContent=desc[elm];
     Player.play();
   }
 }
 function next(){
   elm++;
-  Player.src=nextsrc[elm-1];
-  document.getElementById("mydesc").textContent=desc[elm-1];
-  Player.play();
+  if(elm < nextsrc.length){
+    Player.src=nextsrc[elm];
+    document.getElementById("mydesc").textContent=desc[elm];
+    Player.play();
+  }
 }
 </script>
 <button onclick="next()">next</button><button onclick="prev()">prev</button>
