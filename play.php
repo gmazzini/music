@@ -61,41 +61,38 @@ echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='thi
 echo "<script>\n";
 echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]\n";
 echo "var desc=["; for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "'$data[$j]'";} echo "]\n";
+echo "var elm=0;\n";
+echo "document.getElementById('mydesc').textContent=desc[elm];\n";
+echo "var Player=document.getElementById('Player');\n";
+echo "Player.onended=function(){\n";
+echo "  elm++;\n";
+echo "  if(elm < src.length){\n";
+echo "    Player.src=src[elm];\n";
+echo "    document.getElementById('mydesc').textContent=desc[elm];\n";
+echo "    Player.play();\n";
+echo "  }\n";
+echo "}\n";
+echo "function next(){\n";
+echo "  elm++;\n";
+echo "  if(elm < src.length){\n";
+echo "    Player.src=src[elm];\n";
+echo "    document.getElementById('mydesc').textContent=desc[elm];\n";
+echo "    Player.play();\n";
+echo "  }\n";
+echo "  else elm=src.length-1;\n";
+echo "}\n";
+echo "function prev(){\n";
+echo "  elm--;\n";
+echo "  if(elm >= 0){\n";
+echo "    Player.src=src[elm];\n";
+echo "    document.getElementById('mydesc').textContent=desc[elm];\n";
+echo "    Player.play();\n";
+echo "  }\n";
+echo "  else elm=0;\n";
+echo "}\n";
+echo "</script>\n";
+echo "<button onclick='prev()'>prev</button><button onclick='next()'>next</button>\n";
 
-?>
-var elm=0;
-document.getElementById("mydesc").textContent=desc[elm];
-var Player=document.getElementById("Player");
-Player.onended=function(){
-  elm++;
-  if(elm < src.length){
-    Player.src=src[elm];
-    document.getElementById("mydesc").textContent=desc[elm];
-    Player.play();
-  }
-}
-function next(){
-  elm++;
-  if(elm < src.length){
-    Player.src=src[elm];
-    document.getElementById('mydesc').textContent=desc[elm];
-    Player.play();
-  }
-  else elm=src.length-1;
-}
-function prev(){
-  elm--;
-  if(elm >= 0){
-    Player.src=src[elm];
-    document.getElementById('mydesc').textContent=desc[elm];
-    Player.play();
-  }
-  else elm=0;
-}
-</script>
-<button onclick='prev()'>prev</button><button onclick='next()'>next</button>
-
-<?php
 echo "<pre>";
 mysqli_close($con);
 ?>
