@@ -18,14 +18,20 @@ if($pwdmd5=="" || $first==""){
   exit(0);
 }
 
-// playlist
-$query=mysqli_query($con,"select label from playlist_desc where pwdmd5='$pwdmd5'");
-for($ipl=0;;$ipl++){
+// list of playlist
+$query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
+for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
-  $pl[$ipl]=$row["label"];
+  $pl=$row["label"];
+  $description=$row["description"];
+  echo "<a href='?pl=$pl&pwdmd5=$pwdmd5'>$pl $description</a>\n";
 }
 mysqli_free_result($query);
+
+
+
+
 
 // navigation
 if($liv=="")$liv=1;
