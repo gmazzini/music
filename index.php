@@ -87,14 +87,14 @@ switch($liv){
   $db="song";
   break;
 }
-echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5'>Prev</a>\n";
+echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5&go=NAV'>Prev</a>\n";
 $query=mysqli_query($con,"select id,name from $db where parent='$idin' order by name");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $id=$row["id"];
   $name=$row["name"];
-  if($liv<3)echo "<a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5'>$name</a>\n";
+  if($liv<3)echo "<a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&go=NAV'>$name</a>\n";
   else {
     echo "$name";
     for($i=0;$i<$ipl;$i++){
@@ -103,8 +103,8 @@ for(;;){
       $row1=mysqli_fetch_assoc($query1);
       $position=(int)$row1["position"];
       mysqli_free_result($query1);
-      if($position==0)echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1'>+$apl</a>";
-      else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2'>-$apl</a>";
+      if($position==0)echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1&go=NAV'>+$apl</a>";
+      else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2&go=NAV'>-$apl</a>";
     }
     echo "\n";
   }
