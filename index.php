@@ -215,7 +215,7 @@ switch($go){
   echo "    myshow();\n";
   echo "  }\n";
   echo "}\n";
-  echo "Player.onload=function(){\n";
+  echo "Player.onloadstart=function(){\n";
   echo "  myshow();\n";
   echo "}\n";
   echo "function next(){\n";
