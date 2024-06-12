@@ -224,6 +224,7 @@ switch($go){
   echo "    Player.src=src[elm];\n";
   echo "    document.getElementById('mydesc').textContent=desc[elm];\n";
   echo "    Player.play();\n";
+  echo "    myshow();\n";
   echo "  }\n";
   echo "  else elm=src.length-1;\n";
   echo "}\n";
