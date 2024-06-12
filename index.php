@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; @$pla=$_GET["pla"];
+@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; @$pla=$_GET["pla"]; @$go=$_GET["go"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -32,7 +32,7 @@ echo "<a href='?liv=1&pwdmd5=$pwdmd5'>SHOW</a>";
 echo "<hr>";
 
 
-
+if($go=="")$go="NAV";
 switch($go){
   
   // navigation
