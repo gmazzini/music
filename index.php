@@ -198,9 +198,6 @@ switch($go){
     $query1=mysqli_query($con,"select name from music where id='$parent'");
     $row1=mysqli_fetch_assoc($query1);
     $data[$i].=" | ".htmlspecialchars($row1["name"]);
-
-
-    echo "$i $id[$i] $data[$i]<br>";
     mysqli_free_result($query1);
   }
   mysqli_free_result($query);
