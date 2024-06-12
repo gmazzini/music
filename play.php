@@ -91,7 +91,7 @@ function prev(){
   else elm=0;
 }
 </script>
-<button onclick="next()">next</button><button onclick="prev()">prev</button>
+<button onclick="prev()">prev</button><button onclick="next()">next</button>
 
 <?php
 echo "<pre>";
