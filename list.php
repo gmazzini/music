@@ -20,12 +20,13 @@ if($pwdmd5=="" || $first==""){
 
 // list of playlist
 echo "<pre>$first\n";
-$query=mysqli_query($con,"select label from playlist_desc where pwdmd5='$pwdmd5'");
+$query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $pl=$row["label"];
-  echo "<a href='list.php?pl=$pl&pwdmd5=$pwdmd5'>$pl</a>\n";
+  $description=$row["$description"];
+  echo "<a href='list.php?pl=$pl&pwdmd5=$pwdmd5'>$pl $description</a>\n";
 }
 mysqli_free_result($query);
 echo "<hr>";
