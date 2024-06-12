@@ -53,26 +53,26 @@ for($i=0;;$i++){
 }
 mysqli_free_result($query);
 
-echo "<span id=\"mydesc\"></span>\n";
-echo "<audio autoplay controls id=\"Player\" src=\"load.php?id=$id[0]\" onclick=\"this.paused ? this.play() : this.pause();\">Nooo</video>";
-echo "<script>";
-echo "document.getElementById(\"mydesc\").textContent=\"$data[0]\";\n";
-echo "var nextsrc=[";
-for($j=1;$j<$i;$j++){
-  if($j>1)echo ",";
-  echo "\"load.php?id=$id[$j]\"";
+// player
+?>
+<span id="mydesc"></span>
+<audio autoplay controls id="Player" src="load.php?id=<?php echo $id[0];?>" onclick="this.paused ? this.play() : this.pause();">Nooo</audio>
+<script>
+document.getElementById("mydesc").textContent="<?php echo $data[0];?>";
+var nextsrc=[<?php for($j=1;$j<$i;$j++){if($j>1)echo ",";echo "\"load.php?id=$id[$j]\"";}?>]
+var desc=[<?php for($j=1;$j<$i;$j++){if($j>1)echo ",";echo "\"$data[$j]\"";}?>]
+var elm=0;
+var Player=document.getElementById("Player");
+Player.onended=function(){
+  if(++elm < nextsrc.length+1){
+    Player.src=nextsrc[elm-1];
+    document.getElementById("mydesc").textContent=desc[elm-1];
+    Player.play();
+  }
 }
-echo "];\n";
-echo "var desc=[";
-for($j=1;$j<$i;$j++){
-  if($j>1)echo ",";
-  echo "\"$data[$j]\"";
-}
-echo "];\n";
-echo "var elm=0;\nvar Player=document.getElementById('Player');\n";
-echo "Player.onended=function(){if(++elm < nextsrc.length+1){Player.src=nextsrc[elm-1];document.getElementById(\"mydesc\").textContent=desc[elm-1];Player.play();}}";
-echo "</script>";
+</script>
 
+<?php
 echo "<pre>";
 mysqli_close($con);
 ?>
