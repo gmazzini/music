@@ -208,7 +208,6 @@ switch($go){
   echo "var desc=["; for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "'$data[$j]'";} echo "]\n";
   echo "var elm=0;\n";
   echo "document.getElementById('mydesc').textContent=desc[elm];\n";
-  echo "myshow();\n";
   echo "var Player=document.getElementById('Player');\n";
   echo "Player.onended=function(){\n";
   echo "  elm++;\n";
@@ -250,6 +249,7 @@ switch($go){
   echo "  for(i=0;i < src.length;i++){aux+=desc[i]+'\\n';}\n";
   echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
+  echo "myshow();\n";
   echo "</script>\n";
   echo "<button onclick='prev()'>prev</button><button onclick='next()'>next</button><button onclick='myrand()'>rand</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
