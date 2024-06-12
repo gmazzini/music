@@ -56,7 +56,7 @@ mysqli_free_result($query);
 
 // player
 ?>
-<span id="mydesc"></span>
+<span id='mydesc'></span>
 <audio autoplay controls id="Player" src="load.php?id=<?php echo $id[0];?>" onclick="this.paused ? this.play() : this.pause();">Nooo</audio>
 <script>
 var src=[<?php for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "\"load.php?id=$id[$j]\"";}?>]
