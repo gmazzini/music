@@ -237,7 +237,7 @@ switch($go){
   echo "}\n";
   echo "function myrand(){\n";
   echo "aux='';\n";
-  echo "for(i=0;i < src.length;i++){aux+=desc[i]+'\n';}\n";
+  echo "for(i=0;i < src.length;i++){aux+=desc[i]+'<br>';}\n";
   echo "document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
   echo "</script>\n";
