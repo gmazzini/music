@@ -216,6 +216,7 @@ switch($go){
   echo "    document.getElementById('mydesc').textContent=desc[elm];\n";
   echo "    Player.play();\n";
   echo "  }\n";
+  echo "  myshow();\n";
   echo "}\n";
   echo "function next(){\n";
   echo "  elm++;\n";
@@ -235,7 +236,7 @@ switch($go){
   echo "  }\n";
   echo "  else elm=0;\n";
   echo "}\n";
-  echo "function myrand(){\n";
+  echo "function myshuffle(){\n";
   echo "  for(i=desc.length-1;i > 0;i--){\n";
   echo "    j=Math.floor(Math.random()*(i+1))\n";
   echo "    temp=desc[i]; desc[i]=desc[j]; desc[j]=temp;\n";
@@ -248,7 +249,7 @@ switch($go){
   echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
   echo "</script>\n";
-  echo "<button onclick='prev()'>prev</button><button onclick='next()'>next</button><button onclick='myrand()'>rand</button>\n";
+  echo "<button onclick='prev()'>prev</button><button onclick='next()'>next</button><button onclick='myshuffle()'>shuffle</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
   echo "<pre>";
   break;
