@@ -58,8 +58,8 @@ mysqli_free_result($query);
 <span id="mydesc"></span>
 <audio autoplay controls id="Player" src="load.php?id=<?php echo $id[0];?>" onclick="this.paused ? this.play() : this.pause();">Nooo</audio>
 <script>
-var src=[<?php for($j=0;$j<$i;$j++){if($j>1)echo ",";echo "\"load.php?id=$id[$j]\"";}?>]
-var desc=[<?php for($j=0;$j<$i;$j++){if($j>1)echo ",";echo "\"$data[$j]\"";}?>]
+var src=[<?php for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "\"load.php?id=$id[$j]\"";}?>]
+var desc=[<?php for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "\"$data[$j]\"";}?>]
 var elm=0;
 document.getElementById("mydesc").textContent=desc[elm];
 var Player=document.getElementById("Player");
