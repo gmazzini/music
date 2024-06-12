@@ -236,9 +236,13 @@ switch($go){
   echo "  else elm=0;\n";
   echo "}\n";
   echo "function myrand(){\n";
-  echo "aux='';\n";
-  echo "for(i=0;i < src.length;i++){aux+=desc[i]+'\\n';}\n";
-  echo "document.getElementById('mylist').textContent=aux;\n";
+  echo "  for(i=desc.length-1;i > 0;i--){\n";
+  echo "    j=Math.floor(Math.random()*(i+1))\n";
+  echo "    temp=desc[i]; desc[i]=desc[j]; desc[j]=temp;\n";
+  echo "  }\n";
+  echo "  aux='';\n";
+  echo "  for(i=0;i < src.length;i++){aux+=desc[i]+'\\n';}\n";
+  echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
   echo "</script>\n";
   echo "<button onclick='prev()'>prev</button><button onclick='next()'>next</button><button onclick='myrand()'>rand</button>\n";
