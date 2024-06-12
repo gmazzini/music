@@ -185,8 +185,6 @@ switch($go){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
     $id[$i]=$row["id"];
-
-    echo "$i $id[$i]<br>";
     $query1=mysqli_query($con,"select name,parent from song where id='$id[$i]'");
     $row1=mysqli_fetch_assoc($query1);
     $data[$i]=$i." | ".$row1["name"];
@@ -200,6 +198,9 @@ switch($go){
     $query1=mysqli_query($con,"select name from music where id='$parent'");
     $row1=mysqli_fetch_assoc($query1);
     $data[$i].=" | ".$row1["name"];
+
+
+    echo "$i $id[$i] $data[$i]<br>";
     mysqli_free_result($query1);
   }
   mysqli_free_result($query);
