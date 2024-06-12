@@ -207,7 +207,6 @@ switch($go){
   echo "var desc=["; for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "'$data[$j]'";} echo "]\n";
   echo "var elm=0;\n";
   echo "var Player=document.getElementById('Player');\n";
-  echo "myshow();\n";
   echo "Player.onended=function(){\n";
   echo "  elm++;\n";
   echo "  if(elm < src.length){\n";
@@ -215,6 +214,9 @@ switch($go){
   echo "    Player.play();\n";
   echo "    myshow();\n";
   echo "  }\n";
+  echo "}\n";
+  echo "Player.onload=function(){\n";
+  echo "  myshow();\n";
   echo "}\n";
   echo "function next(){\n";
   echo "  elm++;\n";
