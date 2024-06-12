@@ -62,7 +62,7 @@ echo "<script>";
 echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]";
 echo "var desc=["; for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "'$data[$j]'";} echo "]";
 
-<?php
+?>
 var elm=0;
 document.getElementById("mydesc").textContent=desc[elm];
 var Player=document.getElementById("Player");
