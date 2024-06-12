@@ -201,20 +201,18 @@ switch($go){
     mysqli_free_result($query1);
   }
   mysqli_free_result($query);
-  echo "<span id='mydesc'></span>\n";
   echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
   echo "<script>\n";
   echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]\n";
   echo "var desc=["; for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "'$data[$j]'";} echo "]\n";
   echo "var elm=0;\n";
-  echo "document.getElementById('mydesc').textContent=desc[elm];\n";
   echo "var Player=document.getElementById('Player');\n";
   echo "Player.onended=function(){\n";
   echo "  elm++;\n";
   echo "  if(elm < src.length){\n";
   echo "    Player.src=src[elm];\n";
-  echo "    document.getElementById('mydesc').textContent=desc[elm];\n";
   echo "    Player.play();\n";
+  echo "    myshow();\n";
   echo "  }\n";
   echo "  myshow();\n";
   echo "}\n";
@@ -222,7 +220,6 @@ switch($go){
   echo "  elm++;\n";
   echo "  if(elm < src.length){\n";
   echo "    Player.src=src[elm];\n";
-  echo "    document.getElementById('mydesc').textContent=desc[elm];\n";
   echo "    Player.play();\n";
   echo "    myshow();\n";
   echo "  }\n";
@@ -232,8 +229,8 @@ switch($go){
   echo "  elm--;\n";
   echo "  if(elm >= 0){\n";
   echo "    Player.src=src[elm];\n";
-  echo "    document.getElementById('mydesc').textContent=desc[elm];\n";
   echo "    Player.play();\n";
+  echo "    myshow();\n";
   echo "  }\n";
   echo "  else elm=0;\n";
   echo "}\n";
