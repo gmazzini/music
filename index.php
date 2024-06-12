@@ -207,6 +207,7 @@ switch($go){
   echo "var desc=["; for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "'$data[$j]'";} echo "]\n";
   echo "var elm=0;\n";
   echo "var Player=document.getElementById('Player');\n";
+  echo "myshow();\n";
   echo "Player.onended=function(){\n";
   echo "  elm++;\n";
   echo "  if(elm < src.length){\n";
@@ -214,7 +215,6 @@ switch($go){
   echo "    Player.play();\n";
   echo "    myshow();\n";
   echo "  }\n";
-  echo "  myshow();\n";
   echo "}\n";
   echo "function next(){\n";
   echo "  elm++;\n";
@@ -246,7 +246,7 @@ switch($go){
   echo "  for(i=0;i < src.length;i++){\n";
   echo "    if(i==elm)aux+='!!! ';\n";
   echo "    aux+=desc[i]+'\\n';\n";
-  echo "}\n";
+  echo "  }\n";
   echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
   echo "</script>\n";
