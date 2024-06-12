@@ -240,16 +240,13 @@ switch($go){
   echo "    j=Math.floor(Math.random()*(i+1))\n";
   echo "    temp=desc[i]; desc[i]=desc[j]; desc[j]=temp;\n";
   echo "  }\n";
-  echo "  aux='';\n";
-  echo "  for(i=0;i < src.length;i++){aux+=desc[i]+'\\n';}\n";
-  echo "  document.getElementById('mylist').textContent=aux;\n";
+  echo "  myshow();\n";
   echo "}\n";
   echo "function myshow(){\n";
   echo "  aux='';\n";
   echo "  for(i=0;i < src.length;i++){aux+=desc[i]+'\\n';}\n";
   echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
-  echo "myshow();\n";
   echo "</script>\n";
   echo "<button onclick='prev()'>prev</button><button onclick='next()'>next</button><button onclick='myrand()'>rand</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
