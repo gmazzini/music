@@ -178,7 +178,7 @@ switch($go){
   
   // play
   case "PLY":
-  echo "<pre>$first\n";
+  echo "<pre>$first $plin\n";
   for($i=0;$i<$ipl;$i++)echo "<a href='?pl=$pl[$i]&pwdmd5=$pwdmd5&go=PLY'>$pl[$i] $description[$i]</a>\n";
   $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
   for($i=0;;$i++){
