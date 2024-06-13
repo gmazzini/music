@@ -126,6 +126,14 @@ switch($go){
   echo "</form><pre>";
   echo "Looking: $search\n";
   if(strlen($search)<2)$search="ZZZZZ";
+  if($pla==1){
+    $query=mysqli_query($con,"select max(position) from playlist where label='$plin' and pwdmd5='$pwdmd5'");
+    $row=mysqli_fetch_row($query);
+    $pllast=1+(int)$row[0];
+    mysqli_free_result($query);
+    mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
+  }
+  elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
   $query=mysqli_query($con,"select id from song where name like '%$search%' order by name");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
@@ -145,7 +153,7 @@ switch($go){
     $row1=mysqli_fetch_assoc($query1);
     $liv1=$row1["name"];
     mysqli_free_result($query1);
-    echo "$id | $name | $liv2 | $liv1\n";
+    echo "$id | $name | $liv2 | $liv1 ";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
       $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
@@ -155,6 +163,7 @@ switch($go){
       if($position==0)echo " <a href='?idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1&go=SRC'>+$apl</a>";
       else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2&go=SRC'>-$apl</a>";
     }
+    echo "\n";
   }
   echo "</pre>";
   break;
