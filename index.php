@@ -3,6 +3,7 @@ include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; 
 @$pla=$_GET["pla"]; @$go=$_GET["go"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
+@$search=(int)$_GET["search"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -122,10 +123,30 @@ switch($go){
   echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
   echo "<input type=hidden name=go value='SRC'>";
   echo "<input type=submit name=act value=Enter>";
-  echo "</form>";
+  echo "</form><pre>";
+  $query=mysqli_query($con,"select id from song where name like '$search' order by name");
+  for($i=0;;$i++){
+    $row=mysqli_fetch_assoc($query);
+    if($row==null)break;
+    $id=$row["id"];
+    $query1=mysqli_query($con,"select name,parent from song where id='$id'");
+    $row1=mysqli_fetch_assoc($query1);
+    $name=$row1["name"];
+    $parent=$row1["parent"];
+    mysqli_free_result($query1);
+    $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
+    $row1=mysqli_fetch_assoc($query1);
+    $liv2=$row1["name"];
+    $parent=$row1["parent"];
+    mysqli_free_result($query1);
+    $query1=mysqli_query($con,"select name from music where id='$parent'");
+    $row1=mysqli_fetch_assoc($query1);
+    $liv1=$row1["name"];
+    mysqli_free_result($query1);
+    echo " $id | $name | $liv2 | $liv1\n";
+  }
+  echo "</pre>";
   break;
-
- 
 
   // action on playlist
   case "LST":
