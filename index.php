@@ -145,7 +145,16 @@ switch($go){
     $row1=mysqli_fetch_assoc($query1);
     $liv1=$row1["name"];
     mysqli_free_result($query1);
-    echo " $id | $name | $liv2 | $liv1\n";
+    echo "$id | $name | $liv2 | $liv1\n";
+    for($i=0;$i<$ipl;$i++){
+      $apl=$pl[$i];
+      $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
+      $row1=mysqli_fetch_assoc($query1);
+      $position=(int)$row1["position"];
+      mysqli_free_result($query1);
+      if($position==0)echo " <a href='?idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1&go=SRC'>+$apl</a>";
+      else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2&go=SRC'>-$apl</a>";
+    }
   }
   echo "</pre>";
   break;
