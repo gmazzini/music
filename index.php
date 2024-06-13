@@ -215,10 +215,9 @@ switch($go){
     $liv2=$row1["name"];
     $parent=$row1["parent"];
     mysqli_free_result($query1);
-    $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
+    $query1=mysqli_query($con,"select name from music where id='$parent'");
     $row1=mysqli_fetch_assoc($query1);
     $liv1=$row1["name"];
-    $parent=$row1["parent"];
     mysqli_free_result($query1);
     echo "<a href=?act=C&pl=$plin&pwdmd5=$pwdmd5&pos=$position&go=LST>C</a> ";
     echo "<a href=?act=U&pl=$plin&pwdmd5=$pwdmd5&pos=$position&go=LST>U</a> ";
