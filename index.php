@@ -117,8 +117,10 @@ switch($go){
 
    // search
   case "SRC":
-  echo "<form action=\"?pwdmd5=$pwdmd5&go=SRC\">";
+  echo "<form>";
   echo "search <input type=text name=search size=16>";
+  echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
+  echo "<input type=hidden name=go value='SRC'>";
   echo "<input type=submit name=act value=Enter>";
   echo "</form>";
   break;
