@@ -3,7 +3,7 @@ include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; 
 @$pla=$_GET["pla"]; @$go=$_GET["go"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
-@$search=(int)$_GET["search"];
+@$search=$_GET["search"];
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
@@ -125,6 +125,7 @@ switch($go){
   echo "<input type=submit name=act value=Enter>";
   echo "</form><pre>";
   echo "Looking: $search\n";
+  if(strlen($search)<2)$search="ZZZZZ";
   $query=mysqli_query($con,"select id from song where name like '%$search%' order by name");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
