@@ -124,6 +124,7 @@ switch($go){
   echo "<input type=hidden name=go value='SRC'>";
   echo "<input type=submit name=act value=Enter>";
   echo "</form><pre>";
+  echo "Looking: $search\n";
   $query=mysqli_query($con,"select id from song where name like '%$search%' order by name");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
