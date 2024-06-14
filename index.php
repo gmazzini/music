@@ -342,7 +342,7 @@ switch($go){
     @$aux1=$_GET["par6"]; @$aux2=$_GET["par7"];
     if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"update playlist_desc set description='$aux2' where pwdmd5='$pwdmd5' and label='$aux1'");
     break;
-    case "downlink":
+    case "download":
     @$aux1=$_GET["par8"];
     $myname=rand().rand().rand().rand().".list";
     $ffname="download/$myname";
@@ -373,7 +373,7 @@ switch($go){
   echo "<input type=submit name=act value=remove> label:<input type=text name=par3 size=8>\n";
   echo "<input type=submit name=act value=relabel> labelorg:<input type=text name=par4 size=8> labeldest:<input type=text name=par5 size=8>\n";
   echo "<input type=submit name=act value=rename> labelorg:<input type=text name=par6 size=8> dest:<input type=text name=par7 size=100>\n";
-  echo "<input type=submit name=act value=downlink> label:<input type=text name=par8 size=8>\n";
+  echo "<input type=submit name=act value=download> label:<input type=text name=par8 size=8>\n";
   echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
   echo "<input type=hidden name=go value='MNG'>";
   echo "</form></pre>";
