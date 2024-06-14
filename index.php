@@ -5,6 +5,13 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$pla=$_GET["pla"]; @$go=$_GET["go"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
 @$search=$_GET["search"];
 
+echo "<style>\n";
+echo "body {background-color: #F9F4B7;}\n";
+echo ".mybut {background-color: #666699; border: none; color: #F9F4B7; padding: 10px 20px; text-align: center; text-decoration: none;\n";
+echo "display: inline-block; font-size: 16px; border-radius: 15px; outline:none; }\n";
+echo ".mybut:hover {background-color: #402B8;}\n";
+echo "</style>\n";
+
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
 else $pwdmd5=$_GET["pwdmd5"];
