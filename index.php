@@ -304,6 +304,7 @@ switch($go){
   echo "    temp=src[i]; src[i]=desc[j]; src[j]=temp;\n";
   echo "  }\n";
   echo "  elm=0;\n";
+  echo "  Player.src=src[elm];\n";
   echo "  Player.load();\n";
   echo "  Player.play();\n";
   echo "  myshow();\n";
