@@ -347,7 +347,7 @@ switch($go){
     $myname=rand().rand().rand().rand().".list";
     $ffname="download/$myname";
     $fp=fopen($ffname,"w");
-    $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
+    $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$aux1' order by position");
     for(;;){
       $row=mysqli_fetch_assoc($query);
       if($row==null)break;
