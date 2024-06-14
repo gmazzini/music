@@ -7,8 +7,8 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 
 echo "<style>\n";
 echo "body {background-color: #F9F4B7; }\n";
-echo ".mybut {background-color: #666699; border: none; color: #F9F4B7; padding: 10px 20px; text-align: center; text-decoration: none;\n";
-echo "display: inline-block; font-size: 16px; border-radius: 15px; outline:none; }\n";
+echo ".mybut {background-color: #666699; border: none; color: #F9F4B7; padding: 3px 3px; text-align: center; text-decoration: none;\n";
+echo "display: inline-block; font-size: 12px; border-radius: 3px; outline:none; }\n";
 echo ".mybut:hover {background-color: #402B8; }\n";
 echo "</style>\n";
 
