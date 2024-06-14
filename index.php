@@ -239,7 +239,6 @@ switch($go){
   // play
   case "PLY":
   echo "<pre>$first $plin\n";
-  for($i=0;$i<$ipl;$i++)echo "<a href='?pl=$pl[$i]&pwdmd5=$pwdmd5&go=PLY'>$pl[$i] $description[$i]</a>\n";
   $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
@@ -261,7 +260,7 @@ switch($go){
     mysqli_free_result($query1);
   }
   mysqli_free_result($query);
-  echo "<button class='mybut' onclick=\"location.href='?pl=$pl[0]&pwdmd5=$pwdmd5&go=PLY';\"'>GM1</button>\n";
+  for($i=0;$i<$ipl;$i++)echo "<button class='mybut' onclick=\"location.href='?pl=$pl[$i]&pwdmd5=$pwdmd5&go=PLY';\"'>$pl[$i]</button>$description[$i]\n";
   echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
   echo "<script>\n";
   echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]\n";
