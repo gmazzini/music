@@ -332,6 +332,7 @@ switch($go){
   switch($act){
     case "create":
     if(ctype_alnum($par1) && strlen($par2)>4)mysqli_query($con,"insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$par1',$par2)");
+    echo "insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$par1',$par2)";
     break;
   }
   break;
