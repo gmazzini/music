@@ -321,10 +321,9 @@ switch($go){
   // manage
   case "MNG":
   echo "<form>";
-  echo "create label:<input type=text name=par1 size=8> description:<input type=text name=par2 size=8>";
+  echo "<input type=submit name=act value=create> label:<input type=text name=par1 size=8> description:<input type=text name=par2 size=8>";
   echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
   echo "<input type=hidden name=go value='MNG'>";
-  echo "<input type=submit name=act value=Enter>";
   echo "</form><pre>";
   break;
 
