@@ -297,12 +297,15 @@ switch($go){
   echo "  else elm=0;\n";
   echo "}\n";
   echo "function myshuffle(){\n";
+  echo "  Player.pause();\n";
   echo "  for(i=desc.length-1;i > 0;i--){\n";
   echo "    j=Math.floor(Math.random()*(i+1))\n";
   echo "    temp=desc[i]; desc[i]=desc[j]; desc[j]=temp;\n";
   echo "    temp=src[i]; src[i]=desc[j]; src[j]=temp;\n";
   echo "  }\n";
-  echo "  elm=0; Player.play();\n";
+  echo "  elm=0;\n";
+  echo "  Player.load();\n";
+  echo "  Player.play();\n";
   echo "  myshow();\n";
   echo "}\n";
   echo "function myshow(){\n";
