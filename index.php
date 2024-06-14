@@ -260,6 +260,11 @@ switch($go){
     mysqli_free_result($query1);
   }
   mysqli_free_result($query);
+  if($act=="shuffle"){
+    $order=range(0,$i-1);
+    shuffle($order);
+    array_multisort($order,$src,$desc);
+  }
   for($q=0;$q<$ipl;$q++)echo "<button class='mybut' onclick=\"location.href='?pl=$pl[$q]&pwdmd5=$pwdmd5&go=PLY';\"'>$pl[$q]</button> $description[$q]\n";
   echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
   echo "<script>\n";
@@ -295,19 +300,6 @@ switch($go){
   echo "    myshow();\n";
   echo "  }\n";
   echo "  else elm=0;\n";
-  echo "}\n";
-  echo "function myshuffle(){\n";
-  echo "  Player.pause();\n";
-  echo "  for(i=desc.length-1;i > 0;i--){\n";
-  echo "    j=Math.floor(Math.random()*(i+1))\n";
-  echo "    temp=desc[i]; desc[i]=desc[j]; desc[j]=temp;\n";
-  echo "    temp=src[i]; src[i]=desc[j]; src[j]=temp;\n";
-  echo "  }\n";
-  echo "  elm=0;\n";
-  echo "  Player.src=src[elm];\n";
-  echo "  Player.load();\n";
-  echo "  Player.play();\n";
-  echo "  myshow();\n";
   echo "}\n";
   echo "function myshow(){\n";
   echo "  aux='';\n";
