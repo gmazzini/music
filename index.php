@@ -327,7 +327,7 @@ switch($go){
     break;
     case "remove":
     @$aux1=$_GET["par3"];
-    if(ctype_alnum($aux3)){
+    if(ctype_alnum($aux1)){
       mysqli_query($con,"delete from playlist_desc where pwdmd5='$pwdmd5' and label='$aux1'");
       mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
     }
