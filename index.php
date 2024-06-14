@@ -319,7 +319,7 @@ switch($go){
   echo "}\n";
   echo "</script>\n";
   echo "<button class='mybut' onclick='prev()'>prev</button><button class='mybut' onclick='next()'>next</button>";
-  echo "<button class='mybut' onclick='myshuffle()'>shuffle</button>\n";
+  echo "<button class='mybut' onclick='onclick=\"location.href='?pl=$plin&pwdmd5=$pwdmd5&go=PLY&act=shuffle';\"'>shuffle</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
   echo "<pre>";
   break;
