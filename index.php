@@ -312,7 +312,7 @@ switch($go){
   echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
   echo "</script>\n";
-  echo "<button onclick='prev()'>prev</button><button onclick='next()'>next</button><button onclick='myshuffle()'>shuffle</button>\n";
+  echo "<button class='mybut' onclick='prev()'>prev</button><button class='mybut' onclick='next()'>next</button><button class='mybut' onclick='myshuffle()'>shuffle</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
   echo "<pre>";
   break;
