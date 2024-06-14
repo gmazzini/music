@@ -40,7 +40,8 @@ mysqli_free_result($query);
 echo "<pre><a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>DIRECTORY</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=SRC'>SEARCH</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=LST'>LIST</a>";
-echo " <a href='?pwdmd5=$pwdmd5&go=PLY'>PLAY</a></pre><hr>";
+echo " <a href='?pwdmd5=$pwdmd5&go=PLY'>PLAY</a>";
+echo " <a href='?pwdmd5=$pwdmd5&go=MNG'>MANAGE</a></pre><hr>";
 
 if($go=="")$go="PLY";
 switch($go){
@@ -315,6 +316,16 @@ switch($go){
   echo "<button class='mybut' onclick='prev()'>prev</button><button class='mybut' onclick='next()'>next</button><button class='mybut' onclick='myshuffle()'>shuffle</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
   echo "<pre>";
+  break;
+
+  // manage
+  case "MNG":
+  echo "<form>";
+  echo "create label:<input type=text name=par1 size=8> description:<input type=text name=par2 size=8>";
+  echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
+  echo "<input type=hidden name=go value='MNG'>";
+  echo "<input type=submit name=act value=Enter>";
+  echo "</form><pre>";
   break;
 
 }
