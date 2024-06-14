@@ -325,6 +325,13 @@ switch($go){
     @$aux1=$_GET["par1"]; @$aux2=$_GET["par2"];
     if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$aux1','$aux2')");
     break;
+    case "relabel":
+    @$aux1=$_GET["par4"]; @$aux2=$_GET["par5"];
+    if(ctype_alnum($aux1) && ctype_alnum($aux2)){
+      mysqli_query($con,"update playlist_desc set label='$aux2' where pwdmd5='$pwdmd5' and label='$aux1'");
+      mysqli_query($con,"update playlist set label='$aux2' where pwdmd5='$pwdmd5' and label='$aux1'");
+    }
+    break;
   }
   $query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
   for($ipl=0;;$ipl++){
