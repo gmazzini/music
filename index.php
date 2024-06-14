@@ -320,6 +320,8 @@ switch($go){
 
   // manage
   case "MNG":
+  echo "<pre>$first $plin\n";
+  for($i=0;$i<$ipl;$i++)echo "$pl[$i] $description[$i]\n";
   echo "<pre><form>";
   echo "<input type=submit name=act value=create> label:<input type=text name=par1 size=8> description:<input type=text name=par2 size=100>\n";
   echo "<input type=submit name=act value=remove> label:<input type=text name=par3 size=8>\n";
