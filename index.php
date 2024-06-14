@@ -246,7 +246,7 @@ switch($go){
     $id[$i]=$row["id"];
     $query1=mysqli_query($con,"select name,parent from song where id='$id[$i]'");
     $row1=mysqli_fetch_assoc($query1);
-    $data[$i]=$i." | ".mys($row1["name"]);
+    $data[$i]=mys($row1["name"]);
     $parent=$row1["parent"];
     mysqli_free_result($query1);
     $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
@@ -304,7 +304,8 @@ switch($go){
   echo "function myshow(){\n";
   echo "  aux='';\n";
   echo "  for(i=0;i < src.length;i++){\n";
-  echo "    if(i==elm)aux+='!!! ';\n";
+  echo "    if(i==elm)aux+='>> ';\n";
+  echo "    else aux+='   ';\n";
   echo "    aux+=desc[i]+'\\n';\n";
   echo "  }\n";
   echo "  document.getElementById('mylist').textContent=aux;\n";
