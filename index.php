@@ -302,6 +302,7 @@ switch($go){
   echo "    temp=desc[i]; desc[i]=desc[j]; desc[j]=temp;\n";
   echo "    temp=src[i]; src[i]=desc[j]; src[j]=temp;\n";
   echo "  }\n";
+  echo "  elm=0; Player.play();\n";
   echo "  myshow();\n";
   echo "}\n";
   echo "function myshow(){\n";
