@@ -260,7 +260,7 @@ switch($go){
     mysqli_free_result($query1);
   }
   mysqli_free_result($query);
-  for($i=0;$i<$ipl;$i++)echo "<button class='mybut' onclick=\"location.href='?pl=$pl[$i]&pwdmd5=$pwdmd5&go=PLY';\"'>$pl[$i]</button>$description[$i]\n";
+  for($q=0;$q<$ipl;$q++)echo "<button class='mybut' onclick=\"location.href='?pl=$pl[$q]&pwdmd5=$pwdmd5&go=PLY';\"'>$pl[$q]</button>$description[$q]\n";
   echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
   echo "<script>\n";
   echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]\n";
