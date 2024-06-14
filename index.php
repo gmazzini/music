@@ -334,7 +334,7 @@ switch($go){
     case "create":
     @$aux1=$_GET["par1"]; @$aux2=$_GET["par2"];
     echo "insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$aux1','$aux2')";
-    if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$aux1',$aux2)");
+    if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$aux1','$aux2')");
     break;
   }
   break;
