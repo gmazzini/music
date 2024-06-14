@@ -263,7 +263,7 @@ switch($go){
   if($act=="shuffle"){
     $order=range(0,$i-1);
     shuffle($order);
-    array_multisort($order,$src,$data);
+    array_multisort($order,$id,$data);
   }
   for($q=0;$q<$ipl;$q++)echo "<button class='mybut' onclick=\"location.href='?pl=$pl[$q]&pwdmd5=$pwdmd5&go=PLY';\"'>$pl[$q]</button> $description[$q]\n";
   echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
