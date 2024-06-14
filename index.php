@@ -260,7 +260,7 @@ switch($go){
     mysqli_free_result($query1);
   }
   mysqli_free_result($query);
-  for($q=0;$q<$ipl;$q++)echo "<button class='mybut' onclick=\"location.href='?pl=$pl[$q]&pwdmd5=$pwdmd5&go=PLY';\"'>$pl[$q]</button>$description[$q]\n";
+  for($q=0;$q<$ipl;$q++)echo "<button class='mybut' onclick=\"location.href='?pl=$pl[$q]&pwdmd5=$pwdmd5&go=PLY';\"'>$pl[$q]</button> $description[$q]\n";
   echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
   echo "<script>\n";
   echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]\n";
@@ -318,7 +318,7 @@ switch($go){
   echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
   echo "</script>\n";
-  echo "<button class='mybut' onclick='prev()'>prev</button><button class='mybut' onclick='next()'>next</button>";
+  echo "<button class='mybut' onclick='prev()'>prev</button> <button class='mybut' onclick='next()'>next</button> ";
   echo "<button class='mybut' onclick='onclick=\"location.href='?pl=$plin&pwdmd5=$pwdmd5&go=PLY&act=shuffle';\"'>shuffle</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
   echo "<pre>";
