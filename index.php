@@ -320,6 +320,20 @@ switch($go){
 
   // manage
   case "MNG":
+  switch($act){
+    case "create":
+    @$aux1=$_GET["par1"]; @$aux2=$_GET["par2"];
+    if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$aux1','$aux2')");
+    break;
+  }
+  $query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
+  for($ipl=0;;$ipl++){
+    $row=mysqli_fetch_assoc($query);
+    if($row==null)break;
+    $pl[$ipl]=$row["label"];
+    $description[$ipl]=$row["description"];
+  }
+  mysqli_free_result($query);
   echo "<pre>$first $plin\n";
   for($i=0;$i<$ipl;$i++)echo "$pl[$i] $description[$i]\n";
   echo "<pre><form>";
@@ -330,13 +344,6 @@ switch($go){
   echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
   echo "<input type=hidden name=go value='MNG'>";
   echo "</form></pre>";
-  switch($act){
-    case "create":
-    @$aux1=$_GET["par1"]; @$aux2=$_GET["par2"];
-    echo "insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$aux1','$aux2')";
-    if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$aux1','$aux2')");
-    break;
-  }
   break;
 
 }
