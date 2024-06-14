@@ -342,6 +342,21 @@ switch($go){
     @$aux1=$_GET["par6"]; @$aux2=$_GET["par7"];
     if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"update playlist_desc set description='$aux2' where pwdmd5='$pwdmd5' and label='$aux1'");
     break;
+    case "downlink":
+    @$aux1=$_GET["par8"];
+    $myname=rand().rand().rand().rand().".list";
+    $ffname="download/$myname";
+    $fp=fopen($ffname,"w");
+    $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
+    for(;;){
+      $row=mysqli_fetch_assoc($query);
+      if($row==null)break;
+      fprintf($fp,"%s\n",$row["id"]);
+    }
+    mysqli_free_result($query);
+    fclose($fp);
+    echo "<pre><a href='$ffname' download>Download</a><br>";
+    break;
   }
   $query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
   for($ipl=0;;$ipl++){
@@ -357,7 +372,8 @@ switch($go){
   echo "<input type=submit name=act value=create> label:<input type=text name=par1 size=8> description:<input type=text name=par2 size=100>\n";
   echo "<input type=submit name=act value=remove> label:<input type=text name=par3 size=8>\n";
   echo "<input type=submit name=act value=relabel> labelorg:<input type=text name=par4 size=8> labeldest:<input type=text name=par5 size=8>\n";
-  echo "<input type=submit name=act value=rename> labelorg:<input type=text name=par6 size=8> dest:<input type=text name=par7 size=100>";
+  echo "<input type=submit name=act value=rename> labelorg:<input type=text name=par6 size=8> dest:<input type=text name=par7 size=100>\n";
+  echo "<input type=submit name=act value=downlink> label:<input type=text name=par8 size=8>\n";
   echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
   echo "<input type=hidden name=go value='MNG'>";
   echo "</form></pre>";
