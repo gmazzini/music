@@ -321,13 +321,19 @@ switch($go){
   // manage
   case "MNG":
   echo "<pre><form>";
-  echo "<input type=submit name=act value=create>  label:<input type=text name=par1 size=8>    description:<input type=text name=par2 size=100>\n";
-  echo "<input type=submit name=act value=remove>  label:<input type=text name=par1 size=8>\n";
+  echo "<input type=submit name=act value=create> label:<input type=text name=par1 size=8> description:<input type=text name=par2 size=100>\n";
+  echo "<input type=submit name=act value=remove> label:<input type=text name=par1 size=8>\n";
   echo "<input type=submit name=act value=relabel> labelorg:<input type=text name=par1 size=8> labeldest:<input type=text name=par2 size=8>\n";
-  echo "<input type=submit name=act value=rename>  labelorg:<input type=text name=par1 size=8> dest:<input type=text name=par2 size=100>";
+  echo "<input type=submit name=act value=rename> labelorg:<input type=text name=par1 size=8> dest:<input type=text name=par2 size=100>";
   echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
   echo "<input type=hidden name=go value='MNG'>";
   echo "</form></pre>";
+  @$par1=$_GET["par1"]; @$par2=$_GET["par2"];
+  switch($act){
+    case "create":
+    if(ctype_alnum($par1) && strlen($par2)>4)mysqli_query($con,"insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$par1',$par2)");
+    break;
+  }
   break;
 
 }
