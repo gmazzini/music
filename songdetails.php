@@ -17,7 +17,7 @@ for(;;){
   $row1=mysqli_fetch_assoc($query1);
   $liv1=$row1["name"];
   mysqli_free_result($query1);
-  mysqli_query($con,"iupdate song set title='$name',album='$liv2',artist='$liv1' where id='$id'");
+  mysqli_query($con,"update song set title='$name',album='$liv2',artist='$liv1' where id='$id'");
 }
 mysqli_free_result($query);
 mysqli_close($con);
