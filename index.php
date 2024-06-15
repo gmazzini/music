@@ -62,7 +62,8 @@ switch($go){
     }
     mysqli_free_result($query);
     break;
-    echo "/pre>";
+  }
+  echo "/pre>";
   break;
   
   // directory
