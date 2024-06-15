@@ -89,7 +89,8 @@ switch($go){
     }
     elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
     case 3:
-    echo ">> $artist >> $album <a href='?liv=2&pwdmd5=$pwdmd5&go=DIR&artist=$artist'>Prev</a>\n";
+    echo ">> $artist >> $album";
+    myz("go","DIR","pwdmd5","$pwdmd5","liv",2,"artist",$artist);
     $query=mysqli_query($con,"select id,title from song where artist='$artist' and album='$album' order by title");
     for(;;){
       $row=mysqli_fetch_assoc($query);
@@ -103,8 +104,8 @@ switch($go){
         $row1=mysqli_fetch_assoc($query1);
         $position=(int)$row1["position"];
         mysqli_free_result($query1);
-        if($position==0)echo " <a href='?liv=4&pwdmd5=$pwdmd5&artist=$artist&album=$album&id=$id&go=DIR&pla=1&pl=$apl'>>+$apl</a>";
-        else echo " <a href='?liv=4&pwdmd5=$pwdmd5&artist=$artist&album=$album&id=$id&go=DIR&pla=2&pl=$apl'>>-$apl</a>";
+        if($position==0)myz("pl",$apl,"id",$id,"go","DIR","pwdmd5",$pwdmd5,"liv","4","artist",$artist,"album",$album,"pla",1);
+        else myz("pl",$apl,"id",$id,"go","DIR","pwdmd5",$pwdmd5,"liv","4","artist",$artist,"album",$album,"pla",1);
       }
       echo "\n";
     }
