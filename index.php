@@ -40,7 +40,7 @@ echo "<pre>";
 myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
 echo " "; myz("go","SRC","pwdmd5","$pwdmd5");
 echo " "; myz("go","LST","pwdmd5","$pwdmd5");
-echo " <a href='?pwdmd5=$pwdmd5&go=PLY'>PLAY</a>";
+echo " "; myz("go","PLY","pwdmd5","$pwdmd5");
 echo " <a href='?pwdmd5=$pwdmd5&go=MNG'>MANAGE</a></pre><hr>";
 
 if($go=="")$go="PLY";
@@ -233,26 +233,25 @@ switch($go){
   
   // play
   case "PLY":
+  @$plin=$_POST["pl"];
   echo "<pre>$first $plin\n";
-  $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
+  for($i=0;$i<$ipl;$i++){
+    echo "$description[$i] ";
+    myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5);
+    echo "\n";
+  }
+  $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
     $id[$i]=$row["id"];
-    $query1=mysqli_query($con,"select name,parent from song where id='$id[$i]'");
+    $query1=mysqli_query($con,"select title,album,artist from song where id='$id[$i]'");
     $row1=mysqli_fetch_assoc($query1);
-    $data[$i]=mys($row1["name"]);
-    $parent=$row1["parent"];
+    $title=$row1["title"];
+    $album=$row1["album"];
+    $artist=$row1["artist"];
     mysqli_free_result($query1);
-    $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
-    $row1=mysqli_fetch_assoc($query1);
-    $data[$i].=" | ".mys($row1["name"]);
-    $parent=$row1["parent"];
-    mysqli_free_result($query1);
-    $query1=mysqli_query($con,"select name from music where id='$parent'");
-    $row1=mysqli_fetch_assoc($query1);
-    $data[$i].=" | ".mys($row1["name"]);
-    mysqli_free_result($query1);
+    $data[$i]="$title | $album | $artist";
   }
   mysqli_free_result($query);
   if($act=="shuffle"){
@@ -260,7 +259,6 @@ switch($go){
     shuffle($order);
     array_multisort($order,$id,$data);
   }
-  for($q=0;$q<$ipl;$q++)echo "<button class='mybut' onclick=\"location.href='?pl=$pl[$q]&pwdmd5=$pwdmd5&go=PLY';\"'>$pl[$q]</button> $description[$q]\n";
   echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
   echo "<script>\n";
   echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]\n";
