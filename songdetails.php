@@ -7,7 +7,7 @@ for(;;){
   if($row==null)break;
   $id=$row["id"];
   echo "$id\n";
-//  file_get_contents("load.php?id=$id");
+  file_get_contents("load.php?id=$id");
   sleep(10);
 }
 mysqli_free_result($query);
