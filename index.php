@@ -84,7 +84,7 @@ switch($go){
     }
     elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
     case 3:
-    echo ">> $artist >> $album\n";
+    echo ">> $artist >> $album <a href='?liv=1&pwdmd5=$pwdmd5&go=DIR&artist=$artist'>Prev</a>\n";
     $query=mysqli_query($con,"select id,title from song where artist='$artist' and album='$album' order by title");
     for(;;){
       $row=mysqli_fetch_assoc($query);
