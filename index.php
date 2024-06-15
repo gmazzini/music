@@ -82,7 +82,16 @@ switch($go){
       if($row==null)break;
       $id=$row["id"];
       $title=$row["title"];
-      echo "<a href='?liv=4&pwdmd5=$pwdmd5&aid=$id&go=DIR'>$title</a>\n";
+      echo "$title";
+      for($i=0;$i<$ipl;$i++){
+        apl=$pl[$i];
+        $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
+        $row1=mysqli_fetch_assoc($query1);
+        $position=(int)$row1["position"];
+        mysqli_free_result($query1);
+        if($position==0)echo " <a href='?liv=4&pwdmd5=$pwdmd5&artist=$artist&album=$album&id=$id&go=DIR&pla=1&pl=$apl'>>+$apl</a>";
+        else echo echo " <a href='?liv=4&pwdmd5=$pwdmd5&artist=$artist&album=$album&id=$id&go=DIR&pla=1&pl=$apl'>>-$apl</a>";
+      }
     }
     mysqli_free_result($query);
     break;
