@@ -235,7 +235,6 @@ switch($go){
   case "PLY":
   @$plin=$_POST["pl"]; @$act=$_POST["act"];
   echo "<pre>$first $plin ";
-  print_r($_POST);
   myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin);
   echo "\n";
   for($i=0;$i<$ipl;$i++){
@@ -262,7 +261,6 @@ switch($go){
     shuffle($order);
     array_multisort($order,$id,$data);
   }
-  print_r($data);
   echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
   echo "<script>\n";
   echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]\n";
