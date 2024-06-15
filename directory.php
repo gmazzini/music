@@ -14,8 +14,9 @@ $files=$oo["files"];
 foreach($files as $k => $v){
   $id=$v["id"];
   echo "$id\n";
+  $qq="%27$id%27+in+parents";
   $ch2=curl_init();
-  curl_setopt($ch2,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files?q=$id&pageSize=500");
+  curl_setopt($ch2,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files?q=$qq&pageSize=500");
   curl_setopt($ch2,CURLOPT_RETURNTRANSFER,1);
   curl_setopt($ch2,CURLOPT_SSL_VERIFYPEER,FALSE);
   curl_setopt($ch2,CURLOPT_HTTPHEADER,Array("Authorization: Bearer ".$access_token));
