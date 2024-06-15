@@ -37,7 +37,9 @@ for($ipl=0;;$ipl++){
 }
 mysqli_free_result($query);
 
-echo "<pre><a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>DIRECTORY</a>";
+echo "<pre>";
+myz("go","DIR");
+// <a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>DIRECTORY</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=OLD'>OLD</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=SRC'>SEARCH</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=LST'>LIST</a>";
