@@ -49,6 +49,7 @@ switch($go){
 
   // directory
   case "DIR":
+  @$artist=$_GET["artist"]; @$album=$_GET["album"];
   echo "<pre>";
   switch($liv){
     case 1:
@@ -58,10 +59,21 @@ switch($go){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $artist=$row[0];
-       echo "<a href='?liv=2&pwdmd5=$pwdmd5&artist=$artist&go=DIR'>$artist</a>\n";
+      echo "<a href='?liv=2&pwdmd5=$pwdmd5&artist=$artist&go=DIR'>$artist</a>\n";
     }
     mysqli_free_result($query);
     break;
+    case 2:
+    $query=mysqli_query($con,"select unique(album) from song where artist=$artist order by artist");
+    for(;;){
+      $row=mysqli_fetch_row($query);
+      if($row==null)break;
+      $album=$row[0];
+      echo "<a href='?liv=2&pwdmd5=$pwdmd5&artist=$artist&album=$album&go=DIR'>$album</a>\n";
+    }
+    mysqli_free_result($query);
+    break;
+    
   }
   echo "</pre>";
   break;
