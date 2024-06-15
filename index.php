@@ -69,7 +69,7 @@ switch($go){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $album=$row[0];
-      echo "<a href='?liv=2&pwdmd5=$pwdmd5&artist=$artist&album=$album&go=DIR'>$album</a>\n";
+      echo "<a href='?liv=3&pwdmd5=$pwdmd5&artist=$artist&album=$album&go=DIR'>$album</a>\n";
     }
     mysqli_free_result($query);
     break;
