@@ -76,11 +76,12 @@ switch($go){
     break;
     case 3:
     echo ">> $artist >> $album\n";
-    $query=mysqli_query($con,"select id,title from song where artist='$artist' and albul='album' order by title");
+    $query=mysqli_query($con,"select id,title from song where artist='$artist' and album='album' order by title");
     for(;;){
-      $row=mysqli_fetch_row($query);
+      $row=mysqli_fetch_assoc($query);
       if($row==null)break;
-      $album=$row[0];
+      $id=$row["id"];
+      $title=$row["title"];
       echo "<a href='?liv=4&pwdmd5=$pwdmd5&aid=$id&go=DIR'>$title</a>\n";
     }
     mysqli_free_result($query);
