@@ -58,7 +58,7 @@ switch($go){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $artist=$row[0];
-      echo "$artist\n";
+       echo "<a href='?liv=2&pwdmd5=$pwdmd5&artist=$artist'>$artist</a>\n";
     }
     mysqli_free_result($query);
     break;
