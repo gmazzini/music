@@ -59,6 +59,7 @@ switch($go){
   switch($liv){
     case 1:
     case "":
+    echo "ciaoooo\n";
     $query=mysqli_query($con,"select unique(artist) from song order by artist");
     for($i=0;;$i++){
       $row=mysqli_fetch_row($query);
