@@ -41,9 +41,7 @@ mysqli_free_result($query);
 
 echo "<pre>";
 myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
-// <a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>DIRECTORY</a>";
-echo " <a href='?pwdmd5=$pwdmd5&go=OLD'>OLD</a>";
-echo " <a href='?pwdmd5=$pwdmd5&go=SRC'>SEARCH</a>";
+myz("go","SRC","pwdmd5","$pwdmd5");
 echo " <a href='?pwdmd5=$pwdmd5&go=LST'>LIST</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=PLY'>PLAY</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=MNG'>MANAGE</a></pre><hr>";
