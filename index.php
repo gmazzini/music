@@ -3,9 +3,6 @@ include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$go=$_POST["go"];
 
-@$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; 
-@$pla=$_GET["pla"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
-
 echo "<style>\n";
 echo "body {background-color: #F9F4B7; }\n";
 echo ".mybut {background-color: #666699; border: none; color: #F9F4B7; padding: 3px 3px; text-align: center; text-decoration: none;\n";
@@ -41,8 +38,8 @@ mysqli_free_result($query);
 
 echo "<pre>";
 myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
-myz("go","SRC","pwdmd5","$pwdmd5");
-echo " <a href='?pwdmd5=$pwdmd5&go=LST'>LIST</a>";
+echo " "; myz("go","SRC","pwdmd5","$pwdmd5");
+echo " "; myz("go","LST","pwdmd5","$pwdmd5");
 echo " <a href='?pwdmd5=$pwdmd5&go=PLY'>PLAY</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=MNG'>MANAGE</a></pre><hr>";
 
@@ -144,7 +141,6 @@ switch($go){
     mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
   }
   elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
-  echo "ciaoooo\n";
   $query=mysqli_query($con,"select id,title,album,artist from song where name like '%$search%' order by name");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
@@ -179,7 +175,11 @@ switch($go){
   // action on playlist
   case "LST":
   echo "<pre>$first\n";
-  for($i=0;$i<$ipl;$i++)echo "<a href='?pl=$pl[$i]&pwdmd5=$pwdmd5&go=LST'>$pl[$i] $description[$i]</a>\n";
+  for($i=0;$i<$ipl;$i++){
+    echo "$description[$i] ";
+    myz("pl",$pl[$i],"go","LST","pwdmd5",$pwdmd5);
+    echo "\n";
+  }
   switch($act){
     case "C":
     mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
