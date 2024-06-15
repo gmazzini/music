@@ -98,7 +98,7 @@ switch($go){
       if($row==null)break;
       $id=$row["id"];
       $title=$row["title"];
-      echo "$title";
+      echo "$title ";
       for($i=0;$i<$ipl;$i++){
         $apl=$pl[$i];
         $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
@@ -144,6 +144,7 @@ switch($go){
     mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
   }
   elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
+  echo "ciaoooo\n";
   $query=mysqli_query($con,"select id,title,album,artist from song where name like '%$search%' order by name");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
