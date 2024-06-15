@@ -174,6 +174,7 @@ switch($go){
 
   // action on playlist
   case "LST":
+  @$plin=$_POST["pl"];
   echo "<pre>$first\n";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
@@ -213,24 +214,18 @@ switch($go){
     if($row==null)break;
     $id=$row["id"];
     $position=$row["position"];
-    $query1=mysqli_query($con,"select name,parent from song where id='$id'");
+    $query1=mysqli_query($con,"select title,album,artist from song where id='$id'");
     $row1=mysqli_fetch_assoc($query1);
-    $name=$row1["name"];
-    $parent=$row1["parent"];
+    $title=$row1["title"];
+    $album=$row1["album"];
+    $artist=$row1["artist"];
     mysqli_free_result($query1);
-    $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
-    $row1=mysqli_fetch_assoc($query1);
-    $liv2=$row1["name"];
-    $parent=$row1["parent"];
-    mysqli_free_result($query1);
-    $query1=mysqli_query($con,"select name from music where id='$parent'");
-    $row1=mysqli_fetch_assoc($query1);
-    $liv1=$row1["name"];
-    mysqli_free_result($query1);
-    echo "<a href=?act=C&pl=$plin&pwdmd5=$pwdmd5&pos=$position&go=LST>C</a> ";
-    echo "<a href=?act=U&pl=$plin&pwdmd5=$pwdmd5&pos=$position&go=LST>U</a> ";
-    echo "<a href=?act=D&pl=$plin&pwdmd5=$pwdmd5&pos=$position&go=LST>D</a> ";
-    echo " $position | $id | $name | $liv2 | $liv1\n";
+    mzc("act","C","go","LST","pwdmd5",$pwdmd5,"pos",$position);
+    echo " ";
+    mzc("act","U","go","LST","pwdmd5",$pwdmd5,"pos",$position);
+    echo " ";
+    mzc("act","D","go","LST","pwdmd5",$pwdmd5,"pos",$position);
+    echo " $position | $title | $album | $artist\n";
   }
   echo "<pre>";
   mysqli_free_result($query);
