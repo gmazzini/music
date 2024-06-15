@@ -76,7 +76,7 @@ switch($go){
     break;
     case 3:
     echo ">> $artist >> $album\n";
-    $query=mysqli_query($con,"select id,title from song where artist='$artist' and album='album' order by title");
+    $query=mysqli_query($con,"select id,title from song where artist='$artist' and album='$album' order by title");
     for(;;){
       $row=mysqli_fetch_assoc($query);
       if($row==null)break;
