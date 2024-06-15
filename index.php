@@ -1,8 +1,10 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-@$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; 
-@$pla=$_GET["pla"]; @$go=$_POST["go"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
+@$passwd=$_POST["passwd"]; @$go=$_POST["go"];
+
+@$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; 
+@$pla=$_GET["pla"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
 @$search=$_GET["search"];
 
 echo "<style>\n";
@@ -53,6 +55,7 @@ switch($go){
   case "DIR":
   @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
   echo "<pre>";
+  print_r($_POST);
   switch($liv){
     case 1:
     case "":
