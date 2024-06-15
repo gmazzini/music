@@ -315,6 +315,7 @@ switch($go){
 
   // manage
   case "MNG":
+  @$act=$_POST["act"];
   switch($act){
     case "create":
     @$aux1=$_POST["par1"]; @$aux2=$_POST["par2"];
