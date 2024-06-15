@@ -84,7 +84,7 @@ switch($go){
       $title=$row["title"];
       echo "$title";
       for($i=0;$i<$ipl;$i++){
-        apl=$pl[$i];
+        $apl=$pl[$i];
         $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
         $row1=mysqli_fetch_assoc($query1);
         $position=(int)$row1["position"];
