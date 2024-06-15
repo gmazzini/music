@@ -58,15 +58,12 @@ switch($go){
   print_r($_POST);
   switch($liv){
     case 1:
-    case "":
-    echo "ciaoooo\n";
     $query=mysqli_query($con,"select unique(artist) from song order by artist");
     for($i=0;;$i++){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $artist=$row[0];
-      myz("lab",$i,"go","DIR","pwdmd5",$pwdmd5,"artist",$artist,"liv","2");
-      echo "<a href='?liv=2&pwdmd5=$pwdmd5&artist=$artist&go=DIR'>$artist</a>\n";
+      myz("artist",$artist,"go","DIR","pwdmd5",$pwdmd5,"liv","2");
     }
     mysqli_free_result($query);
     break;
