@@ -14,7 +14,7 @@ echo "</style>\n";
 
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
-else $pwdmd5=$_GET["pwdmd5"];
+else $pwdmd5=$_POST["pwdmd5"];
 $query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
 $row=mysqli_fetch_assoc($query);
 $first=$row["first"];
@@ -51,7 +51,7 @@ switch($go){
 
   // directory
   case "DIR":
-  @$artist=$_GET["artist"]; @$album=$_GET["album"]; @$plin=$_GET["pl"]; @$idin=$_GET["id"]; @$pla=$_GET["pla"];
+  @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
   echo "<pre>";
   switch($liv){
     case 1:
