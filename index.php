@@ -40,7 +40,7 @@ for($ipl=0;;$ipl++){
 mysqli_free_result($query);
 
 echo "<pre>";
-myz("go","DIR","pwdmd5","$pwdmd5");
+myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
 // <a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>DIRECTORY</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=OLD'>OLD</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=SRC'>SEARCH</a>";
@@ -53,7 +53,7 @@ switch($go){
 
   // directory
   case "DIR":
-  @$liv=$_POST["liv"]; @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
+  @$liv=(int)$_POST["liv"]; @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
   echo "<pre>";
   print_r($_POST);
   switch($liv){
