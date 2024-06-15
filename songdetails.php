@@ -1,7 +1,7 @@
 <?php
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-$query=mysqli_query($con,"select id from song where duration=0);
+$query=mysqli_query($con,"select id from song where duration=0");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
