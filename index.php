@@ -162,12 +162,12 @@ switch($go){
       mysqli_free_result($query1);
       if($position==0){
         echo "+";
-        myz("pl",$apl,"id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",1);
+        myz("pl",$apl,"id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",1,"search",$search);
         echo " ";
       }
       else {
         echo "-";
-        myz("pl",$apl,"id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",2);
+        myz("pl",$apl,"id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",2,"search",$search);
         echo " ";
       }
     }
