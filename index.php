@@ -81,7 +81,6 @@ switch($go){
       $pllast=1+(int)$row[0];
       mysqli_free_result($query);
       mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
-      echo "insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')\n";
     }
     elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
     case 3:
