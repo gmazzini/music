@@ -49,7 +49,7 @@ switch($go){
 
   // directory
   case "DIR":
-  @$artist=$_GET["artist"]; @$album=$_GET["album"]; @$plin=$_GET["plin"]; @$idin=$_GET["id"]; @$pla=$_GET["pla"];
+  @$artist=$_GET["artist"]; @$album=$_GET["album"]; @$plin=$_GET["pl"]; @$idin=$_GET["id"]; @$pla=$_GET["pla"];
   echo "<pre>";
   switch($liv){
     case 1:
