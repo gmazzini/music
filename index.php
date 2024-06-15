@@ -174,7 +174,7 @@ switch($go){
 
   // action on playlist
   case "LST":
-  @$plin=$_POST["pl"];
+  @$plin=$_POST["pl"];  @$act=$_POST["act"]; @$posin=$_POST["position"];
   echo "<pre>$first\n";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
