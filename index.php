@@ -309,7 +309,7 @@ switch($go){
   echo "}\n";
   echo "</script>\n";
   echo "<button class='mybut' onclick='prev()'>prev</button> <button class='mybut' onclick='next()'>next</button> ";
-  echo "<button class='mybut' onclick='myshow()'>shos</button>
+  echo "<button class='mybut' onclick='myshow()'>show</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
   echo "<pre>";
   break;
