@@ -220,11 +220,11 @@ switch($go){
     $album=$row1["album"];
     $artist=$row1["artist"];
     mysqli_free_result($query1);
-    myz("act","C","go","LST","pwdmd5",$pwdmd5,"pos",$position);
+    myz("act","C","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
     echo " ";
-    myz("act","U","go","LST","pwdmd5",$pwdmd5,"pos",$position);
+    myz("act","U","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
     echo " ";
-    myz("act","D","go","LST","pwdmd5",$pwdmd5,"pos",$position);
+    myz("act","D","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
     echo " $position | $title | $album | $artist\n";
   }
   echo "<pre>";
