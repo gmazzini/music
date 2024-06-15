@@ -233,8 +233,10 @@ switch($go){
   
   // play
   case "PLY":
-  @$plin=$_POST["pl"];
-  echo "<pre>$first $plin\n";
+  @$plin=$_POST["pl"]; @$act=$_POST["act"];
+  echo "<pre>$first $plin";
+  myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin,"act",$act);
+  echo "\n";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
     myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5);
@@ -305,7 +307,6 @@ switch($go){
   echo "}\n";
   echo "</script>\n";
   echo "<button class='mybut' onclick='prev()'>prev</button> <button class='mybut' onclick='next()'>next</button> ";
-  echo "<button class='mybut' onclick=\"location.href='?pl=$plin&pwdmd5=$pwdmd5&go=PLY&act=shuffle';\"'>shuffle</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
   echo "<pre>";
   break;
