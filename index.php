@@ -49,7 +49,7 @@ switch($go){
 
   // directory
   case "DIR":
-  @$artist=$_GET["artist"]; @$album=$_GET["album"];
+  @$artist=$_GET["artist"]; @$album=$_GET["album"]; @$plin=$_GET["plin"]; @$idin=$_GET["id"];
   echo "<pre>";
   switch($liv){
     case 1:
@@ -74,6 +74,15 @@ switch($go){
     }
     mysqli_free_result($query);
     break;
+    case 4:
+    if($pla==1){
+      $query=mysqli_query($con,"select max(position) from playlist where label='$plin' and pwdmd5='$pwdmd5'");
+      $row=mysqli_fetch_row($query);
+      $pllast=1+(int)$row[0];
+      mysqli_free_result($query);
+      mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
+    }
+    elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
     case 3:
     echo ">> $artist >> $album\n";
     $query=mysqli_query($con,"select id,title from song where artist='$artist' and album='$album' order by title");
