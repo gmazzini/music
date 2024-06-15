@@ -66,7 +66,7 @@ switch($go){
     case 2:
     // echo ">> $artist <a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>Prev</a>\n";
     echo ">> $artist ";
-    mybut("go","DIR");
+    myz("go","DIR");
 //    <a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>Prev</a>\n";
     $query=mysqli_query($con,"select unique(album) from song where artist='$artist' order by album");
     for(;;){
@@ -450,7 +450,7 @@ mysqli_close($con);
 function mys($s){
   return str_replace("'","\'",$s);
 }
-function mysub(...$par){
+function myz(...$par){
   echo "<form method='post'>";
   echo "<input type='submit' name='$par[0]' value='$par[1]'>";
   echo "</form>";
