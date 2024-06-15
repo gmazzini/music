@@ -22,8 +22,14 @@ $aux=$ooo["tags"]["title"];
 $aux=preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$aux); 
 $aux=preg_replace("/[ ]{0,}\[[^)]+\][ ]{0,}/","",$aux);
 $title=mysqli_real_escape_string($con,$aux);
-$album=mysqli_real_escape_string($con,preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["album"]));
-$artist=mysqli_real_escape_string($con,preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["artist"]));
+$aux=$ooo["tags"]["album"]; 
+$aux=preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$aux); 
+$aux=preg_replace("/[ ]{0,}\[[^)]+\][ ]{0,}/","",$aux);
+$album=mysqli_real_escape_string($con,$aux);
+$aux=$ooo["tags"]["artist"]; 
+$aux=preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$aux); 
+$aux=preg_replace("/[ ]{0,}\[[^)]+\][ ]{0,}/","",$aux);
+$artist=mysqli_real_escape_string($con,$aux);
 if(filesize($ffname)<1000000 || $duration<5 || $format!="mp3"){
   unlink($ffname);
   $ffname="Heartbeat.mp3";
