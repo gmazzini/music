@@ -2,7 +2,7 @@
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; 
-@$pla=$_GET["pla"]; @$go=$_GET["go"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
+@$pla=$_GET["pla"]; @$go=$_POST["go"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
 @$search=$_GET["search"];
 
 echo "<style>\n";
