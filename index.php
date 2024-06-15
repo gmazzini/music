@@ -5,7 +5,6 @@ $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 
 @$liv=$_GET["liv"]; @$idin=$_GET["idin"]; @$plin=$_GET["pl"]; 
 @$pla=$_GET["pla"]; @$act=$_GET["act"]; @$posin=(int)$_GET["pos"];
-@$search=$_GET["search"];
 
 echo "<style>\n";
 echo "body {background-color: #F9F4B7; }\n";
@@ -51,7 +50,7 @@ echo " <a href='?pwdmd5=$pwdmd5&go=MNG'>MANAGE</a></pre><hr>";
 
 if($go=="")$go="PLY";
 switch($go){
-
+  
   // directory
   case "DIR":
   @$liv=(int)$_POST["liv"]; @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
@@ -128,87 +127,10 @@ switch($go){
   echo "</pre>";
   break;
   
-  // directory
-  case "OLD":
-  if($liv=="")$liv=1;
-  switch($liv){
-    case 1:
-    $idprev="root";
-    $prevliv=1;
-    $idin="root";
-    $nextliv=2;
-    $db="music";
-    break;
-    case 2:
-    $query=mysqli_query($con,"select parent from music where id='$idin'");
-    $row=mysqli_fetch_assoc($query);
-    $idprev=$row["parent"];
-    mysqli_free_result($query);
-    $prevliv=1;
-    $nextliv=3;
-    $db="music";
-    break;
-    case 3:
-    $query=mysqli_query($con,"select parent from music where id='$idin'");
-    $row=mysqli_fetch_assoc($query);
-    $idprev=$row["parent"];
-    mysqli_free_result($query);
-    $prevliv=2;
-    $nextliv=4;
-    $db="song";
-    break;
-    case 4:
-    if($pla==1){
-      $query=mysqli_query($con,"select max(position) from playlist where label='$plin' and pwdmd5='$pwdmd5'");
-      $row=mysqli_fetch_row($query);
-      $pllast=1+(int)$row[0];
-      mysqli_free_result($query);
-      mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
-    }
-    elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
-    $query=mysqli_query($con,"select parent from song where id='$idin'");
-    $row=mysqli_fetch_assoc($query);
-    $idin=$row["parent"];
-    mysqli_free_result($query);
-    $query=mysqli_query($con,"select parent from music where id='$idin'");
-    $row=mysqli_fetch_assoc($query);
-    $idprev=$row["parent"];
-    mysqli_free_result($query);
-    $prevliv=2;
-    $nextliv=4;
-    $liv=3;
-    $db="song";
-    break;
-  }
-  echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5&go=OLD'>Prev</a>\n";
-  $query=mysqli_query($con,"select id,name from $db where parent='$idin' order by name");
-  for(;;){
-    $row=mysqli_fetch_assoc($query);
-    if($row==null)break;
-    $id=$row["id"];
-    $name=$row["name"];
-    if($liv<3)echo "<a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&go=OLD'>$name</a>\n";
-    else {
-      echo "$name";
-      for($i=0;$i<$ipl;$i++){
-        $apl=$pl[$i];
-        $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
-        $row1=mysqli_fetch_assoc($query1);
-        $position=(int)$row1["position"];
-        mysqli_free_result($query1);
-        if($position==0)echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1&go=OLD'>+$apl</a>";
-        else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2&go=OLD'>-$apl</a>";
-      }
-      echo "\n";
-    }
-  }
-  echo "</pre>";
-  mysqli_free_result($query);
-  break;
-
-   // search
+  // search
   case "SRC":
-  echo "<form>";
+  @$search=$_POST["search"]; @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
+  echo "<form method='post'>";
   echo "search <input type=text name=search size=16>";
   echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
   echo "<input type=hidden name=go value='SRC'>";
@@ -224,34 +146,31 @@ switch($go){
     mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
   }
   elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
-  $query=mysqli_query($con,"select id from song where name like '%$search%' order by name");
+  $query=mysqli_query($con,"select id,title,album,artist from song where name like '%$search%' order by name");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
     $id=$row["id"];
-    $query1=mysqli_query($con,"select name,parent from song where id='$id'");
-    $row1=mysqli_fetch_assoc($query1);
-    $name=$row1["name"];
-    $parent=$row1["parent"];
-    mysqli_free_result($query1);
-    $query1=mysqli_query($con,"select name,parent from music where id='$parent'");
-    $row1=mysqli_fetch_assoc($query1);
-    $liv2=$row1["name"];
-    $parent=$row1["parent"];
-    mysqli_free_result($query1);
-    $query1=mysqli_query($con,"select name from music where id='$parent'");
-    $row1=mysqli_fetch_assoc($query1);
-    $liv1=$row1["name"];
-    mysqli_free_result($query1);
-    echo "$id | $name | $liv2 | $liv1 ";
+    $title=$row["title"];
+    $album=$row["album"];
+    $artist=$row["artist"];
+    echo "$id | $title | $album | $artist ";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
       $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
       $row1=mysqli_fetch_assoc($query1);
       $position=(int)$row1["position"];
       mysqli_free_result($query1);
-      if($position==0)echo " <a href='?idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1&go=SRC&search=$search'>+$apl</a>";
-      else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2&go=SRC&search=$search'>-$apl</a>";
+      if($position==0){
+        echo "+";
+        myz("pl",$apl,"id",$id,"go","DIR","pwdmd5",$pwdmd5,"liv","4","artist",$artist,"album",$album,"pla",1);
+        echo " ";
+      }
+      else {
+        echo "-";
+        myz("pl",$apl,"id",$id,"go","DIR","pwdmd5",$pwdmd5,"liv","4","artist",$artist,"album",$album,"pla",2);
+        echo " ";
+      }
     }
     echo "\n";
   }
