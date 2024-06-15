@@ -49,16 +49,20 @@ switch($go){
 
   // directory
   case "DIR":
+  echo "<pre>";
   switch($liv){
     case 1:
     case "":
     $query=mysqli_query($con,"select unique(artist) from song order by artist");
     for(;;){
-      $row=mysqli_fetch_assoc($query);
+      $row=mysqli_fetch_row($query);
       if($row==null)break;
+      $artist=$row[0];
+      echo "$artist\n";
     }
     mysqli_free_result($query);
     break;
+    echo "/pre>";
   break;
   
   // directory
