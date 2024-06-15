@@ -8,7 +8,7 @@ for(;;){
   $id=$row["id"];
   echo "$id\n";
   file_get_contents("https://music.mazzini.org/load.php?id=$id");
-  sleep(10);
+  sleep(5);
 }
 mysqli_free_result($query);
 mysqli_close($con);
