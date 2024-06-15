@@ -19,7 +19,7 @@ $ooo=$oo["format"];
 $duration=(int)$ooo["duration"];
 $format=$ooo["format_name"];
 $title=mysqli_real_escape_string($con,preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["title"]));
-$album=pmysqli_real_escape_string($con,reg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["album"]));
+$album=mysqli_real_escape_string($con,preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["album"]));
 $artist=mysqli_real_escape_string($con,preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["artist"]));
 if(filesize($ffname)<1000000 || $duration<5 || $format!="mp3"){
   unlink($ffname);
