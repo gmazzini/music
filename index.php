@@ -92,6 +92,7 @@ switch($go){
         if($position==0)echo " <a href='?liv=4&pwdmd5=$pwdmd5&artist=$artist&album=$album&id=$id&go=DIR&pla=1&pl=$apl'>>+$apl</a>";
         else echo " <a href='?liv=4&pwdmd5=$pwdmd5&artist=$artist&album=$album&id=$id&go=DIR&pla=1&pl=$apl'>>-$apl</a>";
       }
+      echo "\n";
     }
     mysqli_free_result($query);
     break;
