@@ -64,6 +64,7 @@ switch($go){
     mysqli_free_result($query);
     break;
     case 2:
+    echo ">> $artist\n";
     $query=mysqli_query($con,"select unique(album) from song where artist=$artist order by album");
     for(;;){
       $row=mysqli_fetch_row($query);
