@@ -56,7 +56,6 @@ switch($go){
   case "DIR":
   @$liv=(int)$_POST["liv"]; @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
   echo "<pre>";
-  print_r($_POST);
   switch($liv){
     case 1:
     $query=mysqli_query($con,"select unique(artist) from song order by artist");
@@ -65,18 +64,21 @@ switch($go){
       if($row==null)break;
       $artist=$row[0];
       myz("artist",$artist,"go","DIR","pwdmd5",$pwdmd5,"liv","2");
+      echo "\n";
     }
     mysqli_free_result($query);
     break;
     case 2:
     echo ">> $artist ";
     myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
+    echo "\n";
     $query=mysqli_query($con,"select unique(album) from song where artist='$artist' order by album");
     for(;;){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $album=$row[0];
       myz("album",$album,"go","DIR","pwdmd5",$pwdmd5,"liv","3","artist",$artist);
+      echo "\n";
     }
     mysqli_free_result($query);
     break;
