@@ -24,7 +24,7 @@ foreach($files as $k => $v){
   curl_close($ch2);
   $files2=$oo2["files"];
   foreach($files2 as $k2 => $v2){
-    $id=$v2["id"];
+    $id2=$v2["id"];
     echo "\t$id2\n";
   }
 }
