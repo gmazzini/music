@@ -61,6 +61,7 @@ switch($go){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $artist=$row[0];
+      myz("go","DIR","pwdmd5",$pwdmd5,artist,$artist,"liv","2");
       echo "<a href='?liv=2&pwdmd5=$pwdmd5&artist=$artist&go=DIR'>$artist</a>\n";
     }
     mysqli_free_result($query);
@@ -453,8 +454,10 @@ function mys($s){
   return str_replace("'","\'",$s);
 }
 function myz(...$par){
+  $n=count($par);
   echo "<form method='post'>";
   echo "<input type='submit' name='$par[0]' value='$par[1]'>";
+  for($i=0;$i<$n/2;$i++)echo "<input type='hidden' name='$par[0]' value='$par[1]'>";
   echo "</form>";
 }
 ?>
