@@ -53,7 +53,7 @@ switch($go){
 
   // directory
   case "DIR":
-  @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
+  @$liv=$_POST["liv"]; @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
   echo "<pre>";
   print_r($_POST);
   switch($liv){
