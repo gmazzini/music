@@ -460,7 +460,11 @@ function myz(...$par){
   $n=count($par);
   echo "<form method='post'>";
   echo "<input type='submit' name='$par[0]' value='$par[1]'>";
-  for($i=1;$i<$n/2;$i++)echo "<input type='hidden' name='$par[2*$i]' value='$par[2*$i+1]'>";
+  for($i=1;$i<$n/2;$i++){
+    $aux1=$par[2*$i];
+    $aux2=$par[2*$i+1];
+    echo "<input type='hidden' name='$aux1' value='$aux2'>";
+  }
   echo "</form>";
 }
 ?>
