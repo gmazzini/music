@@ -68,16 +68,14 @@ switch($go){
     mysqli_free_result($query);
     break;
     case 2:
-    // echo ">> $artist <a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>Prev</a>\n";
     echo ">> $artist ";
-    myz("go","DIR");
-//    <a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>Prev</a>\n";
+    myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
     $query=mysqli_query($con,"select unique(album) from song where artist='$artist' order by album");
     for(;;){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $album=$row[0];
-      echo "<a href='?liv=3&pwdmd5=$pwdmd5&artist=$artist&album=$album&go=DIR'>$album</a>\n";
+      myz("album",$album,"go","DIR","pwdmd5",$pwdmd5,"liv","3","artist",$artist);
     }
     mysqli_free_result($query);
     break;
