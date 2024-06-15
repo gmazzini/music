@@ -65,7 +65,7 @@ switch($go){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $artist=$row[0];
-      myz("lab",$i,"go","DIR","pwdmd5",$pwdmd5,artist,$artist,"liv","2");
+      myz("lab",$i,"go","DIR","pwdmd5",$pwdmd5,"artist",$artist,"liv","2");
       echo "<a href='?liv=2&pwdmd5=$pwdmd5&artist=$artist&go=DIR'>$artist</a>\n";
     }
     mysqli_free_result($query);
