@@ -14,12 +14,18 @@ if(!file_exists($ffname)){
   curl_close($ch);
   file_put_contents($ffname,$oo);
 }
-$duration=(int)shell_exec("ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 $ffname");
-if(filesize($ffname)<1000000 || $duration<5){
+$oo=json_decode(shell_exec("ffprobe -v quiet -print_format json -show_format $ffname"),true);
+$ooo=$oo["format"];
+$duration=(int)$ooo["duration"];
+$format=$ooo["format_name"];
+$title=mysqli_real_escape_string($con,preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["title"]));
+$album=pmysqli_real_escape_string($con,reg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["album"]));
+$artist=mysqli_real_escape_string($con,preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$ooo["tags"]["artist"]));
+if(filesize($ffname)<1000000 || $duration<5 || $format!="mp3"){
   unlink($ffname);
   $ffname="Heartbeat.mp3";
 }
-else mysqli_query($con,"update song set played=played+1,duration=$duration where id='$id'");
+else mysqli_query($con,"update song set played=played+1,duration=$duration,title='$title',album='$album',artist='$artist' where id='$id'");
 $aux=file_get_contents($ffname);
 header('Content-type: audio/mpeg;');
 header("Content-Length: ".strlen($aux));
