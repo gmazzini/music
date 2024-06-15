@@ -26,6 +26,19 @@ foreach($files as $k => $v){
   foreach($files2 as $k2 => $v2){
     $id2=$v2["id"];
     echo "\t$id2\n";
+    $qq="%27$id2%27+in+parents";
+    $ch3=curl_init();
+    curl_setopt($ch3,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files?q=$qq&pageSize=500");
+    curl_setopt($ch3,CURLOPT_RETURNTRANSFER,1);
+    curl_setopt($ch3,CURLOPT_SSL_VERIFYPEER,FALSE);
+    curl_setopt($ch3,CURLOPT_HTTPHEADER,Array("Authorization: Bearer ".$access_token));
+    $oo3=json_decode(curl_exec($ch3),true);
+    curl_close($ch3);
+    $files3=$oo3["files"];
+    foreach($files3 as $k3 => $v3){
+      $id3=$v3["id"];
+      echo "\t\t$id3\n";
+    }
   }
 }
 mysqli_close($con);
