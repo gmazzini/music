@@ -236,7 +236,7 @@ switch($go){
   @$plin=$_POST["pl"]; @$act=$_POST["act"];
   echo "<pre>$first $plin ";
   print_r($_POST);
-  myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin,"act",$act);
+  myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin);
   echo "\n";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
