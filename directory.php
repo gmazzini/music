@@ -12,11 +12,7 @@ $oo=json_decode(curl_exec($ch),true);
 curl_close($ch);
 $files=$oo["files"];
 foreach($files as $k => $v){
-  $av1=mysqli_real_escape_string($con,$v["name"]);
-  $av2=mysqli_real_escape_string($con,$v["id"]);
-  $aux=sprintf("insert ignore into music (name,id,parent) value ('%s','%s','root')",$av1,$av2);
-  echo "$aux\n";
-  mysqli_query($con,$aux);
+  $id=$v["id"];
 }
 mysqli_close($con);
 ?>
