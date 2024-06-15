@@ -14,7 +14,7 @@ echo "</style>\n";
 // authentication
 if(strlen($passwd)>6)$pwdmd5=md5($passwd);
 else $pwdmd5=$_POST["pwdmd5"];
-$query=qli_query($con,"select first from login where pwdmd5='$pwdmd5'");
+$query=mysqli_query($con,"select first from login where pwdmd5='$pwdmd5'");
 $row=mysqli_fetch_assoc($query);
 $first=$row["first"];
 mysqli_free_result($query);
