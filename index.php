@@ -317,28 +317,28 @@ switch($go){
   case "MNG":
   switch($act){
     case "create":
-    @$aux1=$_GET["par1"]; @$aux2=$_GET["par2"];
+    @$aux1=$_POST["par1"]; @$aux2=$_POST["par2"];
     if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"insert into playlist_desc (pwdmd5,label,description) values ('$pwdmd5','$aux1','$aux2')");
     break;
     case "remove":
-    @$aux1=$_GET["par3"];
+    @$aux1=$_POST["par3"];
     if(ctype_alnum($aux1)){
       mysqli_query($con,"delete from playlist_desc where pwdmd5='$pwdmd5' and label='$aux1'");
       mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
     }
     break;
     case "relabel":
-    @$aux1=$_GET["par4"]; @$aux2=$_GET["par5"];
+    @$aux1=$_POST["par4"]; @$aux2=$_POST["par5"];
     if(ctype_alnum($aux1) && ctype_alnum($aux2)){
       mysqli_query($con,"update playlist_desc set label='$aux2' where pwdmd5='$pwdmd5' and label='$aux1'");
       mysqli_query($con,"update playlist set label='$aux2' where pwdmd5='$pwdmd5' and label='$aux1'");
     }
     case "rename":
-    @$aux1=$_GET["par6"]; @$aux2=$_GET["par7"];
+    @$aux1=$_POST["par6"]; @$aux2=$_POST["par7"];
     if(ctype_alnum($aux1) && strlen($aux2)>4)mysqli_query($con,"update playlist_desc set description='$aux2' where pwdmd5='$pwdmd5' and label='$aux1'");
     break;
     case "download":
-    @$aux1=$_GET["par8"];
+    @$aux1=$_POST["par8"];
     $myname=rand().rand().rand().rand().".list";
     $ffname="download/$myname";
     $fp=fopen($ffname,"w");
@@ -363,14 +363,14 @@ switch($go){
   mysqli_free_result($query);
   echo "<pre>$first $plin\n";
   for($i=0;$i<$ipl;$i++)echo "$pl[$i] $description[$i]\n";
-  echo "<pre><form>";
-  echo "<input type=submit name=act value=create> label:<input type=text name=par1 size=8> description:<input type=text name=par2 size=100>\n";
-  echo "<input type=submit name=act value=remove> label:<input type=text name=par3 size=8>\n";
-  echo "<input type=submit name=act value=relabel> labelorg:<input type=text name=par4 size=8> labeldest:<input type=text name=par5 size=8>\n";
-  echo "<input type=submit name=act value=rename> labelorg:<input type=text name=par6 size=8> dest:<input type=text name=par7 size=100>\n";
-  echo "<input type=submit name=act value=download> label:<input type=text name=par8 size=8>\n";
-  echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
-  echo "<input type=hidden name=go value='MNG'>";
+  echo "<pre><form method='post'>";
+  echo "<input type='submit' name='act' value='create'> label:<input type='text' name='par1' size=8> description:<input type='text' name='par2' size=100>\n";
+  echo "<input type='submit' name='act' value='remove'> label:<input type='text' name='par3' size=8>\n";
+  echo "<input type='submit' name='act' value='relabel'> labelorg:<input type='text' name='par4' size=8> labeldest:<input type='text' name='par5' size=8>\n";
+  echo "<input type='submit' name='act' value='rename'> labelorg:<input type='text' name='par6' size=8> dest:<input type='text' name='par7' size=100>\n";
+  echo "<input type='submit' name='act' value='download'> label:<input type='text' name='par8' size=8>\n";
+  echo "<input type='hidden' name='pwdmd5' value='$pwdmd5'>";
+  echo "<input type='hidden' name='go' value='MNG'>";
   echo "</form></pre>";
   break;
 
