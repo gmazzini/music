@@ -38,6 +38,7 @@ for($ipl=0;;$ipl++){
 mysqli_free_result($query);
 
 echo "<pre><a href='?liv=1&pwdmd5=$pwdmd5&go=DIR'>DIRECTORY</a>";
+echo " <a href='?pwdmd5=$pwdmd5&go=OLD'>OLD</a>"
 echo " <a href='?pwdmd5=$pwdmd5&go=SRC'>SEARCH</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=LST'>LIST</a>";
 echo " <a href='?pwdmd5=$pwdmd5&go=PLY'>PLAY</a>";
@@ -45,9 +46,23 @@ echo " <a href='?pwdmd5=$pwdmd5&go=MNG'>MANAGE</a></pre><hr>";
 
 if($go=="")$go="PLY";
 switch($go){
-  
+
   // directory
   case "DIR":
+  switch($liv){
+    case 1:
+    case "":
+    $query=mysqli_query($con,"select unique(artist) from song order by artist");
+    for(;;){
+      $row=mysqli_fetch_assoc($query);
+      if($row==null)break;
+    }
+    mysqli_free_result($query);
+    break;
+  break;
+  
+  // directory
+  case "OLD":
   if($liv=="")$liv=1;
   switch($liv){
     case 1:
@@ -98,14 +113,14 @@ switch($go){
     $db="song";
     break;
   }
-  echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5&go=DIR'>Prev</a>\n";
+  echo "<pre>$first liv:$liv, idin:$idin idprev:$idprev <a href='?liv=$prevliv&idin=$idprev&pwdmd5=$pwdmd5&go=OLD'>Prev</a>\n";
   $query=mysqli_query($con,"select id,name from $db where parent='$idin' order by name");
   for(;;){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
     $id=$row["id"];
     $name=$row["name"];
-    if($liv<3)echo "<a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&go=DIR'>$name</a>\n";
+    if($liv<3)echo "<a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&go=OLD'>$name</a>\n";
     else {
       echo "$name";
       for($i=0;$i<$ipl;$i++){
@@ -114,8 +129,8 @@ switch($go){
         $row1=mysqli_fetch_assoc($query1);
         $position=(int)$row1["position"];
         mysqli_free_result($query1);
-        if($position==0)echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1&go=DIR'>+$apl</a>";
-        else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2&go=DIR'>-$apl</a>";
+        if($position==0)echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=1&go=OLD'>+$apl</a>";
+        else echo " <a href='?liv=$nextliv&idin=$id&pwdmd5=$pwdmd5&pl=$apl&pla=2&go=OLD'>-$apl</a>";
       }
       echo "\n";
     }
