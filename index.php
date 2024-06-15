@@ -12,7 +12,7 @@ echo "body {background-color: #F9F4B7; }\n";
 echo ".mybut {background-color: #666699; border: none; color: #F9F4B7; padding: 3px 3px; text-align: center; text-decoration: none;\n";
 echo "display: inline-block; font-size: 12px; border-radius: 3px; outline: none; }\n";
 echo ".mybut:hover {background-color: #FF0000; }\n";
-echo "form {padding: 0px; }\n";
+echo "form {display: inline-block;}\n";
 echo "</style>\n";
 
 // authentication
