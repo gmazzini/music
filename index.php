@@ -41,7 +41,8 @@ myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
 echo " "; myz("go","SRC","pwdmd5","$pwdmd5");
 echo " "; myz("go","LST","pwdmd5","$pwdmd5");
 echo " "; myz("go","PLY","pwdmd5","$pwdmd5");
-echo " <a href='?pwdmd5=$pwdmd5&go=MNG'>MANAGE</a></pre><hr>";
+echo " "; myz("go","MNG","pwdmd5","$pwdmd5");
+echo "</pre><hr>";
 
 if($go=="")$go="PLY";
 switch($go){
