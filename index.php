@@ -150,7 +150,7 @@ switch($go){
     $title=$row["title"];
     $album=$row["album"];
     $artist=$row["artist"];
-    echo "$id | $title | $album | $artist ";
+    echo "$title | $album | $artist ";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
       $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
