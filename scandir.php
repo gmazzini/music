@@ -42,7 +42,10 @@ foreach($files as $k => $v){
       $cc=(int)$row[0];
       mysqli_free_result($query);
       // echo "\t\t$id3 $cc\n";
-      if($cc==0)echo "$id3 $id2 $id\n";
+      if($cc==0){
+        echo "$id3 $id2 $id\n";
+        mysqli_query($con,"insert into song (id) values ('$id3')");
+      }
     }
   }
 }
