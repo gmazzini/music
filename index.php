@@ -53,7 +53,7 @@ switch($go){
   echo "<pre>";
   switch($liv){
     case 1:
-    $query=mysqli_query($con,"select unique(artist) from song order by artist");
+    $query=mysqli_query($con,"select unique(artist) from song where nomp3=0 order by artist");
     for($i=0;;$i++){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
@@ -67,7 +67,7 @@ switch($go){
     echo ">> $artist ";
     myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
     echo "\n";
-    $query=mysqli_query($con,"select unique(album) from song where artist='$artist' order by album");
+    $query=mysqli_query($con,"select unique(album) from song where artist='$artist' and nomp3=0 order by album");
     for(;;){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
@@ -90,7 +90,7 @@ switch($go){
     echo ">> $artist >> $album ";
     myz("go","DIR","pwdmd5","$pwdmd5","liv",2,"artist",$artist);
     echo "\n";
-    $query=mysqli_query($con,"select id,title from song where artist='$artist' and album='$album' order by title");
+    $query=mysqli_query($con,"select id,title from song where artist='$artist' and album='$album' and nomp3=0 order by title");
     for(;;){
       $row=mysqli_fetch_assoc($query);
       if($row==null)break;
@@ -142,7 +142,7 @@ switch($go){
     mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
   }
   elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
-  $query=mysqli_query($con,"select id,title,album,artist from song where title like '%$search%' order by title");
+  $query=mysqli_query($con,"select id,title,album,artist from song where title like '%$search%' and nomp3=0 order by title");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
