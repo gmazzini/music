@@ -37,7 +37,7 @@ foreach($files as $k => $v){
     $files3=$oo3["files"];
     foreach($files3 as $k3 => $v3){
       $id3=$v3["id"];
-      $query=mysqli_query($con,"select count(id) from song where id='$id3'");
+      $query=mysqli_query($con,"select count(id) from song where id='$id3' and nomp3=0");
       $row=mysqli_fetch_row($query);
       $cc=(int)$row[0];
       mysqli_free_result($query);
