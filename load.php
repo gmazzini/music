@@ -30,11 +30,15 @@ $aux=$ooo["tags"]["artist"];
 $aux=preg_replace("/[ ]{0,}\([^)]+\)[ ]{0,}/","",$aux); 
 $aux=preg_replace("/[ ]{0,}\[[^)]+\][ ]{0,}/","",$aux);
 $artist=mysqli_real_escape_string($con,$aux);
-if(filesize($ffname)<1000000 || $duration<5 || $format!="mp3"){
+if($format!="mp3"){
   unlink($ffname);
   $ffname="Heartbeat.mp3";
+  mysqli_query($con,"update song set nomp3=1 where id='$id'");
 }
-else mysqli_query($con,"update song set played=played+1,duration=$duration,title='$title',album='$album',artist='$artist' where id='$id'");
+else {
+  $md5=md5_file($ffname,false);
+  mysqli_query($con,"update song set played=played+1,duration=$duration,title='$title',album='$album',artist='$artist',md5='$md5' where id='$id'");
+}
 $aux=file_get_contents($ffname);
 header('Content-type: audio/mpeg;');
 header("Content-Length: ".strlen($aux));
