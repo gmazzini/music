@@ -13,7 +13,7 @@ curl_close($ch);
 $files=$oo["files"];
 foreach($files as $k => $v){
   $id=$v["id"];
-  echo "$id\n";
+  // echo "$id\n";
   $qq="%27$id%27+in+parents";
   $ch2=curl_init();
   curl_setopt($ch2,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files?q=$qq&pageSize=500");
@@ -25,7 +25,7 @@ foreach($files as $k => $v){
   $files2=$oo2["files"];
   foreach($files2 as $k2 => $v2){
     $id2=$v2["id"];
-    echo "\t$id2\n";
+    // echo "\t$id2\n";
     $qq="%27$id2%27+in+parents";
     $ch3=curl_init();
     curl_setopt($ch3,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files?q=$qq&pageSize=500");
@@ -41,7 +41,8 @@ foreach($files as $k => $v){
       $row=mysqli_fetch_row($query);
       $cc=(int)$row[0];
       mysqli_free_result($query);
-      echo "\t\t$id3 $cc\n";
+      // echo "\t\t$id3 $cc\n";
+      if($cc==0)echo "$id3 $id2 $id\n";
     }
   }
 }
