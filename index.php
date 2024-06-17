@@ -318,7 +318,7 @@ switch($go){
   echo "function myshow(){\n";
   echo "  aux='';\n";
   echo "  for(i=0;i < src.length;i++){\n";
-  echo "    if(i==elm){aux+='>> '; xhttp=XMLHttpRequest(); xhttp.open('GET','played.php?id='+src[elm],true); xhttp.send();}\n";
+  echo "    if(i==elm){aux+='>> '; xhttp=new XMLHttpRequest(); xhttp.open('GET','played.php?id='+src[elm],true); xhttp.send();}\n";
   echo "    else aux+='   ';\n";
   echo "    aux+=desc[i]+'\\n';\n";
   echo "  }\n";
