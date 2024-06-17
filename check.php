@@ -33,6 +33,7 @@ for(;;){
       curl_setopt($ch,CURLOPT_POSTFIELDS,'{"name": "'.$title.'"}');
       $oo=json_decode(curl_exec($ch),true);
       curl_close($ch);
+      echo "Rename $title\n";
     }
     if($i==1 && $album==$name)echo "Ok\n";
     if($i==1 && $album!=$name){
@@ -46,6 +47,7 @@ for(;;){
       curl_setopt($ch,CURLOPT_POSTFIELDS,'{"name": "'.$album.'"}');
       $oo=json_decode(curl_exec($ch),true);
       curl_close($ch);
+      echo "Rename $album\n";
     }
     if($i==2 && $artist==$name)echo "Ok\n";
     if($i==3 && "Music"==$name)echo "Ok\n";
