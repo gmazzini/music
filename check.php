@@ -2,12 +2,14 @@
 include "local.php";
 
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
-$query=mysqli_query($con,"select id,title from song where nomp3=0");
+$query=mysqli_query($con,"select id,title,album,artist from song where nomp3=0");
 for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $id=$row["id"];
   $title=$row["title"];
+  $album=$row["album"];
+  $artist=$row["artist"];
   for($i=0;$i<4;$i++){
     $access_token=file_get_contents("access_token");
     $ch=curl_init();
@@ -20,6 +22,7 @@ for(;;){
     $name=$oo["name"];
     echo "$i | $id | $name\n";
     if($i==0 && $title==$name)echo "Ok\n";
+    elseif($i==2 && $album==$name)echo "Ok\n";
     $ch=curl_init();
     curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?fields=parents");
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
