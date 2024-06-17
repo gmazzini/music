@@ -300,7 +300,7 @@ switch($go){
   echo "function next(){\n";
   echo "  elm++;\n";
   echo "  if(elm < src.length){\n";
-  echo "    Player.src=src[elm];\n";
+  echo "    Player.src='cached/'+src[elm];\n";
   echo "    Player.play();\n";
   echo "    myshow();\n";
   echo "  }\n";
@@ -309,7 +309,7 @@ switch($go){
   echo "function prev(){\n";
   echo "  elm--;\n";
   echo "  if(elm >= 0){\n";
-  echo "    Player.src=src[elm];\n";
+  echo "    Player.src='cached/'+src[elm];\n";
   echo "    Player.play();\n";
   echo "    myshow();\n";
   echo "  }\n";
