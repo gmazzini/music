@@ -151,7 +151,7 @@ switch($go){
     $title=$row["title"];
     $album=$row["album"];
     $artist=$row["artist"];
-    myz("pl",$apl,"id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",3,"search",$search);
+    myz("act","P","id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",3,"search",$search);
     echo " $title | $album | $artist ";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
