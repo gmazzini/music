@@ -234,7 +234,7 @@ switch($go){
     myz("act","U","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
     echo " ";
     myz("act","D","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
-    echo " [$duration] $position | $title | $album | $artist\n";
+    echo " $position [$duration] $title | $album | $artist\n";
   }
   echo "<pre>";
   mysqli_free_result($query);
