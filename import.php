@@ -8,7 +8,7 @@ for(;;){
   $id=$row["id"];
   echo "$id\n";
   $access_token=file_get_contents("access_token");
-  $ffname="cached/$id";
+  $ffname="/home/www/music.mazzini.org/web/cached/$id";
   $ch=curl_init();
   curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?alt=media");
   curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
