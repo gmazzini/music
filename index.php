@@ -1,5 +1,4 @@
 <?php
-echo "<head><title>Music by GM ver 1.0</title></head>";
 include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$go=$_POST["go"];
