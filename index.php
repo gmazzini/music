@@ -282,14 +282,14 @@ switch($go){
   }
   echo "<audio autoplay controls id='Player' src='cached/$id[0]'></audio>\n";
   echo "<script>\n";
-  echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'cached/$id[$j]'";} echo "]\n";
+  echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'$id[$j]'";} echo "]\n";
   echo "var desc=["; for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "'$data[$j]'";} echo "]\n";
   echo "var elm=0;\n";
   echo "var Player=document.getElementById('Player');\n";
   echo "Player.onended=function(){\n";
   echo "  elm++;\n";
   echo "  if(elm < src.length){\n";
-  echo "    Player.src=src[elm];\n";
+  echo "    Player.src='cached/'+src[elm];\n";
   echo "    Player.play();\n";
   echo "    myshow();\n";
   echo "  }\n";
