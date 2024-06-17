@@ -39,7 +39,7 @@ mysqli_free_result($query);
 
 echo "<pre>";
 myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
-echo " "; myz("go","SRC","pwdmd5","$pwdmd5");
+myz("go","SRC","pwdmd5","$pwdmd5");
 echo " "; myz("go","LST","pwdmd5","$pwdmd5");
 echo " "; myz("go","PLY","pwdmd5","$pwdmd5");
 echo " "; myz("go","MNG","pwdmd5","$pwdmd5");
