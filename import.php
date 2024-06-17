@@ -41,7 +41,7 @@ for(;;){
   }
   else {
     $md5=md5_file($ffname,false);
-    rcho "... inserted $id\n";
+    echo "... inserted $id\n";
     mysqli_query($con,"update song set played=1,duration=$duration,title='$title',album='$album',artist='$artist',md5='$md5' where id='$id'");
   }
 }
