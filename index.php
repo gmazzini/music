@@ -182,7 +182,7 @@ switch($go){
 
   // action on playlist
   case "LST":
-  @$plin=$_POST["pl"];  @$act=$_POST["act"]; @$posin=$_POST["pos"];
+  @$plin=$_POST["pl"]; @$act=$_POST["act"]; @$posin=$_POST["pos"];
   echo "<pre>$first\n";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
@@ -190,6 +190,13 @@ switch($go){
     echo "\n";
   }
   switch($act){
+    case "P":
+    $query1=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
+    $row1=mysqli_fetch_assoc($query1);
+    $id=$row1["id"];
+    mysqli_free_result($query1);
+    echo "<audio autoplay controls src='cached/$id'></audio>\n";
+    break;
     case "C":
     mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
     break;
@@ -229,6 +236,8 @@ switch($go){
     $artist=$row1["artist"];
     $duration=$row1["duration"];
     mysqli_free_result($query1);
+    myz("act","P","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
+    echo " ";
     myz("act","C","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
     echo " ";
     myz("act","U","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
