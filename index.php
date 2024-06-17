@@ -291,7 +291,6 @@ switch($go){
   echo "  if(elm < src.length){\n";
   echo "    Player.src='cached/'+src[elm];\n";
   echo "    Player.play();\n";
-  echo "    myshow();\n";
   echo "  }\n";
   echo "}\n";
   echo "Player.onloadstart=function(){\n";
@@ -302,7 +301,6 @@ switch($go){
   echo "  if(elm < src.length){\n";
   echo "    Player.src='cached/'+src[elm];\n";
   echo "    Player.play();\n";
-  echo "    myshow();\n";
   echo "  }\n";
   echo "  else elm=src.length-1;\n";
   echo "}\n";
@@ -311,7 +309,6 @@ switch($go){
   echo "  if(elm >= 0){\n";
   echo "    Player.src='cached/'+src[elm];\n";
   echo "    Player.play();\n";
-  echo "    myshow();\n";
   echo "  }\n";
   echo "  else elm=0;\n";
   echo "}\n";
