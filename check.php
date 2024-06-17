@@ -50,6 +50,19 @@ for(;;){
       echo "Rename $album\n";
     }
     if($i==2 && $artist==$name)echo "Ok\n";
+    if($i==2 && $artist!=$name){
+      $ch=curl_init();
+      curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id");
+      curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+      curl_setopt($ch,CURLOPT_POST,1);
+      curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
+      curl_setopt($ch,CURLOPT_HTTPHEADER,array("Content-Type: application/json","Authorization: Bearer ".$access_token));
+      curl_setopt($ch,CURLOPT_CUSTOMREQUEST,"PATCH");
+      curl_setopt($ch,CURLOPT_POSTFIELDS,'{"name": "'.$artist.'"}');
+      $oo=json_decode(curl_exec($ch),true);
+      curl_close($ch);
+      echo "Rename $artist\n";
+    }
     if($i==3 && "Music"==$name)echo "Ok\n";
     $ch=curl_init();
     curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?fields=parents");
