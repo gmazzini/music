@@ -86,6 +86,7 @@ switch($go){
       mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
     }
     elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
+    elseif($pla==3)echo "<audio autoplay controls src='load.php?id=$idin' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
     case 3:
     echo ">> $artist >> $album ";
     myz("go","DIR","pwdmd5","$pwdmd5","liv",2,"artist",$artist);
@@ -96,7 +97,8 @@ switch($go){
       if($row==null)break;
       $id=$row["id"];
       $title=$row["title"];
-      echo "$title ";
+      myz("act","P","id",$id,"go","LST","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",3);
+      echo " $title | $album | $artist ";
       for($i=0;$i<$ipl;$i++){
         $apl=$pl[$i];
         $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
