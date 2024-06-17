@@ -40,7 +40,7 @@ for(;;){
     }
     else {
       $md5=md5_file($ffname,false);
-      mysqli_query($con,"update song set played=played+1,duration=$duration,title='$title',album='$album',artist='$artist',md5='$md5' where id='$id'");
+      mysqli_query($con,"update song set played=1,duration=$duration,title='$title',album='$album',artist='$artist',md5='$md5' where id='$id'");
     }
     sleep(5);
   }
