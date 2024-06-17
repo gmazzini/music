@@ -9,7 +9,7 @@ echo ".mybut {background-color: #666699; border: none; color: #F9F4B7; padding: 
 echo "display: inline-block; font-size: 12px; border-radius: 3px; outline: none; }\n";
 echo ".mybut:hover {background-color: #FF0000; }\n";
 echo "form {display: inline-block; padding: 0px 0px; margin: 0px 0px;}\n";
-echo "input[type=submit] {display: inline-block; padding: 10px 10px; margin: 0px 0px; cursor: pointer; background-color: #FF0000; color: white; border: none; border-radius: 2px;}\n";
+echo "input[type=submit] {display: inline-block; padding: 2px 2px; margin: 0px 0px; cursor: pointer; background-color: #FF0000; color: white; border: none; border-radius: 2px;}\n";
 echo "</style>\n";
 
 // authentication
