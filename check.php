@@ -24,6 +24,7 @@ for(;;){
     if($i==0 && $title==$name)echo "Ok\n";
     elseif($i==1 && $album==$name)echo "Ok\n";
     elseif($i==2 && $artist==$name)echo "Ok\n";
+    elseif($i==3 && "Music"==$name)echo "Ok\n";
     $ch=curl_init();
     curl_setopt($ch,CURLOPT_URL,"https://www.googleapis.com/drive/v3/files/$id?fields=parents");
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
