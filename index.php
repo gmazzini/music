@@ -87,9 +87,7 @@ switch($go){
       mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
     }
     elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
-    // elseif($pla==3)echo "<audio autoplay controls src='load.php?id=$idin' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
     elseif($pla==3)echo "<audio autoplay controls src='cached/$idin'></audio>\n";
-
     case 3:
     echo ">> $artist >> $album ";
     myz("go","DIR","pwdmd5","$pwdmd5","liv",2,"artist",$artist);
@@ -148,7 +146,7 @@ switch($go){
     mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
   }
   elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
-  elseif($pla==3)echo "<audio autoplay controls src='load.php?id=$idin' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
+  elseif($pla==3)echo "<audio autoplay controls src='cached/$idin'></audio>\n";
   $query=mysqli_query($con,"select id,title,album,artist,duration from song where title like '%$search%' and nomp3=0 order by title");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
@@ -273,9 +271,9 @@ switch($go){
     shuffle($order);
     array_multisort($order,$id,$data);
   }
-  echo "<audio autoplay controls id='Player' src='load.php?id=$id[0]' onclick='this.paused ? this.play() : this.pause();'>Nooo</audio>\n";
+  echo "<audio autoplay controls id='Player' src='cached/$id[0]'></audio>\n";
   echo "<script>\n";
-  echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'load.php?id=$id[$j]'";} echo "]\n";
+  echo "var src=["; for($j=0;$j<$i;$j++){if($j>0)echo ","; echo "'cached/$id[$j]'";} echo "]\n";
   echo "var desc=["; for($j=0;$j<$i;$j++){if($j>0)echo ",";echo "'$data[$j]'";} echo "]\n";
   echo "var elm=0;\n";
   echo "var Player=document.getElementById('Player');\n";
