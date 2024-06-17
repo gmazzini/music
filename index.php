@@ -318,15 +318,14 @@ switch($go){
   echo "function myshow(){\n";
   echo "  aux='';\n";
   echo "  for(i=0;i < src.length;i++){\n";
-  echo "    if(i==elm)aux+='>> ';\n";
+  echo "    if(i==elm){aux+='>> '; xhttp=XMLHttpRequest(); xhttp.open('GET','played.php?id='+src[elm],true); xhttp.send();}\n";
   echo "    else aux+='   ';\n";
   echo "    aux+=desc[i]+'\\n';\n";
   echo "  }\n";
   echo "  document.getElementById('mylist').textContent=aux;\n";
   echo "}\n";
   echo "</script>\n";
-  echo "<button class='mybut' onclick='prev()'>prev</button> <button class='mybut' onclick='next()'>next</button> ";
-  echo "<button class='mybut' onclick='myshow()'>show</button>\n";
+  echo "<button class='mybut' onclick='prev()'>prev</button> <button class='mybut' onclick='next()'>next</button>\n";
   echo "<pre><span id='mylist'></span></pre>\n";
   echo "<pre>";
   break;
