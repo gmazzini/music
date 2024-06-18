@@ -291,7 +291,7 @@ switch($go){
     $played=$row1["played"];
     mysqli_free_result($query1);
     $data[$i]=mys("[$duration,$played] $title | $album | $artist");
-    echo "$data[$i]\n";
+    echo "$id[$i] $data[$i]\n";
   }
   mysqli_free_result($query);
   if($act=="shuffle"){
