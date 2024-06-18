@@ -43,6 +43,7 @@ echo " "; myz("go","SRC","pwdmd5","$pwdmd5");
 echo " "; myz("go","LST","pwdmd5","$pwdmd5");
 echo " "; myz("go","PLY","pwdmd5","$pwdmd5");
 echo " "; myz("go","MNG","pwdmd5","$pwdmd5");
+echo " music by GM ver 1.2";
 echo "</pre><hr>";
 
 if($go=="")$go="PLY";
