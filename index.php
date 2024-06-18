@@ -258,6 +258,7 @@ switch($go){
   case "PLY":
   @$plin=$_POST["pl"]; @$act=$_POST["act"];
   if($act=="P"){
+    @$artist=$_POST["artist"]; @$album=$_POST["album"];
     mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and label='TMP'");
     $query=mysqli_query($con,"select id from song where artist='$artist' and album='$album' and nomp3=0 order by title");
     for($i=1;;$i++){
