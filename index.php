@@ -281,6 +281,7 @@ switch($go){
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
+    print_r($row);
     $id[$i]=$row["id"];
     $query1=mysqli_query($con,"select title,album,artist,duration,played from song where id='$id[$i]'");
     $row1=mysqli_fetch_assoc($query1);
