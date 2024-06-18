@@ -277,8 +277,6 @@ switch($go){
     myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5);
     echo "\n";
   }
-
-  echo "select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position\n";
   $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
@@ -293,6 +291,7 @@ switch($go){
     $played=$row1["played"];
     mysqli_free_result($query1);
     $data[$i]=mys("[$duration,$played] $title | $album | $artist");
+    echo "$data[$i]\n";
   }
   mysqli_free_result($query);
   if($act=="shuffle"){
