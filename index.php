@@ -278,7 +278,7 @@ switch($go){
     echo "\n";
   }
 
-  echo select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position\n";
+  echo "select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position\n";
   $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
