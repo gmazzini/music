@@ -73,6 +73,8 @@ switch($go){
       $row=mysqli_fetch_row($query);
       if($row==null)break;
       $album=$row[0];
+      myz("act","P","go","PLY","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pl","TMP");
+      echo " ";
       myz("album",$album,"go","DIR","pwdmd5",$pwdmd5,"liv","3","artist",$artist);
       echo "\n";
     }
@@ -255,6 +257,17 @@ switch($go){
   // play
   case "PLY":
   @$plin=$_POST["pl"]; @$act=$_POST["act"];
+  if($act=="P"){
+    mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and label='TMP'");
+    $query=mysqli_query($con,"select id from song where artist='$artist' and album='$album' and nomp3=0 order by title");
+    for($i=1;;$i++){
+      $row=mysqli_fetch_assoc($query);
+      if($row==null)break;
+      $id=$row["id"];
+      mysqli_query($con,"insert intp playlist (id,position,label,pwdmd5) values ('$id',$position,'TMP','$pwdmd5')");
+    }
+    mysqli_free_result($query);
+  }
   echo "<pre>$first $plin ";
   myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin);
   echo "\n";
