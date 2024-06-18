@@ -159,7 +159,7 @@ switch($go){
     $duration=$row["duration"];
     $played=$row["played"];
     myz("act","P","id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",3,"search",$search);
-    echo " [$duration,played] $title | $album | $artist ";
+    echo " [$duration,$played] $title | $album | $artist ";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
       $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
@@ -276,7 +276,7 @@ switch($go){
     $duration=$row1["duration"];
     $played=$row1["played"];
     mysqli_free_result($query1);
-    $data[$i]=mys("[$duration,played] $title | $album | $artist");
+    $data[$i]=mys("[$duration,$played] $title | $album | $artist");
   }
   mysqli_free_result($query);
   if($act=="shuffle"){
