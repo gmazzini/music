@@ -283,6 +283,7 @@ switch($go){
     if($row==null)break;
     print_r($row);
     $id[$i]=$row["id"];
+    echo "--$id[$i]--\n";
     $query1=mysqli_query($con,"select title,album,artist,duration,played from song where id='$id[$i]'");
     $row1=mysqli_fetch_assoc($query1);
     $title=$row1["title"];
