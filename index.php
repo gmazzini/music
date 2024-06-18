@@ -147,8 +147,8 @@ switch($go){
     mysqli_query($con,"insert into playlist (pwdmd5,id,position,label) values ('$pwdmd5','$idin',$pllast,'$plin')");
   }
   elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
-  elseif($pla==3)echo "<audio autoplay controls src='cached/$idin'></audio>\n";
-  $query=mysqli_query($con,"select id,title,album,artist,duration from song where title like '%$search%' and nomp3=0 order by title");
+  elseif($pla==3)echo "<audio autoplay controls src='cached/$idin' onloadstart='xhttp=new XMLHttpRequest(); xhttp.open(\"GET\",\"played.php?id=$idin\",true); xhttp.send();'></audio>\n";
+  $query=mysqli_query($con,"select id,title,album,artist,duration,played from song where title like '%$search%' and nomp3=0 order by title");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
@@ -157,8 +157,9 @@ switch($go){
     $album=$row["album"];
     $artist=$row["artist"];
     $duration=$row["duration"];
+    $played=$row["played"];
     myz("act","P","id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",3,"search",$search);
-    echo " [$duration] $title | $album | $artist ";
+    echo " [$duration,played] $title | $album | $artist ";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
       $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
@@ -196,7 +197,7 @@ switch($go){
     $row1=mysqli_fetch_assoc($query1);
     $id=$row1["id"];
     mysqli_free_result($query1);
-    echo "<audio autoplay controls src='cached/$id'></audio>\n";
+    echo "<audio autoplay controls src='cached/$id' onloadstart='xhttp=new XMLHttpRequest(); xhttp.open(\"GET\",\"played.php?id=$idin\",true); xhttp.send();'></audio>\n";
     break;
     case "C":
     mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and position=$posin and label='$plin'");
@@ -230,12 +231,13 @@ switch($go){
     if($row==null)break;
     $id=$row["id"];
     $position=$row["position"];
-    $query1=mysqli_query($con,"select title,album,artist,duration from song where id='$id'");
+    $query1=mysqli_query($con,"select title,album,artist,duration,played from song where id='$id'");
     $row1=mysqli_fetch_assoc($query1);
     $title=$row1["title"];
     $album=$row1["album"];
     $artist=$row1["artist"];
     $duration=$row1["duration"];
+    $played=$row1["played"];
     mysqli_free_result($query1);
     myz("act","P","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
     echo " ";
@@ -244,7 +246,7 @@ switch($go){
     myz("act","U","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
     echo " ";
     myz("act","D","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
-    echo " $position [$duration] $title | $album | $artist\n";
+    echo " $position [$duration,$played] $title | $album | $artist\n";
   }
   echo "<pre>";
   mysqli_free_result($query);
@@ -266,14 +268,15 @@ switch($go){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
     $id[$i]=$row["id"];
-    $query1=mysqli_query($con,"select title,album,artist,duration from song where id='$id[$i]'");
+    $query1=mysqli_query($con,"select title,album,artist,duration,played from song where id='$id[$i]'");
     $row1=mysqli_fetch_assoc($query1);
     $title=$row1["title"];
     $album=$row1["album"];
     $artist=$row1["artist"];
     $duration=$row1["duration"];
+    $played=$row1["played"];
     mysqli_free_result($query1);
-    $data[$i]=mys("[$duration] $title | $album | $artist");
+    $data[$i]=mys("[$duration,played] $title | $album | $artist");
   }
   mysqli_free_result($query);
   if($act=="shuffle"){
