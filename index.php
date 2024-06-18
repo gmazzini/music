@@ -265,6 +265,7 @@ switch($go){
       $row=mysqli_fetch_assoc($query);
       if($row==null)break;
       $id=$row["id"];
+      echo "<pre>insert into playlist (id,position,label,pwdmd5) values ('$id',$i,'TMP','$pwdmd5')\n</pre>";
       mysqli_query($con,"insert into playlist (id,position,label,pwdmd5) values ('$id',$i,'TMP','$pwdmd5')");
     }
     mysqli_free_result($query);
