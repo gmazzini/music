@@ -259,7 +259,7 @@ switch($go){
   @$plin=$_POST["pl"]; @$act=$_POST["act"];
   if($act=="P"){
     @$artist=$_POST["artist"]; @$album=$_POST["album"];
-    mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and label='TMP'");
+ //   mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and label='TMP'");
     $query=mysqli_query($con,"select id from song where artist='$artist' and album='$album' and nomp3=0 order by title");
     for($i=1;;$i++){
       $row=mysqli_fetch_assoc($query);
@@ -267,7 +267,6 @@ switch($go){
       $id=$row["id"];
       mysqli_query($con,"insert into playlist (id,position,label,pwdmd5) values ('$id',$i,'TMP','$pwdmd5')");
     }
-    $plin="TMP";
     mysqli_free_result($query);
   }
   echo "<pre>$first $plin ";
