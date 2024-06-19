@@ -385,17 +385,19 @@ switch($go){
     break;
     case "random":
     @$aux1=$_POST["par9"];
-    $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
+    $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
     for($i=0;;$i++){
       $row=mysqli_fetch_assoc($query);
       if($row==null)break;
       $id[$i]=$row["id"];
-      $position[$i]=$row["position"];
     }
     mysqli_free_result($query);
-    print_r($position);
-    shuffle($position);
-    for($j=0;$j<$i;$j++)mysqli_query($con,"update playlist set position=$position[$j] where pwdmd5='$pwdmd5' and label='$aux1' and position=$j");  
+    $order=range(0,$i-1);
+    shuffle($order);
+    for($j=0;$j<$i;$j++){
+      $aux=$id[$order[$j]];
+      mysqli_query($con,"update playlist set position=$j where pwdmd5='$pwdmd5' and label='$aux1' and id='$aux'");
+    }
     break;
     case "sorttitle":
     @$aux1=$_POST["par10"];
