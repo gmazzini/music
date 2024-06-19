@@ -383,6 +383,19 @@ switch($go){
     fclose($fp);
     echo "<pre><a href='$ffname' download>Download</a><br>";
     break;
+    case "random":
+    @$aux1=$_POST["par9"];
+    $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='aux1'");
+    for($i=0;;$i++){
+      $row=mysqli_fetch_assoc($query);
+      if($row==null)break;
+      $id[$i]=$row["id"];
+      $position[$i]=$row["position"];
+    }
+    mysqli_free_result($query);
+    shuffle($position);
+    for($j=0;$j<$i;$j++)mysqli_query($con,"update playlist set position=$position[$j] where pwdmd5='$pwdmd5' and label='$aux1'");  
+    break;
   }
   $query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
   for($ipl=0;;$ipl++){
@@ -400,6 +413,10 @@ switch($go){
   echo "<input type='submit' name='act' value='relabel'> labelorg:<input type='text' name='par4' size=8> labeldest:<input type='text' name='par5' size=8>\n";
   echo "<input type='submit' name='act' value='rename'> labelorg:<input type='text' name='par6' size=8> dest:<input type='text' name='par7' size=100>\n";
   echo "<input type='submit' name='act' value='download'> label:<input type='text' name='par8' size=8>\n";
+  echo "<input type='submit' name='act' value='random'> label:<input type='text' name='par9' size=8>\n";
+  echo "<input type='submit' name='act' value='sorttitle'> label:<input type='text' name='par10' size=8>\n";
+  echo "<input type='submit' name='act' value='sortalbum'> label:<input type='text' name='par11' size=8>\n";
+  echo "<input type='submit' name='act' value='sortauthor'> label:<input type='text' name='par12' size=8>\n";
   echo "<input type='hidden' name='pwdmd5' value='$pwdmd5'>";
   echo "<input type='hidden' name='go' value='MNG'>";
   echo "</form></pre>";
