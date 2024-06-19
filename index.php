@@ -395,7 +395,24 @@ switch($go){
     mysqli_free_result($query);
     print_r($position);
     shuffle($position);
-    for($j=0;$j<$i;$j++)mysqli_query($con,"update playlist set position=$position[$j] where pwdmd5='$pwdmd5' and label='$aux1'");  
+    for($j=0;$j<$i;$j++)mysqli_query($con,"update playlist set position=$position[$j] where pwdmd5='$pwdmd5' and label='$aux1' and position=$j");  
+    break;
+    case "sorttitle":
+    @$aux1=$_POST["par9"];
+    $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
+    for($i=0;;$i++){
+      $row=mysqli_fetch_assoc($query);
+      if($row==null)break;
+      $id[$i]=$row["id"];
+      $query1=mysqli_query($con,"select title, from song where id='$id[$i]'");
+      $row1=mysqli_fetch_assoc($query1);
+      $title[$i]=$row1["title"];
+      mysqli_free_result($query1);
+    }
+    mysqli_free_result($query);
+    $order=range(0,$i-1);
+    array_multisort($order,$title);
+    for($j=0;$j<$i;$j++)mysqli_query($con,"update playlist set position=$order[$j] where pwdmd5='$pwdmd5' and label='$aux1' and position=$j");  
     break;
   }
   $query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
