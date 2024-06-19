@@ -416,7 +416,7 @@ switch($go){
     print_r($order);
     print_r($title);
     for($j=0;$j<$i;$j++){
-      $uax=$id[$order[$j]];
+      $aux=$id[$order[$j]];
       mysqli_query($con,"update playlist set position=$j where pwdmd5='$pwdmd5' and label='$aux1' and id='$aux'");
     }
     break;
