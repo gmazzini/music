@@ -418,7 +418,7 @@ switch($go){
     }
     break;
     case "sortalbum":
-    @$aux1=$_POST["par10"];
+    @$aux1=$_POST["par11"];
     $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
     for($i=0;;$i++){
       $row=mysqli_fetch_assoc($query);
