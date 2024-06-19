@@ -412,6 +412,7 @@ switch($go){
     mysqli_free_result($query);
     $order=range(0,$i-1);
     array_multisort($order,$title);
+    print_r($order);
     for($j=0;$j<$i;$j++)mysqli_query($con,"update playlist set position=$order[$j] where pwdmd5='$pwdmd5' and label='$aux1' and position=$j");  
     break;
   }
