@@ -393,6 +393,7 @@ switch($go){
       $position[$i]=$row["position"];
     }
     mysqli_free_result($query);
+    print_r($position);
     shuffle($position);
     for($j=0;$j<$i;$j++)mysqli_query($con,"update playlist set position=$position[$j] where pwdmd5='$pwdmd5' and label='$aux1'");  
     break;
