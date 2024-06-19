@@ -385,7 +385,7 @@ switch($go){
     break;
     case "random":
     @$aux1=$_POST["par9"];
-    $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='aux1'");
+    $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
     for($i=0;;$i++){
       $row=mysqli_fetch_assoc($query);
       if($row==null)break;
