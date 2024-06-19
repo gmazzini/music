@@ -404,7 +404,7 @@ switch($go){
       $row=mysqli_fetch_assoc($query);
       if($row==null)break;
       $id[$i]=$row["id"];
-      $query1=mysqli_query($con,"select title, from song where id='$id[$i]'");
+      $query1=mysqli_query($con,"select title from song where id='$id[$i]'");
       $row1=mysqli_fetch_assoc($query1);
       $title[$i]=$row1["title"];
       mysqli_free_result($query1);
