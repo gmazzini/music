@@ -43,7 +43,7 @@ echo " "; myz("go","SRC","pwdmd5","$pwdmd5");
 echo " "; myz("go","LST","pwdmd5","$pwdmd5");
 echo " "; myz("go","PLY","pwdmd5","$pwdmd5");
 echo " "; myz("go","MNG","pwdmd5","$pwdmd5");
-echo " music by GM ver 1.2";
+echo " music by GM ver 1.3";
 echo "</pre><hr>";
 
 if($go=="")$go="PLY";
@@ -477,7 +477,7 @@ switch($go){
   echo "<input type='submit' name='act' value='random'> label:<input type='text' name='par9' size=8>\n";
   echo "<input type='submit' name='act' value='sorttitle'> label:<input type='text' name='par10' size=8>\n";
   echo "<input type='submit' name='act' value='sortalbum'> label:<input type='text' name='par11' size=8>\n";
-  echo "<input type='submit' name='act' value='sortauthor'> label:<input type='text' name='par12' size=8>\n";
+  echo "<input type='submit' name='act' value='sortartist'> label:<input type='text' name='par12' size=8>\n";
   echo "<input type='hidden' name='pwdmd5' value='$pwdmd5'>";
   echo "<input type='hidden' name='go' value='MNG'>";
   echo "</form></pre>";
