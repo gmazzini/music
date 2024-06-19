@@ -398,7 +398,7 @@ switch($go){
     for($j=0;$j<$i;$j++)mysqli_query($con,"update playlist set position=$position[$j] where pwdmd5='$pwdmd5' and label='$aux1' and position=$j");  
     break;
     case "sorttitle":
-    @$aux1=$_POST["par9"];
+    @$aux1=$_POST["par10"];
     $query=mysqli_query($con,"select id,position from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
     for($i=0;;$i++){
       $row=mysqli_fetch_assoc($query);
