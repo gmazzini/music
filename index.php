@@ -437,6 +437,26 @@ switch($go){
       mysqli_query($con,"update playlist set position=$j where pwdmd5='$pwdmd5' and label='$aux1' and id='$aux'");
     }
     break;
+    case "sortartist":
+    @$aux1=$_POST["par12"];
+    $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
+    for($i=0;;$i++){
+      $row=mysqli_fetch_assoc($query);
+      if($row==null)break;
+      $id[$i]=$row["id"];
+      $query1=mysqli_query($con,"select artist from song where id='$id[$i]'");
+      $row1=mysqli_fetch_assoc($query1);
+      $artist[$i]=$row1["artist"];
+      mysqli_free_result($query1);
+    }
+    mysqli_free_result($query);
+    $order=range(0,$i-1);
+    array_multisort($artist,$order);
+    for($j=0;$j<$i;$j++){
+      $aux=$id[$order[$j]];
+      mysqli_query($con,"update playlist set position=$j where pwdmd5='$pwdmd5' and label='$aux1' and id='$aux'");
+    }
+    break;
   }
   $query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
   for($ipl=0;;$ipl++){
