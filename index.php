@@ -11,7 +11,6 @@ echo "display: inline-block; font-size: 30px; border-radius: 3px; outline: none;
 echo ".mybut:hover {background-color: #FF0000; }\n";
 echo "form {display: inline-block; padding: 0px 0px; margin: 0px 0px;}\n";
 echo "input[type=submit] {padding: 2px 2px; margin: 2px 0px; cursor: pointer; background-color: #FF0000; font-size: 30px; color: white; border: none; border-radius: 4px;}\n";
-echo "input[type=input] {padding: 2px 2px; margin: 2px 0px; cursor: pointer; background-color: #FF0000; font-size: 30px; color: white; border: none; border-radius: 4px;}\n";
 echo "</style>\n";
 
 // authentication
