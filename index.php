@@ -36,6 +36,14 @@ for($ipl=0;;$ipl++){
   $description[$ipl]=$row["description"];
 }
 mysqli_free_result($query);
+$query=mysqli_query($con,"select label,description,pwdmd5 from playlist_desc where shared>0 order by label");
+for($ispl=0;;$ispl++){
+  $row=mysqli_fetch_assoc($query);
+  if($row==null)break;
+  $spl[$ispl]=$row["label"];
+  $sdescription[$ipl]=$row["description"];
+}
+mysqli_free_result($query);
 
 echo "<pre>";
 myz("go","DIR","pwdmd5","$pwdmd5","liv",1);
@@ -273,11 +281,19 @@ switch($go){
   echo "<pre>$first $plin ";
   myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin);
   echo "\n";
+  echo "<table><td>";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
     myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5);
     echo "\n";
   }
+  echo "</td><td>";
+  for($i=0;$i<$ispl;$i++){
+    echo "$sdescription[$i] ";
+    myz("pl",$spl[$i],"go","PLY","pwdmd5",$pwdmd5);
+    echo "\n";
+  }
+  echo "</td></table>";
   $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
