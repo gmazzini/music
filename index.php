@@ -41,7 +41,7 @@ for($ispl=0;;$ispl++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $spl[$ispl]=$row["label"];
-  $sdescription[$ipl]=$row["description"];
+  $sdescription[$ispl]=$row["description"];
 }
 mysqli_free_result($query);
 
