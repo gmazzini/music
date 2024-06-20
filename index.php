@@ -46,7 +46,7 @@ for($ispl=0;;$ispl++){
   $row1=mysqli_fetch_assoc($query);
   $aux=$row1["first"];
   mysqli_free_result($query1);
-  $sdescription[$ispl]="($first) ".$row["description"];
+  $sdescription[$ispl]="($sfirst) ".$row["description"];
 }
 mysqli_free_result($query);
 
