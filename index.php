@@ -41,9 +41,9 @@ for($ispl=0;;$ispl++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $spl[$ispl]=$row["label"];
-  $spwdmd5=$row["pwdmd5"];
-  $query1=mysqli_query($con,"select first from login where pwdmd5='$spwdmd5'");
-  $row1=mysqli_fetch_assoc($query);
+  $aux=$row["pwdmd5"];
+  $query1=mysqli_query($con,"select first from login where pwdmd5='$aux'");
+  $row1=mysqli_fetch_assoc($query1);
   $aux=$row1["first"];
   mysqli_free_result($query1);
   $sdescription[$ispl]="($aux) ".$row["description"];
