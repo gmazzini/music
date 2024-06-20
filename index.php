@@ -28,12 +28,13 @@ if($pwdmd5=="" || $first==""){
 }
 
 // list of playlist
-$query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
+$query=mysqli_query($con,"select label,description,shared from playlist_desc where pwdmd5='$pwdmd5' order by label");
 for($ipl=0;;$ipl++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $pl[$ipl]=$row["label"];
-  $description[$ipl]=$row["description"];
+  $aux=$row["shared"];
+  $description[$ipl]=$row["description"]."($aux)";
 }
 mysqli_free_result($query);
 $query=mysqli_query($con,"select label,description,pwdmd5 from playlist_desc where shared=1 and pwdmd5<>'$pwdmd5' order by label");
