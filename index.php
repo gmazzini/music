@@ -286,6 +286,7 @@ switch($go){
     myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5);
     echo "\n";
   }
+  echo "ciao\n";
   for($i=0;$i<$ispl;$i++){
     echo "$sdescription[$i] ";
     myz("pl",$spl[$i],"go","PLY","pwdmd5",$pwdmd5);
