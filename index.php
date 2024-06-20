@@ -1,5 +1,6 @@
 <?php
 include "local.php";
+$version="1.4";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$go=$_POST["go"];
 
@@ -57,7 +58,7 @@ echo " "; myz("go","SRC","pwdmd5","$pwdmd5");
 echo " "; myz("go","LST","pwdmd5","$pwdmd5");
 echo " "; myz("go","PLY","pwdmd5","$pwdmd5");
 echo " "; myz("go","MNG","pwdmd5","$pwdmd5");
-echo " music by GM ver 1.3";
+echo " music by GM ver $version";
 echo "</pre><hr>";
 
 if($go=="")$go="PLY";
