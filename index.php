@@ -478,6 +478,14 @@ switch($go){
       mysqli_query($con,"update playlist set position=$j where pwdmd5='$pwdmd5' and label='$aux1' and id='$aux'");
     }
     break;
+    case "sharedoff":
+    @$aux1=$_POST["par13"];
+    mysqli_query($con,"update playlist_desc set shared=0 where pwdmd5='$pwdmd5' and label='$aux1'");
+    break;
+    case "sharedon":
+    @$aux1=$_POST["par14"];
+    mysqli_query($con,"update playlist_desc set shared=1 where pwdmd5='$pwdmd5' and label='$aux1'");
+    break;
   }
   $query=mysqli_query($con,"select label,description from playlist_desc where pwdmd5='$pwdmd5' order by label");
   for($ipl=0;;$ipl++){
@@ -499,6 +507,8 @@ switch($go){
   echo "<input type='submit' name='act' value='sorttitle'> label:<input type='text' name='par10' size=8>\n";
   echo "<input type='submit' name='act' value='sortalbum'> label:<input type='text' name='par11' size=8>\n";
   echo "<input type='submit' name='act' value='sortartist'> label:<input type='text' name='par12' size=8>\n";
+  echo "<input type='submit' name='act' value='sharedoff'> label:<input type='text' name='par13' size=8>\n";
+  echo "<input type='submit' name='act' value='sharedon'> label:<input type='text' name='par14' size=8>\n";
   echo "<input type='hidden' name='pwdmd5' value='$pwdmd5'>";
   echo "<input type='hidden' name='go' value='MNG'>";
   echo "</form></pre>";
