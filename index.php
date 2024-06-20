@@ -36,14 +36,13 @@ for($ipl=0;;$ipl++){
   $description[$ipl]=$row["description"];
 }
 mysqli_free_result($query);
-$query=mysqli_query($con,"select label,description,pwdmd5,shared from playlist_desc where shared>0 and pwdmd5<>'$pwdmd5' order by label");
+$query=mysqli_query($con,"select label,description,pwdmd5 from playlist_desc where shared=1 and pwdmd5<>'$pwdmd5' order by label");
 for($ispl=0;;$ispl++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $spl[$ispl]=$row["label"];
-  $shared[$ispl]=$row["shared"];
-  $aux=$row["pwdmd5"];
-  $query1=mysqli_query($con,"select first from login where pwdmd5='$aux'");
+  $spwdmd5[$ispl]=$row["pwdmd5"];
+  $query1=mysqli_query($con,"select first from login where pwdmd5='$spwdmd5[$ispl]'");
   $row1=mysqli_fetch_assoc($query1);
   $aux=$row1["first"];
   mysqli_free_result($query1);
@@ -271,7 +270,7 @@ switch($go){
   
   // play
   case "PLY":
-  @$plin=$_POST["pl"]; @$act=$_POST["act"]; @$sharedin=$_POST["shared"];
+  @$plin=$_POST["pl"]; @$act=$_POST["act"]; @$spwdmd5in=$_POST["spwdmd5"];
   if($act=="P"){
     @$artist=$_POST["artist"]; @$album=$_POST["album"];
     mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and label='TMP'");
@@ -289,16 +288,16 @@ switch($go){
   echo "\n";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
-    myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5,"shared",0);
+    myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5,"spwdmd5","");
     echo "\n";
   }
   for($i=0;$i<$ispl;$i++){
     echo "$sdescription[$i] ";
-    myz("pl",$spl[$i],"go","PLY","pwdmd5",$pwdmd5,"shared",$shared[$j]);
+    myz("pl",$spl[$i],"go","PLY","pwdmd5",$pwdmd5,"spwdmd5",$spwdmd5[$j]);
     echo "\n";
   }
-  if($sharedin=0)$query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
-  else $query=mysqli_query($con,"select id from playlist where shared=$sharedin and label='$plin' order by position");
+  if($spwdmd5=="")$query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
+  else $query=mysqli_query($con,"select id from playlist where pwdmd5='$spwdmd5' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
