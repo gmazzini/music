@@ -281,19 +281,16 @@ switch($go){
   echo "<pre>$first $plin ";
   myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin);
   echo "\n";
-  echo "<table><td>";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
     myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5);
     echo "\n";
   }
-  echo "</td><td>";
   for($i=0;$i<$ispl;$i++){
     echo "$sdescription[$i] ";
     myz("pl",$spl[$i],"go","PLY","pwdmd5",$pwdmd5);
     echo "\n";
   }
-  echo "</td></table>";
   $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
