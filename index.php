@@ -271,7 +271,7 @@ switch($go){
   
   // play
   case "PLY":
-  @$plin=$_POST["pl"]; @$act=$_POST["act"];
+  @$plin=$_POST["pl"]; @$act=$_POST["act"]; @$sharedin=$_POST["shared"];
   if($act=="P"){
     @$artist=$_POST["artist"]; @$album=$_POST["album"];
     mysqli_query($con,"delete from playlist where pwdmd5='$pwdmd5' and label='TMP'");
@@ -289,15 +289,16 @@ switch($go){
   echo "\n";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
-    myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5);
+    myz("pl",$pl[$i],"go","PLY","pwdmd5",$pwdmd5,"shared",0);
     echo "\n";
   }
   for($i=0;$i<$ispl;$i++){
     echo "$sdescription[$i] ";
-    myz("pl",$spl[$i],"go","PLY","pwdmd5",$pwdmd5);
+    myz("pl",$spl[$i],"go","PLY","pwdmd5",$pwdmd5,"shared",$shared[$j]);
     echo "\n";
   }
-  $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
+  if($sharedin=0)$query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
+  else $query=mysqli_query($con,"select id from playlist where shared=$sharedin and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
