@@ -36,7 +36,7 @@ for($ipl=0;;$ipl++){
   $description[$ipl]=$row["description"];
 }
 mysqli_free_result($query);
-$query=mysqli_query($con,"select label,description,pwdmd5 from playlist_desc where shared>0 order by label");
+$query=mysqli_query($con,"select label,description,pwdmd5 from playlist_desc where shared>0 and pwdmd5<>'$pwdmd5' order by label");
 for($ispl=0;;$ispl++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
