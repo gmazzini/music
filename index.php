@@ -284,7 +284,7 @@ switch($go){
     mysqli_free_result($query);
   }
   echo "<pre>$first $plin ";
-  myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin);
+  myz("act","shuffle","go","PLY","pwdmd5",$pwdmd5,"pl",$plin,"spwdmd5",$spwdmd5in);
   echo "\n";
   for($i=0;$i<$ipl;$i++){
     echo "$description[$i] ";
