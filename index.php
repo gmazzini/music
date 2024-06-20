@@ -296,7 +296,7 @@ switch($go){
     myz("pl",$spl[$i],"go","PLY","pwdmd5",$pwdmd5,"spwdmd5",$spwdmd5[$i]);
     echo "\n";
   }
-  if($spwdmd5=="")$query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
+  if($spwdmd5in=="")$query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
   else $query=mysqli_query($con,"select id from playlist where pwdmd5='$spwdmd5in' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
