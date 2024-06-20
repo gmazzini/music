@@ -297,7 +297,7 @@ switch($go){
     echo "\n";
   }
   if($spwdmd5=="")$query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$plin' order by position");
-  else $query=mysqli_query($con,"select id from playlist where pwdmd5='$spwdmd5' and label='$plin' order by position");
+  else $query=mysqli_query($con,"select id from playlist where pwdmd5='$spwdmd5in' and label='$plin' order by position");
   for($i=0;;$i++){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
