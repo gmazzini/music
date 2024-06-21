@@ -143,7 +143,7 @@ for($ipl=0;;$ipl++){
 mysqli_free_result($query);
 echo "<pre>$first $plin\n";
 for($i=0;$i<$ipl;$i++)echo "$pl[$i] $description[$i]\n";
-echo "<pre><form method='post'>";
+echo "<pre><form method='post' enctype='multipart/form-data'>";
 echo "<input type='submit' name='act' value='create'> label:<input type='text' name='par1' size=8> description:<input type='text' name='par2' size=100>\n";
 echo "<input type='submit' name='act' value='remove'> label:<input type='text' name='par3' size=8>\n";
 echo "<input type='submit' name='act' value='relabel'> labelorg:<input type='text' name='par4' size=8> labeldest:<input type='text' name='par5' size=8>\n";
