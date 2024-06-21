@@ -1,6 +1,6 @@
 <?php
 include "local.php";
-$version="1.4";
+$version="1.5";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 @$passwd=$_POST["passwd"]; @$go=$_POST["go"];
 
