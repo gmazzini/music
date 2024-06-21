@@ -39,11 +39,16 @@ switch($act){
   break;
   case "upload":
   @$aux1=$_POST["par15"];
+  $query=mysqli_query($con,"select count(label) from playlist_desc where label='$aux1'");
+  $row=mysqli_fetch_row($query);
+  $aux=(int)$row[0];
+  mysqli_free_result($query);
+  if($aux==0)break;
   $hh=fopen($_FILES['par16']['tmp_name'],"r");
-  for(;;){
+  for($i=rand(1000,25000);;$i++){
     if(feof($hh))break;
     $line=trim(fgets($hh));
-    echo "$line\n";
+    mysqli_query($con,"insert into playlist (label,position,id,pwdmd5) values ('$aux1',$i,'$line','$pwdmd5'");
   }
   fclose($hh);
   break;
