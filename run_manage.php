@@ -41,7 +41,7 @@ switch($act){
   @$aux1=$_POST["par15"];
   $hh=fopen($_FILES['par16']['tmp_name'],"r");
   for(;;){
-    if(eof($hh))break;
+    if(feof($hh))break;
     $line=trim(fgets($hh));
     echo "$line\n";
   }
