@@ -48,7 +48,11 @@ switch($act){
   for($i=rand(1000,25000);;$i++){
     if(feof($hh))break;
     $line=trim(fgets($hh));
-    mysqli_query($con,"insert into playlist (label,position,id,pwdmd5) values ('$aux1',$i,'$line','$pwdmd5')");
+    $query1=mysqli_query($con,"select count(id) from song where id='$line'");
+    $row1=mysqli_fetch_row($query1);
+    $aux=(int)$row1[0];
+    mysqli_free_result($query1);
+    if($aux==1)mysqli_query($con,"insert into playlist (label,position,id,pwdmd5) values ('$aux1',$i,'$line','$pwdmd5')");
   }
   fclose($hh);
   break;
