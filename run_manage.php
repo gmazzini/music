@@ -37,6 +37,16 @@ switch($act){
   fclose($fp);
   echo "<pre><a href='$ffname' download>Download</a><br>";
   break;
+  case "upload":
+  @$aux1=$_POST["par15"];
+  $hh=fopen($_FILES['par16']['tmp_name'],"r");
+  for(;;){
+    if(eof($hh))break;
+    $line=trim(fgets($hh));
+    echo "$line\n";
+  }
+  fclose($hh);
+  break;
   case "random":
   @$aux1=$_POST["par9"];
   $query=mysqli_query($con,"select id from playlist where pwdmd5='$pwdmd5' and label='$aux1'");
@@ -139,6 +149,7 @@ echo "<input type='submit' name='act' value='remove'> label:<input type='text' n
 echo "<input type='submit' name='act' value='relabel'> labelorg:<input type='text' name='par4' size=8> labeldest:<input type='text' name='par5' size=8>\n";
 echo "<input type='submit' name='act' value='rename'> labelorg:<input type='text' name='par6' size=8> dest:<input type='text' name='par7' size=100>\n";
 echo "<input type='submit' name='act' value='download'> label:<input type='text' name='par8' size=8>\n";
+echo "<input type='submit' name='act' value='upload'> label:<input type='text' name='par15' size=8> <input type='file' name='par16'>\n";
 echo "<input type='submit' name='act' value='random'> label:<input type='text' name='par9' size=8>\n";
 echo "<input type='submit' name='act' value='sorttitle'> label:<input type='text' name='par10' size=8>\n";
 echo "<input type='submit' name='act' value='sortalbum'> label:<input type='text' name='par11' size=8>\n";
