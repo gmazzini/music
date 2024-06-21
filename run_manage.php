@@ -48,7 +48,7 @@ switch($act){
   for($i=rand(1000,25000);;$i++){
     if(feof($hh))break;
     $line=trim(fgets($hh));
-    mysqli_query($con,"insert into playlist (label,position,id,pwdmd5) values ('$aux1',$i,'$line','$pwdmd5')";
+    mysqli_query($con,"insert into playlist (label,position,id,pwdmd5) values ('$aux1',$i,'$line','$pwdmd5')");
   }
   fclose($hh);
   break;
