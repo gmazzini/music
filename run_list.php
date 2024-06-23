@@ -1,5 +1,6 @@
 <?php
 @$plin=$_POST["pl"]; @$act=$_POST["act"]; @$posin=$_POST["pos"];
+echo "<script>document.title='#list';</script>";
 echo "<pre>$first\n";
 for($i=0;$i<$ipl;$i++){
   echo "$description[$i] ";
