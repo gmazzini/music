@@ -43,7 +43,7 @@ switch($liv){
   echo ">> $artist >> $album ";
   myz("go","DIR","pwdmd5","$pwdmd5","liv",2,"artist",$artist);
   echo "\n";
-  $query=mysqli_query($con,"select id,title,duration,played from song where artist='$artist' and album='$album' and nomp3=0 order by title");
+  $query=mysqli_query($con,"select id,title,duration,played,isrc from song where artist='$artist' and album='$album' and nomp3=0 order by title");
   for(;;){
     $row=mysqli_fetch_assoc($query);
     if($row==null)break;
@@ -51,8 +51,9 @@ switch($liv){
     $title=$row["title"];
     $duration=$row["duration"];
     $played=$row["played"];
+    $isrc=$row["isrc"];
     myz("act","P","id",$id,"go","DIR","pwdmd5",$pwdmd5,"liv","4","artist",$artist,"album",$album,"pla",3);
-    echo " [$duration,$played] $title | $album | $artist ";
+    echo " ";
     for($i=0;$i<$ipl;$i++){
       $apl=$pl[$i];
       $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
@@ -70,7 +71,7 @@ switch($liv){
         echo " ";
       }
     }
-    echo "\n";
+    echo "[$duration,$played] $title | $album | $artist | $isrc\n";
   }
   mysqli_free_result($query);
   break;
