@@ -1,5 +1,6 @@
 <?php
 @$search=$_POST["search"]; @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
+echo "<script>document.title='#search';</script>";
 echo "<form method='post'>";
 echo "search <input type=text name=search size=16>";
 echo "<input type=hidden name=pwdmd5 value='$pwdmd5'>";
