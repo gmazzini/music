@@ -1,5 +1,6 @@
 <?php
 @$liv=(int)$_POST["liv"]; @$artist=$_POST["artist"]; @$album=$_POST["album"]; @$plin=$_POST["pl"]; @$idin=$_POST["id"]; @$pla=$_POST["pla"];
+echo "<script>document.title='#directory';</script>";
 echo "<pre>";
 switch($liv){
   case 1:
