@@ -47,7 +47,7 @@ for($i=0;;$i++){
       echo " ";
     }
   }
-  echo " [$duration,$played] $title | $album | $artist | $isrc\n";
+  echo "[$duration,$played] $title | $album | $artist | $isrc\n";
 }
 echo "</pre>";
 ?>
