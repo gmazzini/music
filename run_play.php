@@ -68,6 +68,7 @@ echo "    else aux+='   ';\n";
 echo "    aux+=desc[i]+'\\n';\n";
 echo "  }\n";
 echo "  document.getElementById('mylist').textContent=aux;\n";
+echo "  document.title=desc[elm];\n";
 echo "}\n";
 echo "function next(){\n";
 echo "  elm++;\n";
