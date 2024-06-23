@@ -1,4 +1,5 @@
 <?php
+echo "<script>document.title='#manage';</script>";
 @$act=$_POST["act"];
 switch($act){
   case "create":
