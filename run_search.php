@@ -17,7 +17,7 @@ if($pla==1){
 }
 elseif($pla==2)mysqli_query($con,"delete from playlist where label='$plin' and pwdmd5='$pwdmd5' and id='$idin'");
 elseif($pla==3)echo "<audio autoplay controls src='cached/$idin' onloadstart='xhttp=new XMLHttpRequest(); xhttp.open(\"GET\",\"played.php?id=$idin\",true); xhttp.send();'></audio>\n";
-$query=mysqli_query($con,"select id,title,album,artist,duration,played from song where title like '%$search%' and nomp3=0 order by title");
+$query=mysqli_query($con,"select id,title,album,artist,duration,played,isrc from song where title like '%$search%' and nomp3=0 order by title");
 for($i=0;;$i++){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
@@ -27,8 +27,9 @@ for($i=0;;$i++){
   $artist=$row["artist"];
   $duration=$row["duration"];
   $played=$row["played"];
+  $isrc=$row["isrc"];
   myz("act","P","id",$id,"go","SRC","pwdmd5",$pwdmd5,"artist",$artist,"album",$album,"pla",3,"search",$search);
-  echo " [$duration,$played] $title | $album | $artist ";
+  echo " ";
   for($i=0;$i<$ipl;$i++){
     $apl=$pl[$i];
     $query1=mysqli_query($con,"select position from playlist where label='$apl' and pwdmd5='$pwdmd5' and id='$id'");
@@ -46,7 +47,7 @@ for($i=0;;$i++){
       echo " ";
     }
   }
-  echo "\n";
+  echo " [$duration,$played] $title | $album | $artist | $isrc\n";
 }
 echo "</pre>";
 ?>
