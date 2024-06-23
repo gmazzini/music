@@ -46,13 +46,14 @@ for(;;){
   if($row==null)break;
   $id=$row["id"];
   $position=$row["position"];
-  $query1=mysqli_query($con,"select title,album,artist,duration,played from song where id='$id'");
+  $query1=mysqli_query($con,"select title,album,artist,duration,played,isrc from song where id='$id'");
   $row1=mysqli_fetch_assoc($query1);
   $title=$row1["title"];
   $album=$row1["album"];
   $artist=$row1["artist"];
   $duration=$row1["duration"];
   $played=$row1["played"];
+  $isrc=$row1["isrc"];
   mysqli_free_result($query1);
   myz("act","P","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
   echo " ";
@@ -61,7 +62,7 @@ for(;;){
   myz("act","U","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
   echo " ";
   myz("act","D","go","LST","pwdmd5",$pwdmd5,"pos",$position,"pl",$plin);
-  echo " $position [$duration,$played] $title | $album | $artist\n";
+  echo " $position [$duration,$played] $title | $album | $artist | $isrc\n";
 }
 echo "<pre>";
 mysqli_free_result($query);
