@@ -11,7 +11,7 @@ for(;;){
   $artist=$row["artist"];
   $pp=strpos($album,$artist.": ",);
   if($pp!==false){
-    $nn=substr($album,$pp+strlen($artist)+3);
+    $nn=substr($album,$pp+strlen($artist)+2);
     echo "$id\n...$album\n---$nn\n";
   }
 }
