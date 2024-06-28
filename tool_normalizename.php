@@ -10,7 +10,10 @@ for(;;){
   $album=$row["album"];
   $artist=$row["artist"];
   $pp=strpos($album,$artist.": ",);
-  if($pp!==false)echo "$album\n";
+  if($pp!==false){
+    $nn=substr($album,$pp+1);
+    echo "$id\n...$album\n---$nn\n";
+  }
 }
 mysqli_free_result($query);
 mysqli_close($con);
