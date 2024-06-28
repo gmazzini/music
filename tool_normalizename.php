@@ -14,6 +14,7 @@ for(;;){
     $nn=substr($album,$pp+strlen($artist)+2);
     mysqli_query($con,"update song set album='$nn' where id='$id'");
     echo "$id\n...$album\n---$nn\n";
+    $album=$nn;
   }
 }
 mysqli_free_result($query);
