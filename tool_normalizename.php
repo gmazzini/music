@@ -28,6 +28,7 @@ for(;;){
     $oo=json_decode(curl_exec($ch),true);
     curl_close($ch);
     @$nn=$oo["tracks"]["items"][0]["album"]["name"];
+    mysqli_query($con,"update song set album='$nn' where id='$id'");
     echo "$id\n...$album\n---$nn\n";
     $album=$nn;
   }
