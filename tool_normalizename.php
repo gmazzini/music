@@ -6,7 +6,7 @@ for(;;){
   $row=mysqli_fetch_assoc($query);
   if($row==null)break;
   $id=$row["id"];
-  $title=$row["title];
+  $title=$row["title"];
   $album=$row["album"];
   $artist=$row["artist"];
   $pp=strpos($album,$artist.": ",);
