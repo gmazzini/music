@@ -16,7 +16,7 @@ for(;;){
     echo "$id\n...$album\n---$nn\n";
     $album=$nn;
   }
-  $pp=strpos($album,"$pp=strpos($album,"Absolute Disco - Alle Tiders ");
+  $pp=strpos($album,"Absolute Disco - Alle Tiders ");
   if($pp!==false){
     $nn="";
     echo "$id\n...$album\n---$nn\n";
