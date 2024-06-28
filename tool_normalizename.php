@@ -9,10 +9,16 @@ for(;;){
   $title=$row["title"];
   $album=$row["album"];
   $artist=$row["artist"];
-  $pp=strpos($album,$artist.": ",);
+  $pp=strpos($album,$artist.": ");
   if($pp!==false){
     $nn=substr($album,$pp+strlen($artist)+2);
     mysqli_query($con,"update song set album='$nn' where id='$id'");
+    echo "$id\n...$album\n---$nn\n";
+    $album=$nn;
+  }
+  $pp=strpos($album,"$pp=strpos($album,"Absolute Disco - Alle Tiders ");
+  if($pp!==false){
+    $nn="";
     echo "$id\n...$album\n---$nn\n";
     $album=$nn;
   }
