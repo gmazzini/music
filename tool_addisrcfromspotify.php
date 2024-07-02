@@ -3,7 +3,7 @@ include "local.php";
 $con=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 $aaa=$argv[1];
 
-$query=mysqli_query($con,"select id,title,artist from song where isrc='' and nomp3=0 and artist like '%$aaa%' order by rand()");
+$query=mysqli_query($con,"select id,title,artist from song where (isrc='' or isrc is null) and nomp3=0 and artist like '%$aaa%' order by rand()");
 $j=0;
 for($i=1;$i<=500;$i++){
   $row=mysqli_fetch_assoc($query);
